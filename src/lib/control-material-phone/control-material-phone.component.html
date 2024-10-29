@@ -1,0 +1,26 @@
+<mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}</mat-label>
+  }
+  <div class="d-flex">
+    @if (!readonly) {
+      <span style="width: fit-content" class="ml-0">
+        <ngx-flag-picker [selectedCountryCode]="selectedCountryCode"
+          [countryCodes]="countryCodes"
+          (changedCountryCode)="changeSelectedCountryCode($event)">
+        </ngx-flag-picker>
+      </span>
+    }
+    <span class="ml-1">
+      <input id="masktextfield{{index}}" matInput type="text" [formControl]="control" [placeholder]="placeholder" [imask]="telephoneMask" [unmask]="unmask" (blur)="blur()" [readonly]="readonly"/>
+    </span>
+  </div>
+  @if (!disableClear && control.value && !control.disabled && !readonly) {
+    <button  type="button" mat-icon-button matSuffix aria-label="Clear" (click)="clearPhone($event)">
+      <mat-icon class="mdi mdi-close"></mat-icon>
+    </button>
+  }
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+</mat-form-field>

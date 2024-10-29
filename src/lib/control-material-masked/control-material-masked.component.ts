@@ -32,7 +32,7 @@ export class ControlMaterialMaskedComponent extends ControlMaterialComponent {
   limparItem($event: any) {
     if (this.control.value !== undefined && this.control.value !== null && this.control.value !== '') {
       $event.stopPropagation();
-      this.control.setValue(null);
+      this.control.setValue('');
       this.clearItem.emit();
     }
   }
