@@ -6,13 +6,14 @@ import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'lib-control-material-password',
   standalone: true,
   templateUrl: './control-material-password-strength.component.html',
   styleUrls: ['../control-material.component.scss', './control-material-password-strength.component.scss'],
-  imports: [MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, MatHint, ReactiveFormsModule],
+  imports: [MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, MatHint, ReactiveFormsModule],
 })
 export class ControlMaterialPasswordStrengthComponent extends ControlMaterialPasswordComponent {
 

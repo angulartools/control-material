@@ -6,13 +6,14 @@ import { DatePipe, NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'lib-control-material-time',
   standalone: true,
   templateUrl: './control-material-time.component.html',
   styleUrls: ['../control-material.component.scss', './control-material-time.component.scss'],
-  imports: [DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
+  imports: [MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
 })
 export class ControlMaterialTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 

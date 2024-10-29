@@ -7,13 +7,14 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IMaskDirective } from 'angular-imask';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'lib-control-material-masked',
   standalone: true,
   templateUrl: './control-material-masked.component.html',
   styleUrls: ['../control-material.component.scss', './control-material-masked.component.scss'],
-  imports: [MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective],
+  imports: [MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective],
 })
 export class ControlMaterialMaskedComponent extends ControlMaterialComponent {
 

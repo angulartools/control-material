@@ -8,13 +8,14 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'lib-control-material-select',
   standalone: true,
   templateUrl: './control-material-select.component.html',
   styleUrls: ['../control-material.component.scss', './control-material-select.component.scss'],
-  imports: [MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslateModule],
+  imports: [MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslateModule],
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
