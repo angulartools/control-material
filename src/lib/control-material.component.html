@@ -1,0 +1,27 @@
+<mat-form-field [class.invisible]="invisible" appearance="outline" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}@if (tooltip !== null) {
+      <span><i class="fa-regular fa-circle-info"></i></span>
+    }</mat-label>
+  }
+  <!-- [appAutoFocus]="inicialFocus" -->
+  <input [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" (blur)="blur()" />
+  @if (iconBefore !== null) {
+    <span class="mr-1" matPrefix>
+      <mat-icon [class]="iconBefore"></mat-icon>
+    </span>
+  }
+  @if (iconAfter !== null) {
+    <span matSuffix>
+      <mat-icon [class]="iconAfter"></mat-icon>
+    </span>
+  }
+  @if (tooltip !== null) {
+    <span matSuffix>
+      <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+    </span>
+  }
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+</mat-form-field>

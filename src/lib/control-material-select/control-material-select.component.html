@@ -1,0 +1,58 @@
+<mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}</mat-label>
+  }
+  <mat-select [hideSingleSelectionIndicator]="true" [formControl]="control" [compareWith]="compareFn" [multiple]="multiple" (selectionChange)="selectionChange($event)">
+    @for (item of _selectList; track item) {
+      <mat-option [value]="item" [ngClass]="{'large-data': largeData }" [disabled]="readonly">
+        @if (item !== undefined && imageBefore !== undefined && imageBefore !== null) {
+          <span class="mr-1">
+            <img [src]="item[imageBefore]" />
+          </span>
+        }
+        @if (item !== undefined && bindLabel !== null && bindArray.length === 0 && translateValue === true) {
+          <span>{{item[bindLabel] | translate}}</span>
+        }
+        @if (item !== undefined && bindLabel !== null && bindArray.length === 0 && translateValue === false) {
+          <span>{{item[bindLabel]}}</span>
+        }
+        @if (item !== undefined && bindLabel === null  && bindArray.length === 0 && translateValue === true) {
+          <span>{{item | translate}}</span>
+        }
+        @if (item !== undefined && bindLabel === null  && bindArray.length === 0 && translateValue === false) {
+          <span>{{item}}</span>
+        }
+        @if (item !== undefined && bindArray.length > 0) {
+          <span>
+            @for (value of bindArray; track value) {
+              <span>
+                @if (value['type'] === 'string') {
+                  <span>{{value['value']}}</span>
+                }
+                @if (value['type'] === 'data') {
+                  <span>{{item[value['value']]}}</span>
+                }
+              </span>
+            }
+          </span>
+        }
+      </mat-option>
+    }
+  </mat-select>
+  @if (!disableClear && control.value && !control.disabled && !readonly) {
+    <button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
+      <mat-icon class="mdi mdi-close"></mat-icon>
+    </button>
+  }
+  @if (tooltip !== null) {
+    <span matSuffix>
+      <mat-icon class="mdi mdi-information-outline" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+    </span>
+  }
+  @if (hint !== null) {
+    <mat-hint>{{hint}}</mat-hint>
+  }
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+</mat-form-field>

@@ -1,0 +1,29 @@
+<mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}</mat-label>
+  }
+  <input matInput type="text" [formControl]="control" [placeholder]="placeholder" [imask]="mask" [unmask]="unmask" (blur)="blur()" [readonly]="readonly"/>
+  @if (showClearMask) {
+    <button type="button" mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
+      <mat-icon class="mdi mdi-close"></mat-icon>
+    </button>
+  }
+  @if (iconBefore !== null) {
+    <span class="mr-1" matPrefix>
+      <mat-icon [class]="iconBefore"></mat-icon>
+    </span>
+  }
+  @if (iconAfter !== null) {
+    <span matSuffix>
+      <mat-icon [class]="iconAfter"></mat-icon>
+    </span>
+  }
+  @if (tooltip !== null) {
+    <span matSuffix>
+      <mat-icon class="mdi mdi-information-outline" matTooltip="{{tooltip}}" matTooltipPosition="above" color="primary" ></mat-icon>
+    </span>
+  }
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+</mat-form-field>

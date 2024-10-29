@@ -1,0 +1,15 @@
+<mat-form-field style="max-width: inherit;" appearance="outline" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}</mat-label>
+  }
+  <input hidden [formControl]="control" />
+  <input [id]="id" style="font-size: 13px;" type="time" [value]="control.value | date:'HH:mm'" [readonly]="readonly" matInput [min]="minDate" [max]="maxDate" [placeholder]="placeholder" (ngModelChange)="model !== undefined ? changeNgModelDate($event) : null" (change)="changeDate($event)" >
+  <button class="icon-button-20px" type="button" matSuffix mat-icon-button aria-label="TimePicker" (click)="showPicker()">
+    <mat-icon >schedule</mat-icon>
+  </button>
+  @if (tooltip !== null) {
+    <span matSuffix>
+      <mat-icon matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" >info</mat-icon>
+    </span>
+  }
+</mat-form-field>
