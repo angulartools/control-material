@@ -1,0 +1,27 @@
+<div [ngClass]="{'d-inline-flex': inlineRadioLabel}" class="frame">
+  <label style="align-self: center; font-weight: 100;">{{label}}:
+    @if (tooltip !== null) {
+      <span>
+        <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+      </span>
+    }
+    @if (hasError()) {
+      <mat-error class="danger">{{errorMessage}}</mat-error>
+    }
+  </label>
+  <mat-radio-group [disabled]="disabled"
+    class="ml-0"
+    [formControl]="control"
+    (change)="radioSelectChange($event)">
+    @for (item of _selectList; track item) {
+      <mat-radio-button class="radio-button" color="primary" [value]="item">
+        @if (translateValue === false) {
+          <span class="label-radio">{{item[bindLabel]}}</span>
+        }
+        @if (translateValue === true) {
+          <span class="label-radio">{{item[bindLabel] | translate }}</span>
+        }
+      </mat-radio-button>
+    }
+  </mat-radio-group>
+</div>
