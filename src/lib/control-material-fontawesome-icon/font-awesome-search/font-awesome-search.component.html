@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>
+  {{'PESQUISAR_ICONE' | translate}}
+  <div style="float: right;">
+    <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [value]="viewTypes[0]" #group="matButtonToggleGroup" name="viewType" aria-label="View Type">
+      @for (item of viewTypes; track item) {
+        <mat-button-toggle [value]="item">
+          <i class="{{item.icon}}"></i>
+        </mat-button-toggle>
+      }
+    </mat-button-toggle-group>
+  </div>
+</h2>
+<mat-dialog-content>
+  <form [formGroup]="searchForm">
+    <lib-control-material label="{{'PESQUISAR_ICONE' | translate}}" [smaller]="true" style="width: 100%;">
+      <input formControlName="search" />
+    </lib-control-material>
+  </form>
+  @if (loading === true) {
+    <mat-spinner diameter="32"></mat-spinner>
+  }
+  @if (loading === false) {
+    <div style="overflow: hidden;" class="row mx-0 px-0 text-left">
+      @for (icone of listaIcones; track icone) {
+        <div class="mt-1 mx-0 px-1 col" style="flex-grow: 0;">
+          <button [class.inline-button]="group?.value?.id === 3" matTooltip="{{icone.nome}}" matTooltipPosition="above" [class.selected]="icone.classe === selectedIcon?.classe" mat-stroked-button class="{{group?.value?.classe}}" (click)="selecionarIcone(icone)">
+            <div [class.d-inline-flex]="group?.value?.id === 3" style="width: 100%; align-items: center;">
+              <i class="custom-icon {{icone.classe}} mr-1"></i>
+              <div class="icon-text" style="font-size: {{group?.value?.fontSize}}">{{icone.nome}}</div>
+            </div>
+          </button>
+        </div>
+      }
+      @if (loading === false && listaIcones.length === itensPorPagina) {
+        <div class="col-12">
+          <button type="button" class="btn-block mt-2 ml-0 mr-1" mat-raised-button color="accent" (click)="showMore()">
+            {{'SHOW_MORE' | translate}}
+          </button>
+        </div>
+      }
+    </div>
+  }
+</mat-dialog-content>
+<mat-dialog-actions class="mt-2 justify-content-between">
+  <button mat-stroked-button color="accent" type="button" (click)="closeDialog()">
+    <i class="fa-solid fa-xmark mr-1"></i> {{'CANCELAR' | translate}}
+  </button>&nbsp;
+  <button type="button" [disabled]="selectedIcon === null" mat-raised-button color="primary" type="button" (click)="salvar()">
+    <i class="fa-solid fa-check mr-1"></i> {{'CONFIRMA' | translate}}
+  </button>
+</mat-dialog-actions>

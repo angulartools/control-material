@@ -1,0 +1,52 @@
+<mat-form-field appearance="outline" floatLabel="always" class="d-block" [class.smaller]="smaller">
+
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}</mat-label>
+  }
+
+  <input matInput [hidden]="true" [min]="minDate" [max]="maxDate" [ngxMatDatetimePicker]="picker"
+    [formControl]="control" [placeholder]="placeholder" [readonly]="true" (dateChange)="changeDate($event)" />
+
+  <div class="d-inline-flex frame">
+
+    <span class="mr-1">
+      <input [readonly]="readonly" [imask]="dateMask" [unmask]="true" placeholder="  /  /    "
+        [disabled]="disabled" [value]="inputDate" class="form-control" [style.height]="smaller ? '28px' : '32px'"
+        (focus)="onFocus($event)" (focusout)="onFocusOutDate($event)" style="border: none; padding: 0px; max-width: 100px;">
+    </span>
+
+    @if (showTime) {
+      <span>
+        <input [readonly]="readonly" [imask]="hourMinuteMask" [unmask]="true" placeholder="  :  " [style.height]="smaller ? '28px' : '32px'"
+          [disabled]="disabled" [value]="inputHour" class="form-control" style="border: none; padding: 0px;"
+          (focus)="onFocus($event)" (focusout)="onFocusOutHour($event)">
+      </span>
+    }
+
+  </div>
+
+  <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="readonly" tabindex="-1" aria-hidden="true">
+    <mat-icon matDatepickerToggleIcon>
+      calendar_month
+    </mat-icon>
+  </mat-datepicker-toggle>
+
+  <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+    [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+    [touchUi]="touchUi"  [enableMeridian]="enableMeridian"
+    [disableMinute]="disableMinute" [hideTime]="!showTime">
+    <ngx-mat-datepicker-actions>
+      <button mat-button ngxMatDatepickerCancel>
+        <i class="mdi mdi-close mr-1"></i>{{'CANCELAR' | translate}}
+      </button>
+      <button mat-raised-button color="primary" ngxMatDatepickerApply>
+        <i class="mdi mdi-check mr-1"></i>{{'CONFIRMAR' | translate}}
+      </button>
+    </ngx-mat-datepicker-actions>
+  </ngx-mat-datetime-picker>
+
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+
+</mat-form-field>

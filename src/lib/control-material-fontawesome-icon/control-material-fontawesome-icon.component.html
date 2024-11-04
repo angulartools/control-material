@@ -1,0 +1,126 @@
+<div class="d-inline-flex">
+  <mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller" >
+    @if (label !== undefined && label !== null) {
+      <mat-label>{{label}}</mat-label>
+    }
+    @if (loadingData) {
+      <mat-spinner matSuffix [diameter]="18" style="float: right; margin-left: 8px"></mat-spinner>
+    }
+    <input matInput [readonly]="readonly" [formControl]="control" [placeholder]="placeholder" [matAutocomplete]="auto" />
+
+    <div class="mat-select-arrow-wrapper" style="position: absolute; right: 0; bottom: 50%">
+      <div class="mat-select-arrow"></div>
+    </div>
+
+    @if (control.value !== null && control.value !== '') {
+      <span matPrefix>
+        <i style="font-size: 18px" class="{{control.value.classe}} mr-1"></i>
+      </span>
+    }
+
+    @if (tooltip !== null) {
+      <span matSuffix>
+        <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+      </span>
+    }
+
+    <ng-template #popContent>
+      @if (bindArray === undefined || bindArray === null || bindArray.length === 0 || showLabel === true) {
+        <span>{{ getLabel(control.value) }}</span>
+      }
+      @if (bindArray.length > 0) {
+        <span>
+          @if (showLabel === true) {
+            <span> - </span>
+          }
+          @for (value of bindArray; track value; let index = $index) {
+            <span>
+              @if (value.type==='string') {
+                <span>{{control.value[value.value]}}</span>
+              }
+              @if (value.type==='data' && (value.format === undefined || value.format === null)) {
+                <span>{{control.value[value.value]}}</span>
+              }
+              @if (value.type==='data' && value.format !== null) {
+                <span>{{control.value[value.value] | date:value.format}}</span>
+              }
+              @if (index+1 < bindArray.length) {
+                <span> - </span>
+              }
+            </span>
+          }
+        </span>
+      }
+    </ng-template>
+    @if (bindArray.length > 0 && control.value !== undefined && control.value !== null && control.value !== '') {
+      <button matPrefix mat-icon-button type="button" placement="top"
+        [ngbPopover]="popContent" container="body" color="primary">
+        <mat-icon class="fa-solid fa-message-exclamation"></mat-icon>
+      </button>
+    }
+
+    @if (control.value && !control.disabled && !readonly) {
+      <button mat-icon-button type="button" matSuffix aria-label="Clear" (click)="limparItem($event);">
+        <mat-icon class="fa-solid fa-xmark"></mat-icon>
+      </button>
+    }
+
+    @if (hasError()) {
+      <mat-error class="danger">{{errorMessage}}</mat-error>
+    }
+
+    <mat-autocomplete #auto [displayWith]="displayBindLabel.bind(this)" (optionSelected)="optionSelected($event)">
+
+      @if (loading) {
+        <mat-option disabled class="loading">
+          <mat-spinner diameter="35"></mat-spinner>
+        </mat-option>
+      }
+
+      @if (!loading && (filteredOptions | async)?.length===0) {
+        <mat-option disabled>
+          {{'N_REGISTRO_ENCONTRADO' | translate}}
+        </mat-option>
+      }
+      <ng-container>
+        @for (item of filteredOptions | async; track item) {
+          <mat-option [value]="item"[ngClass]="{'large-data': largeData, 'small-text': smallText }">
+            <i class="{{item.classe}} mr-1" style="font-size: 18px;"></i>
+            <span>
+              @if (bindArray === undefined || bindArray === null || bindArray.length === 0 || showLabel === true) {
+                <span>{{ getLabel(item) }}</span>
+              }
+              @if (bindArray.length > 0) {
+                <span>
+                  @if (showLabel === true) {
+                    <span> - </span>
+                  }
+                  @for (value of bindArray; track value; let index = $index) {
+                    <span>
+                      @if (value.type==='string') {
+                        <span>{{item[value.value]}}</span>
+                      }
+                      @if (value.type==='data' && (value.format === undefined || value.format === null)) {
+                        <span>{{item[value.value]}}</span>
+                      }
+                      @if (value.type==='data' && value.format !== null) {
+                        <span>{{item[value.value] | date:value.format}}</span>
+                      }
+                      @if (index+1 < bindArray.length) {
+                        <span> - </span>
+                      }
+                    </span>
+                  }
+                </span>
+              }
+            </span>
+          </mat-option>
+        }
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button class="mt-1" mat-icon-button type="button" aria-label="Search" (click)="openDialog()">
+    <mat-icon class="fa-regular fa-icons"></mat-icon>
+  </button>
+</div>

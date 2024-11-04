@@ -4,8 +4,7 @@
       <span><i class="fa-regular fa-circle-info"></i></span>
     }</mat-label>
   }
-  <!-- [appAutoFocus]="inicialFocus" -->
-  <input [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" (blur)="blur()" />
+  <input [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" [appAutoFocus]="inicialFocus" (blur)="blur()" />
   @if (iconBefore !== null) {
     <span class="mr-1" matPrefix>
       <mat-icon [class]="iconBefore"></mat-icon>

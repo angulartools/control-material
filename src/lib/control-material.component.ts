@@ -6,6 +6,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError } from '@angular/material/form-field';
 import { NgClass } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { AutofocusDirective } from './auto-focus.directive';
 
 @Component({
   selector: 'lib-control-material',
@@ -19,7 +20,7 @@ import { TranslateService } from '@ngx-translate/core';
         multi: true
     },
   ],
-  imports: [MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
+  imports: [AutofocusDirective, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit {
 

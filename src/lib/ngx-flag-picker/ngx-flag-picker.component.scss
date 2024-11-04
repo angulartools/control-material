@@ -1,0 +1,56 @@
+.select-flags {
+  display: inline-block;
+  position: relative;
+  color: #50575e;
+  text-align: left;
+}
+
+.flag-icon-margin-right {
+  margin-right: 6px;
+}
+
+.country-flag {
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+}
+
+.list-country-flags {
+  width: -moz-available;
+  position: absolute;
+  max-height: 200px;
+  margin-top: 10px;
+  padding: 5px;
+  background: #ffffff;
+  border: 1px solid #c7c7c7;
+  overflow: auto;
+  z-index: 99999;
+}
+
+.flag-list-panel.mat-mdc-select-panel {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+.flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar {
+  width: 7px;
+}
+.flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 10rem;
+  border: 1px solid #fff;
+}
+
+
+.flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+.flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+:host ::ng-deep div.mat-mdc-select-panel {
+  max-width: fit-content !important;
+}

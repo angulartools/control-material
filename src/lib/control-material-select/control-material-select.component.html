@@ -41,7 +41,7 @@
   </mat-select>
   @if (!disableClear && control.value && !control.disabled && !readonly) {
     <button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
-      <mat-icon class="mdi mdi-close"></mat-icon>
+      <mat-icon class="fa-solid fa-xmark"></mat-icon>
     </button>
   }
   @if (tooltip !== null) {

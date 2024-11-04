@@ -1,0 +1,49 @@
+
+:host ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  padding: 0 18px !important;
+}
+
+.custom-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.large-icon-button {
+  text-align: center;
+  width: 125px !important;
+  height: 125px !important;
+  .custom-icon {
+    transform: scale(2);
+  }
+}
+.midi-icon-button {
+  text-align: center;
+  width: 90px !important;
+  height: 90px !important;
+  .custom-icon {
+    transform: scale(1);
+  }
+}
+.small-icon-button {
+  text-align: left;
+  width: 135px !important;
+  height: 36px !important;
+  .custom-icon {
+    transform: scale(0.5);
+  }
+}
+
+.selected {
+  border: 2px solid var(--theme-primary-400);
+}
+
+.icon-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inline-button {
+  padding: 0 5px !important;
+}

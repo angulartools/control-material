@@ -1,0 +1,27 @@
+<mat-form-field appearance="outline" floatLabel="always" class="d-block" [class.smaller]="smaller">
+
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}</mat-label>
+  }
+
+  <div class="d-inline-flex frame">
+
+    <span>
+      <input matInput [readonly]="readonly" [imask]="hourMinuteMask" [unmask]="true" placeholder=" :  :  "
+        [disabled]="disabled" [value]="inputHour" class="form-control" [formControl]="control"
+        (focus)="onFocus($event)" (focusout)="onFocusOutMinute($event)">
+    </span>
+
+  </div>
+
+  @if (tooltip !== null) {
+    <span matSuffix>
+      <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+    </span>
+  }
+
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+
+</mat-form-field>

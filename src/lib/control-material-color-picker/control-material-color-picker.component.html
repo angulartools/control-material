@@ -1,0 +1,30 @@
+<mat-form-field [class.invisible]="invisible" appearance="outline" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+    <mat-label>{{label}}@if (tooltip !== null) {
+      <span><i class="fa-regular fa-circle-info"></i></span>
+    }</mat-label>
+  }
+  <input matInput [formControl]="control" [placeholder]="placeholder" [readonly]="true" />
+  <ngx-colors
+    class="color-picker"
+    matSuffix
+    ngx-colors-trigger
+    [colorsAnimation]="colorsAnimation"
+    [format]="format"
+    [hideTextInput]="hideTextInput"
+    [colorPickerControls]="colorPickerControls"
+    acceptLabel="{{ 'SALVAR' | translate }}"
+    cancelLabel="{{ 'CANCELAR' | translate }}"
+    [formControl]="control"
+    attachTo="wrapper"
+    (change)="updateControlValue($event)"
+  ></ngx-colors>
+  @if (iconAfter !== null) {
+    <span matSuffix>
+      <mat-icon [class]="iconAfter"></mat-icon>
+    </span>
+  }
+  @if (hasError()) {
+    <mat-error class="danger">{{errorMessage}}</mat-error>
+  }
+</mat-form-field>
