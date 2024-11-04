@@ -28,7 +28,7 @@ export class ControlMaterialRadioComponent extends ControlMaterialComponent {
   }
 
   @Input('selectList')
-  set selectList(value: any) {
+  set setSelectList(value: any) {
     this._selectList = value;
     if (value !== undefined && value !== null && value.length > 0) {
       if (this.control !== undefined) {
