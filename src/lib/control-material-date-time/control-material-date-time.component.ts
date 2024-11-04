@@ -64,7 +64,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
     placeholderChar: ' '
   };
 
-  @HostBinding() id = `app-control-material-date-time-${ControlMaterialComponent.nextId++}`;
+  @HostBinding() id = `lib-control-material-date-time-${ControlMaterialComponent.nextId++}`;
   private readonly _adapter = inject<NgxMatDateAdapter<unknown>>(NgxMatDateAdapter);
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();

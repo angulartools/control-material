@@ -16,7 +16,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
 
 @Component({
-    selector: 'app-control-material-autocomplete',
+    selector: 'lib-control-material-autocomplete',
     templateUrl: './control-material-autocomplete.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-autocomplete.component.scss'],
     providers: [

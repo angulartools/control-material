@@ -8,7 +8,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 
 @Component({
-    selector: 'app-control-material-color-picker',
+    selector: 'lib-control-material-color-picker',
     templateUrl: './control-material-color-picker.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-color-picker.component.scss'],
     standalone: true,

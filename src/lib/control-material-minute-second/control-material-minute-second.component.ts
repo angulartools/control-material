@@ -8,7 +8,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
-    selector: 'app-control-material-minute-second',
+    selector: 'lib-control-material-minute-second',
     templateUrl: './control-material-minute-second.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-minute-second.component.scss'],
     providers: [
@@ -33,7 +33,7 @@ export class ControlMaterialMinuteSecondComponent extends ControlMaterialCompone
 
   constructor() {
     super();
-    this.id = `app-control-material-date-time-${ControlMaterialMinuteSecondComponent.nextId++}`;
+    this.id = `lib-control-material-date-time-${ControlMaterialMinuteSecondComponent.nextId++}`;
   }
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();

@@ -8,7 +8,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 
 @Component({
-    selector: 'app-control-material-filter',
+    selector: 'lib-control-material-filter',
     templateUrl: './control-material-filter.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-filter.component.scss'],
     animations: [
