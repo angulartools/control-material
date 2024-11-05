@@ -1,11 +1,12 @@
-import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ControlMaterialComponent } from '../control-material.component';
-import { Component, forwardRef, AfterContentInit, Input, HostBinding, EventEmitter, Output } from '@angular/core';
-import { IMaskDirective } from 'angular-imask';
-import { MatInput } from '@angular/material/input';
-import { MatFormField, MatLabel, MatError, MatSuffix } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
+import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output } from "@angular/core";
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { MatError, MatFormField, MatLabel, MatSuffix } from "@angular/material/form-field";
+import { MatIcon } from "@angular/material/icon";
+import { MatInput } from "@angular/material/input";
+import { MatTooltip } from "@angular/material/tooltip";
+import { IMaskDirective } from "angular-imask";
+import { ControlMaterialComponent } from './../control-material.component';
+
 
 @Component({
     selector: 'lib-control-material-minute-second',
@@ -33,7 +34,7 @@ export class ControlMaterialMinuteSecondComponent extends ControlMaterialCompone
 
   constructor() {
     super();
-    this.id = `lib-control-material-date-time-${ControlMaterialMinuteSecondComponent.nextId++}`;
+    this.id = `lib-control-material-minute-second-${ControlMaterialMinuteSecondComponent.nextId++}`;
   }
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();
