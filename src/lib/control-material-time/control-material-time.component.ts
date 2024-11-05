@@ -94,7 +94,7 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
   }
 
   showPicker() {
-    const inputDateElement = document.getElementById(this.id) as any;
+    const inputDateElement = document.getElementById(this.id+'time') as any;
     inputDateElement.showPicker();
   }
 
