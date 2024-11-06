@@ -54,6 +54,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   required = false;
   input: any;
   control: any;
+  onChange: any = () => {};
 
   @ContentChild(FormControlName) formControlName: FormControlName | undefined;
   @ContentChild(NgModel) model: NgModel | undefined;
@@ -65,6 +66,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   translate = inject(TranslateService);
 
   @Output() onBlur: EventEmitter<any> = new EventEmitter();
+  
 
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
@@ -190,6 +192,10 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
         this.control.setValue(value);        
       }
     }
+  }
+
+  registerOnChange(fn) {
+    this.onChange = fn;
   }
 
 }
