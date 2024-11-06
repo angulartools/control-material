@@ -98,4 +98,13 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
     inputDateElement.showPicker();
   }
 
+  override writeValue(value) {
+    if (value !== undefined && value !== null) {
+      if (this.control !== undefined &&
+          this.control.value !== value) {        
+          this.control.setValue((new Date(value)).toISOString());        
+      }
+    }
+  }
+
 }

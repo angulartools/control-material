@@ -183,4 +183,13 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     return dateWithNoTimezone;
   }
 
+  writeValue(value) {
+    if (value !== undefined && value !== null) {
+      if (this.control !== undefined &&
+          this.control.value !== value) {
+        this.control.setValue(value);        
+      }
+    }
+  }
+
 }
