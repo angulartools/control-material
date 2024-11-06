@@ -42,6 +42,5 @@ export class ControlMaterialFilterComponent extends ControlMaterialComponent {
     this.onTouched();
   }
 
-  onTouched: any = () => {};
 
 }

@@ -55,6 +55,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   input: any;
   control: any;
   onChange: any = () => {};
+  onTouched: any = () => {};
 
   @ContentChild(FormControlName) formControlName: FormControlName | undefined;
   @ContentChild(NgModel) model: NgModel | undefined;
@@ -196,6 +197,10 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
 
   registerOnChange(fn) {
     this.onChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onTouched = fn;
   }
 
 }
