@@ -1,11 +1,11 @@
-import { AfterContentInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { DatePipe, NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 
 @Component({
@@ -13,6 +13,13 @@ import { MatIconButton } from '@angular/material/button';
   standalone: true,
   templateUrl: './control-material-time.component.html',
   styleUrls: ['../control-material.component.scss', './control-material-time.component.scss'],
+  providers: [
+    {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => ControlMaterialTimeComponent),
+        multi: true
+    },
+  ],
   imports: [MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
 })
 export class ControlMaterialTimeComponent extends ControlMaterialComponent implements AfterContentInit {
@@ -101,8 +108,8 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
   override writeValue(value) {
     if (value !== undefined && value !== null) {
       if (this.control !== undefined &&
-          this.control.value !== value) {        
-          this.control.setValue((new Date(value)).toISOString());        
+          this.control.value !== value) {
+          this.control.setValue((new Date(value)).toISOString());
       }
     }
   }

@@ -1,9 +1,9 @@
 import { ControlMaterialComponent } from './../control-material.component';
-import { Component, AfterContentInit, Input } from '@angular/core';
+import { Component, AfterContentInit, Input, forwardRef } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIcon } from '@angular/material/icon';
 import { NgxColorsModule } from 'ngx-colors';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 
@@ -12,6 +12,13 @@ import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/f
     templateUrl: './control-material-color-picker.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-color-picker.component.scss'],
     standalone: true,
+    providers: [
+      {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => ControlMaterialColorPickerComponent),
+          multi: true
+      },
+    ],
     imports: [MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, NgxColorsModule, MatSuffix, MatIcon, MatError, TranslateModule]
 })
 export class ControlMaterialColorPickerComponent extends ControlMaterialComponent implements AfterContentInit {

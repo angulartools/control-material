@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -14,6 +14,13 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   templateUrl: './control-material-radio.component.html',
   styleUrls: ['../control-material.component.scss', './control-material-radio.component.scss'],
+  providers: [
+    {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => ControlMaterialRadioComponent), // replace name as appropriate
+        multi: true
+    }
+  ],
   imports: [TranslateModule, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
 })
 export class ControlMaterialRadioComponent extends ControlMaterialComponent {

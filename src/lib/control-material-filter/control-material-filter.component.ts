@@ -1,9 +1,9 @@
 import { ControlMaterialComponent } from './../control-material.component';
-import { Component } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 
@@ -25,6 +25,13 @@ import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
         ])
     ],
     standalone: true,
+    providers: [
+      {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => ControlMaterialFilterComponent), // replace name as appropriate
+          multi: true
+      }
+    ],
     imports: [MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon]
 })
 export class ControlMaterialFilterComponent extends ControlMaterialComponent {
