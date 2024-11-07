@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, HostBinding, inject, Input, Output } from '@angular/core';
-import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormControl, ReactiveFormsModule, Validators, ControlValueAccessor } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -22,7 +22,7 @@ import { AutofocusDirective } from './auto-focus.directive';
   ],
   imports: [AutofocusDirective, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
-export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit {
+export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 
   static nextId = 0;
 
@@ -67,7 +67,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   translate = inject(TranslateService);
 
   @Output() onBlur: EventEmitter<any> = new EventEmitter();
-  
+
 
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
@@ -190,7 +190,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     if (value !== undefined && value !== null) {
       if (this.control !== undefined &&
           this.control.value !== value) {
-        this.control.setValue(value);        
+        this.control.setValue(value);
       }
     }
   }
