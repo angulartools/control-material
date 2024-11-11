@@ -20,7 +20,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
 
 @Component({
-    selector: 'te-control-material-fontawesome-icon',
+    selector: 'lib-control-material-fontawesome-icon',
     templateUrl: './control-material-fontawesome-icon.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-fontawesome-icon.component.scss'],
     providers: [

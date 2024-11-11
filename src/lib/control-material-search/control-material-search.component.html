@@ -9,12 +9,12 @@
   <div class="mat-select-arrow-wrapper" style="position: absolute; right: 0; bottom: 50%"><div class="mat-select-arrow"></div></div>
   @if (control.value && !control.disabled && !readonly) {
     <button mat-icon-button matSuffix aria-label="Clear" (click)="value=''; $event.stopPropagation()">
-      <mat-icon class="mdi mdi-close"></mat-icon>
+      <mat-icon class="fa-solid fa-xmark"></mat-icon>
     </button>
   }
   @if (tooltip !== null) {
     <span matSuffix>
-      <mat-icon class="mdi mdi-information-outline" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+      <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
     </span>
   }
   <ng-template #popContent>
@@ -48,7 +48,7 @@
   @if (bindArray.length > 0 && control.value !== undefined && control.value !== null && control.value !== '') {
     <button matPrefix mat-icon-button type="button" placement="top"
       [ngbPopover]="popContent" container="body" color="primary">
-      <mat-icon class="mdi mdi-comment-alert"></mat-icon>
+      <mat-icon class="fa-solid fa-message-exclamation"></mat-icon>
     </button>
   }
   @if (hasError()) {

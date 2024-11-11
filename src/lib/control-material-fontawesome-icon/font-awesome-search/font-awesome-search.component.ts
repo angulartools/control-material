@@ -11,7 +11,7 @@ import { MatButtonToggleGroup, MatButtonToggle } from '@angular/material/button-
 import { ControlMaterialComponent } from '../../control-material.component';
 
 @Component({
-    selector: 'te-font-awesome-search',
+    selector: 'lib-font-awesome-search',
     templateUrl: './font-awesome-search.component.html',
     styleUrls: ['./font-awesome-search.component.scss'],
     providers: [FontAwesomeSearchService],
