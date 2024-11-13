@@ -4,7 +4,7 @@
   }
   <input hidden [formControl]="control" />
   <input [id]="id+'time'" style="font-size: 13px;" type="time" [value]="control.value | date:'HH:mm'" [readonly]="readonly" matInput [min]="minDate" [max]="maxDate" [placeholder]="placeholder" (ngModelChange)="model !== undefined ? changeNgModelDate($event) : null" (change)="changeDate($event)" >
-  <button class="icon-button-20px" type="button" matSuffix mat-icon-button aria-label="TimePicker" (click)="showPicker()">
+  <button tabindex="-1" class="icon-button-20px" type="button" matSuffix mat-icon-button aria-label="TimePicker" (click)="showPicker()">
     <mat-icon >schedule</mat-icon>
   </button>
   @if (tooltip !== null) {
