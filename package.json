@@ -4,14 +4,15 @@
   "peerDependencies": {
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/pro-solid-svg-icons": "^6.6.0",
     "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "angular-imask": "^7.6.1",
     "libphonenumber-js": "^1.11.12",
-    "ngx-colors": "^3.6.0",
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/pro-solid-svg-icons": "^6.6.0"
+    "ngx-colors": "^3.6.0"
   },
   "dependencies": {
+    "ngx-toastr": "^19.0.0",
     "tslib": "^2.3.0"
   },
   "sideEffects": false

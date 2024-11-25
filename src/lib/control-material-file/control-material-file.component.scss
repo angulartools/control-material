@@ -1,0 +1,9 @@
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "\f002";
+  display: inline-flex;
+  font: normal normal normal 14px/1 FontAwesome;
+}
+
+:host ::ng-deep .filename {
+  display: inline-flex !important;
+}

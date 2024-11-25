@@ -1,0 +1,41 @@
+@if (!readonly) {
+  <mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+    @if (label !== undefined && label !== null) {
+      <mat-label>{{label}}@if (required) {
+        <span>*</span>
+      }</mat-label>
+    }
+    <te-mat-file-input #inputFile [formControl]="control" (change)="selectFile($event)" [placeholder]="placeholder"></te-mat-file-input>
+    @if (!inputFile.empty) {
+      <button mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
+        <mat-icon class="mdi mdi-close"></mat-icon>
+      </button>
+    }
+    @if (inputFile.empty) {
+      <mat-icon matSuffix class="mdi mdi-folder-open"></mat-icon>
+    }
+    @if (hasError()) {
+      <mat-error class="danger">{{errorMessage}}</mat-error>
+    }
+    @if (hint !== null) {
+      <mat-hint>{{hint}}</mat-hint>
+    }
+  </mat-form-field>
+}
+
+@if (readonly) {
+  <mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+    @if (label !== undefined && label !== null) {
+      <mat-label>{{label}}@if (required) {
+        <span>*</span>
+      }</mat-label>
+    }
+    <input [readonly]="readonly" matInput [value]="control?.value?._fileNames" />
+  </mat-form-field>
+}
+
+@if (image !== undefined && image !== null) {
+  <span>
+    <img [src]="image" class="{{imageClass}} img-thumbnail" [style.height]="imageHeight" [style.width]="imageWidth" />
+  </span>
+}

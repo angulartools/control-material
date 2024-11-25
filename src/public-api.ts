@@ -24,4 +24,5 @@ export * from './lib/control-material-search/control-material-search.component';
 export * from './lib/control-material-select/control-material-select.component';
 export * from './lib/control-material-textarea/control-material-textarea.component';
 export * from './lib/control-material-time/control-material-time.component';
+export * from './lib/control-material-file/control-material-file.component';
 export * from './lib/control-material.component';
