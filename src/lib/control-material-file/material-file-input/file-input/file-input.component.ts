@@ -3,21 +3,20 @@ import { ControlValueAccessor, NgControl, NgForm, FormGroupDirective } from '@an
 
 
 import { FileInput } from '../model/file-input.model';
-import { FileInputMixinBase } from './file-input-mixin';
+import { FileInputBase } from './file-input-mixin';
 import { MatFormFieldControl } from "@angular/material/form-field";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { coerceBooleanProperty } from "@angular/cdk/coercion";
 import { FocusMonitor } from "@angular/cdk/a11y";
-import { Subject } from "rxjs";
 
 @Component({
-  selector: 'te-mat-file-input',
+  selector: 'lib-mat-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.css'],
   standalone: true,
   providers: [{ provide: MatFormFieldControl, useExisting: FileInputComponent }]
 })
-export class FileInputComponent extends FileInputMixinBase implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
+export class FileInputComponent extends FileInputBase implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
   static nextId = 0;
 
   focused = false;
@@ -33,7 +32,7 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
   @Input() accept: string | null = null;
   @Input() errorStateMatcher: ErrorStateMatcher;
 
-  @HostBinding() id = `te-mat-file-input-${FileInputComponent.nextId++}`;
+  @HostBinding() id = `lib-mat-file-input-${FileInputComponent.nextId++}`;
   @HostBinding('attr.aria-describedby') describedBy = '';
 
   setDescribedByIds(ids: string[]) {
@@ -118,14 +117,14 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
     private fm: FocusMonitor,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
-    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    public override _defaultErrorStateMatcher: ErrorStateMatcher,
     @Optional()
     @Self()
-    public ngControl: NgControl,
-    @Optional() public _parentForm: NgForm,
-    @Optional() public _parentFormGroup: FormGroupDirective,
+    public override ngControl: NgControl,
+    @Optional() public override _parentForm: NgForm,
+    @Optional() public override _parentFormGroup: FormGroupDirective,
   ) {
-    super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl, new Subject<void>())
+    super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl)
 
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
@@ -135,6 +134,8 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
       this.stateChanges.next();
     });
   }
+  userAriaDescribedBy?: string;
+  disableAutomaticLabeling?: boolean;
 
   private _onChange = (_: any) => {};
   private _onTouched = () => {};

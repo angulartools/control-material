@@ -4,10 +4,10 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix, MatError, MatHint } from '@angular/material/form-field';
-import { ControlMaterialComponent } from 'control-material';
 import { ToastrService } from 'ngx-toastr';
 import { FileInputComponent } from './material-file-input/file-input/file-input.component';
 import { FileInput } from './material-file-input/model/file-input.model';
+import { ControlMaterialComponent } from '../control-material.component';
 
 @Component({
     selector: 'lib-control-material-file',
