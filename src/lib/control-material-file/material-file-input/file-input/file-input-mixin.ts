@@ -1,5 +1,5 @@
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { ErrorStateMatcher,  mixinErrorState } from '@angular/material/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Subject } from "rxjs";
 
 // Boilerplate for applying mixins to FileInput

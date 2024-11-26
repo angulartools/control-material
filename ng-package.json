@@ -3,5 +3,6 @@
   "dest": "../../dist/control-material",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["@angular/animations", "angular/core", "angular/forms", "angular/material", "ngx-toastr"]
 }
