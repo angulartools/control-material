@@ -17,40 +17,7 @@
       <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
     </span>
   }
-  <ng-template #popContent>
-    @if (bindArray === undefined || bindArray === null || bindArray.length === 0 || showLabel === true) {
-      <span>{{ getLabel(control.value) }}</span>
-    }
-    @if (bindArray.length > 0) {
-      <span>
-        @if (showLabel === true) {
-          <span> - </span>
-        }
-        @for (value of bindArray; track value; let index = $index) {
-          <span>
-            @if (value.type==='string') {
-              <span>{{control.value[value.value]}}</span>
-            }
-            @if (value.type==='data' && (value.format === undefined || value.format === null)) {
-              <span>{{control.value[value.value]}}</span>
-            }
-            @if (value.type==='data' && value.format !== null) {
-              <span>{{control.value[value.value] | date:value.format}}</span>
-            }
-            @if (index+1 < bindArray.length) {
-              <span> - </span>
-            }
-          </span>
-        }
-      </span>
-    }
-  </ng-template>
-  @if (bindArray.length > 0 && control.value !== undefined && control.value !== null && control.value !== '') {
-    <button matPrefix mat-icon-button type="button" placement="top"
-      [ngbPopover]="popContent" container="body" color="primary">
-      <mat-icon class="fa-solid fa-message-exclamation"></mat-icon>
-    </button>
-  }
+
   @if (hasError()) {
     <mat-error class="danger">{{errorMessage}}</mat-error>
   }
