@@ -13,7 +13,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
 import 'moment/locale/pt';
 import 'moment/locale/es';
-import { ControlMaterialComponent } from 'control-material';
+import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
 
 @Component({
