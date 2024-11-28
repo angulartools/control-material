@@ -50,6 +50,8 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
   @Input() minDate = null;
   @Input() maxDate = null;
 
+  hourMinuteMask: Mask = Mask.getMaskHourMinute();
+
   LANG_EN = 'en-US';
 
   inputDate = '';

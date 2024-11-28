@@ -4,5 +4,14 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "allowedNonPeerDependencies": ["@angular/animations", "angular/core", "angular/forms", "angular/material", "ngx-toastr"]
+  "allowedNonPeerDependencies": [
+    "@angular/animations", 
+    "angular/core", 
+    "angular/forms", 
+    "angular/material", 
+    "ngx-toastr",
+    "@4sellers/angular-material-components-datetime-picker",
+    "@angulartoolsdr/shared-utils",
+    "moment"
+  ]
 }
