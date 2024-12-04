@@ -1,6 +1,6 @@
 import { AbstractControl } from '@angular/forms';
 
-export function IpAddressValidator(control: AbstractControl<any, any>): { [key: string]: boolean } | null {
+export function IpAddressValidator(control: AbstractControl<any, any>): { [key: string]: any } | null {
 
   const valor = control.value;
 

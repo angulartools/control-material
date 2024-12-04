@@ -12,7 +12,9 @@
       </button>
     }
     @if (inputFile.empty) {
-      <mat-icon matSuffix class="fa-solid fa-folder-open"></mat-icon>
+      <span>
+        <mat-icon matSuffix class="fa-solid fa-folder-open"></mat-icon>
+      </span>
     }
     @if (hasError()) {
       <mat-error class="danger">{{errorMessage}}</mat-error>

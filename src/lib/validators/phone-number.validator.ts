@@ -3,7 +3,7 @@ import { isValidPhoneNumber } from 'libphonenumber-js'
 
 export function PhoneNumberValidator (value: any): ValidatorFn {
 
-  return (control: AbstractControl<any, any>): { [key: string]: boolean } | null => {
+  return (control: AbstractControl<any, any>): { [key: string]: any } | null => {
 
     const valor = control.value;
 
