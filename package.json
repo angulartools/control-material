@@ -1,6 +1,6 @@
 {
   "name": "@angulartoolsdr/control-material",
-  "version": "18.2.1",
+  "version": "18.2.2",
   "peerDependencies": {
     "@angular/common": "^18.2.12",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
