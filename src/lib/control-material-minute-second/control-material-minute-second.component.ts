@@ -19,7 +19,6 @@ import { ControlMaterialComponent } from './../control-material.component';
             multi: true
         }
     ],
-    standalone: true,
     imports: [MatFormField, MatLabel, MatInput, FormsModule, IMaskDirective, ReactiveFormsModule, MatError, MatIcon, MatTooltip, MatSuffix]
 })
 export class ControlMaterialMinuteSecondComponent extends ControlMaterialComponent implements AfterContentInit {

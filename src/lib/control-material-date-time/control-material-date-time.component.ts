@@ -1,16 +1,21 @@
 import moment from 'moment';
 import { AfterContentInit, Component, EventEmitter, HostBinding, Input, Output, forwardRef, inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMatDateAdapter, NgxMatDatetimePickerModule } from '@4sellers/angular-material-components-datetime-picker';
+import { NgxMatDateAdapter, NgxMatDatepickerActions,
+  NgxMatDatepickerApply,
+  NgxMatDatepickerCancel,
+  NgxMatDatepickerClear,
+  NgxMatDatepickerInput,
+  NgxMatDatetimepicker } from '@katyan/datetime-picker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { MatDatepickerToggle, MatDatepickerToggleIcon } from '@angular/material/datepicker';
 import { IMaskDirective } from 'angular-imask';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
+import { MatDatepickerToggle, MatDatepickerToggleIcon } from '@angular/material/datepicker';
 import 'moment/locale/pt';
 import 'moment/locale/es';
 import { ControlMaterialComponent } from './../control-material.component';
@@ -26,15 +31,17 @@ import { Mask } from '@angulartoolsdr/shared-utils';
             useExisting: forwardRef(() => ControlMaterialDateTimeComponent), // replace name as appropriate
             multi: true
         },
-        {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
         // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
         // to your app config. We provide it at the component level here, due to limitations
         // of our example generation script.
         provideMomentDateAdapter(),
     ],
-    standalone: true,
-    imports: [MatFormField, MatLabel, MatInput, NgxMatDatetimePickerModule, FormsModule, ReactiveFormsModule, IMaskDirective, MatDatepickerToggle, MatSuffix, MatIcon, MatDatepickerToggleIcon, MatButton, MatError, TranslateModule]
+    imports: [NgxMatDatepickerActions, NgxMatDatepickerApply, MatDatepickerToggle, MatDatepickerToggleIcon,
+      NgxMatDatepickerCancel,
+      NgxMatDatepickerClear,
+      NgxMatDatepickerInput,
+      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslateModule]
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 

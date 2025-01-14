@@ -29,7 +29,6 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
             multi: true
         }
     ],
-    standalone: true,
     imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslateModule]
 })
 export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {

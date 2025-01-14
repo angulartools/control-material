@@ -9,18 +9,17 @@ import { TranslateService } from '@ngx-translate/core';
 import { AutofocusDirective } from './auto-focus.directive';
 
 @Component({
-  selector: 'lib-control-material',
-  templateUrl: './control-material.component.html',
-  styleUrls: ['./control-material.component.scss'],
-  standalone: true,
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialComponent),
-        multi: true
-    },
-  ],
-  imports: [AutofocusDirective, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
+    selector: 'lib-control-material',
+    templateUrl: './control-material.component.html',
+    styleUrls: ['./control-material.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialComponent),
+            multi: true
+        },
+    ],
+    imports: [AutofocusDirective, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 

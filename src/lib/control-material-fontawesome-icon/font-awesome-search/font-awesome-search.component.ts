@@ -15,7 +15,6 @@ import { ControlMaterialComponent } from '../../control-material.component';
     templateUrl: './font-awesome-search.component.html',
     styleUrls: ['./font-awesome-search.component.scss'],
     providers: [FontAwesomeSearchService],
-    standalone: true,
     imports: [MatDialogTitle, MatButtonToggleGroup, MatButtonToggle, MatDialogContent, FormsModule, ReactiveFormsModule, ControlMaterialComponent, MatProgressSpinner, MatButton, MatTooltip, MatDialogActions, MatButton, TranslateModule]
 })
 

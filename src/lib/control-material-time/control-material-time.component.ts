@@ -9,18 +9,17 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { MatIconButton } from '@angular/material/button';
 
 @Component({
-  selector: 'lib-control-material-time',
-  standalone: true,
-  templateUrl: './control-material-time.component.html',
-  styleUrls: ['../control-material.component.scss', './control-material-time.component.scss'],
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialTimeComponent),
-        multi: true
-    },
-  ],
-  imports: [MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
+    selector: 'lib-control-material-time',
+    templateUrl: './control-material-time.component.html',
+    styleUrls: ['../control-material.component.scss', './control-material-time.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialTimeComponent),
+            multi: true
+        },
+    ],
+    imports: [MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 

@@ -24,7 +24,6 @@ import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of,
             multi: true
         }
     ],
-    standalone: true,
     imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslateModule]
 })
 export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteComponent implements AfterContentInit {

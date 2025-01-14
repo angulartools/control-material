@@ -10,7 +10,7 @@
     "angular/forms", 
     "angular/material", 
     "ngx-toastr",
-    "@4sellers/angular-material-components-datetime-picker",
+    "@ngxmc/datetime-picker",
     "@angulartoolsdr/shared-utils",
     "moment"
   ]

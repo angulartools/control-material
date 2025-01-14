@@ -11,13 +11,12 @@ import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/f
     selector: 'lib-control-material-color-picker',
     templateUrl: './control-material-color-picker.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-color-picker.component.scss'],
-    standalone: true,
     providers: [
-      {
-          provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => ControlMaterialColorPickerComponent),
-          multi: true
-      },
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialColorPickerComponent),
+            multi: true
+        },
     ],
     imports: [MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, NgxColorsModule, MatSuffix, MatIcon, MatError, TranslateModule]
 })

@@ -13,7 +13,6 @@ import { ControlMaterialComponent } from '../control-material.component';
     selector: 'lib-control-material-file',
     templateUrl: './control-material-file.component.html',
     styleUrls: ['./control-material-file.component.scss'],
-    standalone: true,
     imports: [MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput]
 })
 export class ControlMaterialFileComponent extends ControlMaterialComponent implements OnChanges {

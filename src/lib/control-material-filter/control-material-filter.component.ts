@@ -24,13 +24,12 @@ import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
             ])
         ])
     ],
-    standalone: true,
     providers: [
-      {
-          provide: NG_VALUE_ACCESSOR,
-          useExisting: forwardRef(() => ControlMaterialFilterComponent), // replace name as appropriate
-          multi: true
-      }
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialFilterComponent), // replace name as appropriate
+            multi: true
+        }
     ],
     imports: [MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon]
 })

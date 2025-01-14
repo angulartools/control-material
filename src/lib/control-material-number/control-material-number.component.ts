@@ -8,18 +8,17 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'lib-control-material-number',
-  standalone: true,
-  templateUrl: './control-material-number.component.html',
-  styleUrls: ['../control-material.component.scss', './control-material-number.component.scss'],
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialNumberComponent),
-        multi: true
-    },
-  ],
-  imports: [MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
+    selector: 'lib-control-material-number',
+    templateUrl: './control-material-number.component.html',
+    styleUrls: ['../control-material.component.scss', './control-material-number.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialNumberComponent),
+            multi: true
+        },
+    ],
+    imports: [MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialNumberComponent extends ControlMaterialComponent {
 

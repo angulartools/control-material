@@ -1,7 +1,11 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export function LimitFieldsValidator(control: AbstractControl<any, any>): { [key: string]: any } | null {
+export function LimitFieldsValidator(): ValidatorFn {
 
-  return { valueControlInvalid: true };
+  return (control: AbstractControl): ValidationErrors | null => {
+
+    return { valueControlInvalid: true };
+
+  }
 
 }

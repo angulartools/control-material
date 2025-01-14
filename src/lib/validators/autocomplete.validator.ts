@@ -1,15 +1,19 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export function AutocompleteValidator(control: AbstractControl<any, any>): { [key: string]: any } | null {
+export function AutocompleteValidator(): ValidatorFn {
 
-  const valor = control.value;
+  return (control: AbstractControl): ValidationErrors | null => {
 
-  if (valor === null || valor === undefined || valor === '') {
+    const valor = control.value;
+
+    if (valor === null || valor === undefined || valor === '') {
+      return null;
+    } else if (!valor.hasOwnProperty('id')) {
+      return { valueControlInvalid: true };
+    }
+
     return null;
-  } else if (!valor.hasOwnProperty('id')) {
-    return { valueControlInvalid: true };
-  }
 
-  return null;
+  }
 
 }

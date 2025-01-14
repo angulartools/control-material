@@ -10,18 +10,17 @@ import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'lib-control-material-radio',
-  standalone: true,
-  templateUrl: './control-material-radio.component.html',
-  styleUrls: ['../control-material.component.scss', './control-material-radio.component.scss'],
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialRadioComponent), // replace name as appropriate
-        multi: true
-    }
-  ],
-  imports: [TranslateModule, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
+    selector: 'lib-control-material-radio',
+    templateUrl: './control-material-radio.component.html',
+    styleUrls: ['../control-material.component.scss', './control-material-radio.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialRadioComponent), // replace name as appropriate
+            multi: true
+        }
+    ],
+    imports: [TranslateModule, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialRadioComponent extends ControlMaterialComponent {
 

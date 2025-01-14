@@ -6,7 +6,6 @@ import { MatOption } from '@angular/material/core';
     selector: 'ngx-flag-picker',
     templateUrl: './ngx-flag-picker.component.html',
     styleUrls: ['./ngx-flag-picker.component.scss'],
-    standalone: true,
     imports: [MatSelect, MatSelectTrigger, MatOption]
 })
 export class NgxFlagPickerComponent {

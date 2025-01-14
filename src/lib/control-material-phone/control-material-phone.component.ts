@@ -14,18 +14,17 @@ import { getExampleNumber, getCountryCallingCode, getCountries } from 'libphonen
 import { NgxFlagPickerComponent } from '../ngx-flag-picker/ngx-flag-picker.component';
 
 @Component({
-  selector: 'lib-control-material-phone',
-  standalone: true,
-  templateUrl: './control-material-phone.component.html',
-  styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialPhoneComponent), // replace name as appropriate
-        multi: true
-    }
-  ],
-  imports: [NgxFlagPickerComponent, IMaskDirective, MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
+    selector: 'lib-control-material-phone',
+    templateUrl: './control-material-phone.component.html',
+    styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialPhoneComponent), // replace name as appropriate
+            multi: true
+        }
+    ],
+    imports: [NgxFlagPickerComponent, IMaskDirective, MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialPhoneComponent extends ControlMaterialComponent implements AfterContentInit {
 

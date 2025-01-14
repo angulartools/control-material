@@ -12,18 +12,17 @@ import { MatCard } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'lib-control-material-password-strength',
-  templateUrl: './control-material-password-strength.component.html',
-  styleUrls: ['./control-material-password-strength.component.scss'],
-  standalone: true,
-  imports: [MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslateModule],
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialPasswordStrengthComponent),
-        multi: true
-    },
-],
+    selector: 'lib-control-material-password-strength',
+    templateUrl: './control-material-password-strength.component.html',
+    styleUrls: ['./control-material-password-strength.component.scss'],
+    imports: [MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslateModule],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialPasswordStrengthComponent),
+            multi: true
+        },
+    ]
 })
 export class ControlMaterialPasswordStrengthComponent extends ControlMaterialPasswordComponent {
 

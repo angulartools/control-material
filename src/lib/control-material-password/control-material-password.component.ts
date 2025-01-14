@@ -9,18 +9,17 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { MatIconButton } from '@angular/material/button';
 
 @Component({
-  selector: 'lib-control-material-password',
-  standalone: true,
-  templateUrl: './control-material-password.component.html',
-  styleUrls: ['../control-material.component.scss', './control-material-password.component.scss'],
-  providers: [
-    {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ControlMaterialPasswordComponent), // replace name as appropriate
-        multi: true
-    }
-  ],
-  imports: [MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule],
+    selector: 'lib-control-material-password',
+    templateUrl: './control-material-password.component.html',
+    styleUrls: ['../control-material.component.scss', './control-material-password.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ControlMaterialPasswordComponent), // replace name as appropriate
+            multi: true
+        }
+    ],
+    imports: [MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialPasswordComponent extends ControlMaterialComponent {
 
