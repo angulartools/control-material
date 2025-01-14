@@ -6,6 +6,7 @@ import { NgxMatDateAdapter, NgxMatDatepickerActions,
   NgxMatDatepickerCancel,
   NgxMatDatepickerClear,
   NgxMatDatepickerInput,
+  NgxMatDatepickerToggle,
   NgxMatDatetimepicker } from '@katyan/datetime-picker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButton } from '@angular/material/button';
@@ -15,7 +16,7 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
-import { MatDatepickerToggle, MatDatepickerToggleIcon } from '@angular/material/datepicker';
+import { MatDatepickerToggleIcon } from '@angular/material/datepicker';
 import 'moment/locale/pt';
 import 'moment/locale/es';
 import { ControlMaterialComponent } from './../control-material.component';
@@ -37,7 +38,7 @@ import { Mask } from '@angulartoolsdr/shared-utils';
         // of our example generation script.
         provideMomentDateAdapter(),
     ],
-    imports: [NgxMatDatepickerActions, NgxMatDatepickerApply, MatDatepickerToggle, MatDatepickerToggleIcon,
+    imports: [NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle, MatDatepickerToggleIcon,
       NgxMatDatepickerCancel,
       NgxMatDatepickerClear,
       NgxMatDatepickerInput,

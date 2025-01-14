@@ -12,6 +12,7 @@
     "ngx-toastr",
     "@ngxmc/datetime-picker",
     "@angulartoolsdr/shared-utils",
+    "@katyan/datetime-picker",
     "moment"
   ]
 }
