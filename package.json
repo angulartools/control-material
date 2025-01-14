@@ -5,10 +5,10 @@
     "@angular/common": "^19.0.5",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/pro-solid-svg-icons": "^6.7.2",
+    "@katyan/datetime-picker": "19.0.0",
     "angular-imask": "^7.6.1",
     "libphonenumber-js": "^1.11.17",
-    "ngx-colors": "^3.6.0",
-	"@katyan/datetime-picker": "19.0.0"
+    "ngx-colors": "^3.6.0"
   },
   "dependencies": {
     "@angular/animations": "^19.0.5",
@@ -16,7 +16,7 @@
     "@angular/forms": "^19.0.5",
     "@angular/material": "^19.0.4",
     "@angular/material-moment-adapter": "^19.0.4",
-    "@angulartoolsdr/shared-utils": "file:../../dist/shared-utils",
+    "@angulartoolsdr/shared-utils": "^19.0.0",
     "@ngxmc/moment-adapter": "^19.1.0",
     "moment": "^2.30.1",
     "ngx-toastr": "^19.0.0",
