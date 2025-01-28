@@ -34,7 +34,7 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
   @Input() largeData = true;
   @Input() hint = null;
 
-  @Input('translate')
+  @Input('translateData')
   set setTranslate(value: boolean) {
     this.translateValue = value;
   }
