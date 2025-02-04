@@ -7,7 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FontAwesomeSearchComponent } from './font-awesome-search/font-awesome-search.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
@@ -29,7 +29,7 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
             multi: true
         }
     ],
-    imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslateModule]
+    imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslationPipe]
 })
 export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {
 

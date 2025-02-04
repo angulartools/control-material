@@ -5,7 +5,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError } from '@angular/material/form-field';
 import { NgClass } from '@angular/common';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
 
 @Component({
@@ -63,7 +63,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   @HostBinding() id = `lib-control-material-${ControlMaterialComponent.nextId++}`;
 
   changeDetectorRef = inject(ChangeDetectorRef);
-  translate = inject(TranslateService);
+  translate = inject(TranslationService);
 
   @Output() onBlur: EventEmitter<any> = new EventEmitter();
 

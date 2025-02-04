@@ -7,7 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 
 @Component({
     selector: 'lib-control-material-radio',
@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
             multi: true
         }
     ],
-    imports: [TranslateModule, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
+    imports: [TranslationPipe, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
 })
 export class ControlMaterialRadioComponent extends ControlMaterialComponent {
 

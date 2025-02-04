@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Component, AfterContentInit, Input, forwardRef, Output, EventEmitter } from '@angular/core';
 import { startWith, map } from 'rxjs/operators';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
@@ -25,7 +25,7 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
             multi: true
         }
     ],
-    imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslateModule]
+    imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslationPipe]
 })
 export class ControlMaterialAutocompleteComponent extends ControlMaterialComponent implements AfterContentInit {
 

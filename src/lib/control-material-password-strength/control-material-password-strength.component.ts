@@ -7,7 +7,7 @@ import { ControlMaterialPasswordComponent } from '../control-material-password/c
 import { ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatError, MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatCard } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -15,7 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     selector: 'lib-control-material-password-strength',
     templateUrl: './control-material-password-strength.component.html',
     styleUrls: ['./control-material-password-strength.component.scss'],
-    imports: [MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslateModule],
+    imports: [MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslationPipe],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

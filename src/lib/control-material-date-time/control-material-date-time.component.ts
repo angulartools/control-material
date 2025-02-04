@@ -8,7 +8,7 @@ import { NgxMatDateAdapter, NgxMatDatepickerActions,
   NgxMatDatepickerInput,
   NgxMatDatepickerToggle,
   NgxMatDatetimepicker } from '@katyan/datetime-picker';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { IMaskDirective } from 'angular-imask';
@@ -42,7 +42,7 @@ import { Mask } from '@angulartoolsdr/shared-utils';
       NgxMatDatepickerCancel,
       NgxMatDatepickerClear,
       NgxMatDatepickerInput,
-      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslateModule]
+      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe]
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 

@@ -1,6 +1,6 @@
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AfterContentInit, Component, forwardRef, Input } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
@@ -24,7 +24,7 @@ import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of,
             multi: true
         }
     ],
-    imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslateModule]
+    imports: [MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslationPipe]
 })
 export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteComponent implements AfterContentInit {
 

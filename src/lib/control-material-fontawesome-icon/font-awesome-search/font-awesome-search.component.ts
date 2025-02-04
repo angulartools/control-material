@@ -3,7 +3,7 @@ import { MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Observable, debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -15,7 +15,7 @@ import { ControlMaterialComponent } from '../../control-material.component';
     templateUrl: './font-awesome-search.component.html',
     styleUrls: ['./font-awesome-search.component.scss'],
     providers: [FontAwesomeSearchService],
-    imports: [MatDialogTitle, MatButtonToggleGroup, MatButtonToggle, MatDialogContent, FormsModule, ReactiveFormsModule, ControlMaterialComponent, MatProgressSpinner, MatButton, MatTooltip, MatDialogActions, MatButton, TranslateModule]
+    imports: [MatDialogTitle, MatButtonToggleGroup, MatButtonToggle, MatDialogContent, FormsModule, ReactiveFormsModule, ControlMaterialComponent, MatProgressSpinner, MatButton, MatTooltip, MatDialogActions, MatButton, TranslationPipe]
 })
 
 export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {

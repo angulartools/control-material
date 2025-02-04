@@ -7,7 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIconButton } from '@angular/material/button';
 
 @Component({
@@ -21,7 +21,7 @@ import { MatIconButton } from '@angular/material/button';
             multi: true
         },
     ],
-    imports: [MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslateModule]
+    imports: [MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe]
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
