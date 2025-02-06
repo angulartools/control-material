@@ -39,6 +39,13 @@
       </mat-option>
     }
   </mat-select>
+  @if (control.value !== null && control.value !== undefined && imageBefore !== undefined && imageBefore !== null) {
+    <span matPrefix>
+      <span class="mr-1">
+        <img [src]="control.value[imageBefore]" />
+      </span>
+    </span>
+  }
   @if (!disableClear && control.value && !control.disabled && !readonly) {
     <button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
       <mat-icon class="fa-solid fa-xmark"></mat-icon>
