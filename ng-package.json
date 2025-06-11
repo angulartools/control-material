@@ -5,12 +5,11 @@
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": [
-    "@angular/animations", 
-    "angular/core", 
-    "angular/forms", 
-    "angular/material", 
+    "@angular/animations",
+    "angular/core",
+    "angular/forms",
+    "angular/material",
     "ngx-toastr",
-    "@ngxmc/datetime-picker",
     "@angulartoolsdr/shared-utils",
     "@katyan/datetime-picker",
     "moment"

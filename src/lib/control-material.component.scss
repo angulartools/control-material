@@ -1,5 +1,5 @@
 .smaller .mat-mdc-form-field {
-  font-size: var(--mdc-typography-body1-font-size, 12px) !important;
+  font-size: var(--mat-typography-body1-font-size, 12px) !important;
 }
 
 .smaller .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
@@ -7,7 +7,7 @@
 }
 
 .smaller .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
-    font-size: var(--mdc-typography-body1-font-size, 12px) !important;
+    font-size: var(--mat-typography-body1-font-size, 12px) !important;
 }
 
 .smaller > .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
@@ -24,11 +24,11 @@
 }
 
 .smaller .mdc-text-field--outlined {
-  padding-left: max(12px, calc(var(--mdc-outlined-text-field-container-shape) + 4px)) !important;
+  padding-left: max(12px, calc(var(--mat-form-field-outlined-container-shape) + 4px)) !important;
 }
 
 .smaller .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
-  width: max(6px,var(--mdc-outlined-text-field-container-shape)) !important;
+  width: max(6px,var(--mat-form-field-outlined-container-shape)) !important;
 }
 
 .smaller .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {

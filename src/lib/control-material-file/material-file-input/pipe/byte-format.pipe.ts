@@ -2,8 +2,7 @@ import { Pipe, PipeTransform, Optional, Inject } from '@angular/core';
 import { FileInputConfig, TE_MAT_FILE_INPUT_CONFIG } from '../model/file-input-config.model';
 
 @Pipe({
-    name: 'byteFormat',
-    standalone: false
+    name: 'byteFormat'
 })
 export class ByteFormatPipe implements PipeTransform {
   private unit: string;

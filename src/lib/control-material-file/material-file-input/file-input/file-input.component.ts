@@ -13,7 +13,6 @@ import { FocusMonitor } from "@angular/cdk/a11y";
   selector: 'lib-mat-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.css'],
-  standalone: true,
   providers: [{ provide: MatFormFieldControl, useExisting: FileInputComponent }]
 })
 export class FileInputComponent extends FileInputBase implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
