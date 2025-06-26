@@ -16,7 +16,7 @@
     "@angular/forms": "20.0.3",
     "@angular/material": "20.0.3",
     "@angular/material-moment-adapter": "20.0.3",
-    "@angulartoolsdr/shared-utils": "20.0.0",
+    "@angulartoolsdr/shared-utils": "20.0.1",
     "@katyan/datetime-picker": "^20.0.1",
     "moment": "^2.30.1",
     "ngx-toastr": "^19.0.0",
