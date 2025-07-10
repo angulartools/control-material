@@ -102,7 +102,7 @@ A biblioteca oferece uma ampla gama de componentes especializados:
 ### Importação
 
 ```typescript
-import { ControlMaterialModule } from '@angulartools/control-material';
+import { ControlMaterialModule } from '@angulartoolsdr/control-material';
 
 @NgModule({
   imports: [
