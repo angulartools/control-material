@@ -6,3 +6,13 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.fa-clear-icon .mat-icon {
+  font-size: 14px !important; /* ou o tamanho que quiser */
+  width: 16px !important;
+  height: 16px !important;
+  line-height: 16px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

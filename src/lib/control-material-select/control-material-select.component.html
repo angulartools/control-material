@@ -47,8 +47,8 @@
     </span>
   }
   @if (!disableClear && control.value && !control.disabled && !readonly) {
-    <button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
-      <mat-icon class="fa-solid fa-xmark"></mat-icon>
+    <button class="fa-clear-icon" mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
+      <mat-icon class="fa-light fa-xmark"></mat-icon>
     </button>
   }
   @if (tooltip !== null) {

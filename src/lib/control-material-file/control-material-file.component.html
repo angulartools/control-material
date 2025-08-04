@@ -7,8 +7,8 @@
     }
     <lib-mat-file-input #inputFile [formControl]="control" (change)="selectFile($event)" [placeholder]="placeholder"></lib-mat-file-input>
     @if (!inputFile.empty) {
-      <button mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
-        <mat-icon class="fa-solid fa-xmark"></mat-icon>
+      <button class="fa-clear-icon" mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
+        <mat-icon class="fa-light fa-xmark"></mat-icon>
       </button>
     }
     @if (inputFile.empty) {

@@ -16,8 +16,8 @@
     </span>
   </div>
   @if (!disableClear && control.value && !control.disabled && !readonly) {
-    <button  type="button" mat-icon-button matSuffix aria-label="Clear" (click)="clearPhone($event)">
-      <mat-icon class="fa-solid fa-xmark"></mat-icon>
+    <button  type="button" class="fa-clear-icon" mat-icon-button matSuffix aria-label="Clear" (click)="clearPhone($event)">
+      <mat-icon class="fa-light fa-xmark"></mat-icon>
     </button>
   }
   @if (hasError()) {

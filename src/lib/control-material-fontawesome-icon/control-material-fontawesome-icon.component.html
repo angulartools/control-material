@@ -25,8 +25,8 @@
     }
 
     @if (control.value && !control.disabled && !readonly) {
-      <button mat-icon-button type="button" matSuffix aria-label="Clear" (click)="limparItem($event);">
-        <mat-icon class="fa-solid fa-xmark"></mat-icon>
+      <button mat-icon-button type="button" class="fa-clear-icon" matSuffix aria-label="Clear" (click)="limparItem($event);">
+        <mat-icon class="fa-light fa-xmark"></mat-icon>
       </button>
     }
 

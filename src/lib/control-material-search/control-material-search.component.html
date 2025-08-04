@@ -8,8 +8,8 @@
   <input [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" [matAutocomplete]="auto" />
   <div class="mat-select-arrow-wrapper" style="position: absolute; right: 0; bottom: 50%"><div class="mat-select-arrow"></div></div>
   @if (control.value && !control.disabled && !readonly) {
-    <button mat-icon-button matSuffix aria-label="Clear" (click)="value=''; $event.stopPropagation()">
-      <mat-icon class="fa-solid fa-xmark"></mat-icon>
+    <button class="fa-clear-icon" mat-icon-button matSuffix aria-label="Clear" (click)="value=''; $event.stopPropagation()">
+      <mat-icon class="fa-light fa-xmark"></mat-icon>
     </button>
   }
   @if (tooltip !== null) {
