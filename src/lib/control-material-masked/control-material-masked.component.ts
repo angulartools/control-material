@@ -25,6 +25,7 @@ import { MatIconButton } from '@angular/material/button';
 export class ControlMaterialMaskedComponent extends ControlMaterialComponent {
 
   @Input() mask = '';
+  @Input() labelPrefix: string;
   @Input() showClearMask = false;
   @Input() unmask = true;
 

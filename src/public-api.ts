@@ -8,6 +8,7 @@ export * from './lib/validators/hour-minute.validator';
 export * from './lib/validators/ip-address.validator';
 export * from './lib/validators/limit-fields.validator';
 export * from './lib/validators/list.validator';
+export * from './lib/validators/multiple-field-required.validator';
 export * from './lib/validators/phone-number.validator';
 export * from './lib/validators/validators-util';
 export * from './lib/control-material-autocomplete/control-material-autocomplete.component';

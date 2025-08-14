@@ -8,6 +8,11 @@
       <mat-icon class="fa-light fa-xmark"></mat-icon>
     </button>
   }
+  @if (labelPrefix != null) {
+    <span class="mr-1 mt-1" matPrefix style="position: inherit; top: 4px; color:#00000061">
+      {{labelPrefix}}
+    </span>
+  }
   @if (iconBefore !== null) {
     <span class="mr-1" matPrefix>
       <mat-icon [class]="iconBefore"></mat-icon>
