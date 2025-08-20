@@ -10,6 +10,7 @@ import { NgxMatDateAdapter, NgxMatDatepickerActions,
   NgxMatDatetimepicker } from '@katyan/datetime-picker';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatButton } from '@angular/material/button';
+import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { MatIcon } from '@angular/material/icon';
 import { IMaskDirective } from 'angular-imask';
 import { MatInput } from '@angular/material/input';
@@ -38,11 +39,14 @@ import { Mask } from '@angulartoolsdr/shared-utils';
         // of our example generation script.
         provideMomentDateAdapter(),
     ],
-    imports: [NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle, MatDatepickerToggleIcon,
+    imports: [
+      NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle, MatDatepickerToggleIcon,
       NgxMatDatepickerCancel,
       NgxMatDatepickerClear,
       NgxMatDatepickerInput,
-      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe]
+      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe,
+      FontAwesomeSharedModule
+    ]
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 

@@ -7,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
+import { FontAwesomeSharedModule } from '../font-awesome.module';
 
 @Component({
     selector: 'lib-control-material-time',
@@ -19,7 +20,22 @@ import { MatIconButton } from '@angular/material/button';
             multi: true
         },
     ],
-    imports: [MatIconButton, DatePipe, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
+    imports: [
+      MatIconButton, 
+      DatePipe, 
+      MatFormField, 
+      MatLabel, 
+      MatPrefix, 
+      MatSuffix, 
+      MatError, 
+      MatInput, 
+      NgClass, 
+      MatIcon, 
+      MatTooltip, 
+      FormsModule, 
+      ReactiveFormsModule,
+      FontAwesomeSharedModule
+    ]
 })
 export class ControlMaterialTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 

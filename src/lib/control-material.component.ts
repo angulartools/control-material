@@ -7,6 +7,7 @@ import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError } from '@angular
 import { NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
+import { FontAwesomeSharedModule } from './font-awesome.module';
 
 @Component({
     selector: 'lib-control-material',
@@ -19,7 +20,21 @@ import { AutofocusDirective } from './auto-focus.directive';
             multi: true
         },
     ],
-    imports: [AutofocusDirective, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule]
+    imports: [
+      AutofocusDirective, 
+      MatFormField, 
+      MatLabel, 
+      MatPrefix, 
+      MatSuffix, 
+      MatError, 
+      MatInput, 
+      NgClass, 
+      MatIcon, 
+      MatTooltip, 
+      FormsModule, 
+      ReactiveFormsModule,
+      FontAwesomeSharedModule
+    ]
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 
@@ -38,9 +53,9 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
 
   @Input() obrigatorio = false;
 
-  @Input() disabled = false;
   @Input('disabled')
   set setDisabled(value: boolean) {
+    this._disabled = value;
     if (this.control !== undefined) {
       if (this.control.disabled && !value) {
         this.control.enable({onlySelf: true});
@@ -49,6 +64,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
       }
     }
   }
+  _disabled = false;
 
   required = false;
   input: any;
@@ -66,7 +82,6 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   translate = inject(TranslationService);
 
   @Output() onBlur: EventEmitter<any> = new EventEmitter();
-
 
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
@@ -200,6 +215,10 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  get disabled() {
+    return this._disabled;
   }
 
 }

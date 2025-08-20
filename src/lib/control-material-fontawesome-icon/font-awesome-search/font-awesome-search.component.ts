@@ -9,13 +9,28 @@ import { MatButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatButtonToggleGroup, MatButtonToggle } from '@angular/material/button-toggle';
 import { ControlMaterialComponent } from '../../control-material.component';
+import { FontAwesomeSharedModule } from '../../font-awesome.module';
 
 @Component({
     selector: 'lib-font-awesome-search',
     templateUrl: './font-awesome-search.component.html',
     styleUrls: ['./font-awesome-search.component.scss'],
     providers: [FontAwesomeSearchService],
-    imports: [MatDialogTitle, MatButtonToggleGroup, MatButtonToggle, MatDialogContent, FormsModule, ReactiveFormsModule, ControlMaterialComponent, MatProgressSpinner, MatButton, MatTooltip, MatDialogActions, MatButton, TranslationPipe]
+    imports: [
+      MatDialogTitle, 
+      MatButtonToggleGroup, 
+      MatButtonToggle, 
+      MatDialogContent, 
+      FormsModule, 
+      ReactiveFormsModule, 
+      ControlMaterialComponent, 
+      MatProgressSpinner, 
+      MatButton, 
+      MatTooltip, 
+      MatDialogActions, 
+      TranslationPipe,
+      FontAwesomeSharedModule
+    ]
 })
 
 export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {

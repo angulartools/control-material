@@ -2,7 +2,7 @@
   <label style="align-self: center; font-weight: 100;">{{label}}:
     @if (tooltip !== null) {
       <span>
-        <mat-icon class="fa-regular fa-circle-info" matTooltip="{{tooltip}}" matTooltipPosition="above" color="accent" ></mat-icon>
+        <fa-icon [icon]="['far', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
       </span>
     }
     @if (hasError()) {

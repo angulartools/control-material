@@ -1,5 +1,6 @@
 import { MatListModule } from '@angular/material/list';
 import { MatIconButton } from '@angular/material/button';
+import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
@@ -15,7 +16,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     selector: 'lib-control-material-password-strength',
     templateUrl: './control-material-password-strength.component.html',
     styleUrls: ['./control-material-password-strength.component.scss'],
-    imports: [MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslationPipe],
+    imports: [
+      MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslationPipe,
+      FontAwesomeSharedModule
+    ],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

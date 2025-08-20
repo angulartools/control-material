@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleCha
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
+import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix, MatError, MatHint } from '@angular/material/form-field';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +14,10 @@ import { ControlMaterialComponent } from '../control-material.component';
     selector: 'lib-control-material-file',
     templateUrl: './control-material-file.component.html',
     styleUrls: ['./control-material-file.component.scss'],
-    imports: [MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput]
+    imports: [
+      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput,
+      FontAwesomeSharedModule
+    ]
 })
 export class ControlMaterialFileComponent extends ControlMaterialComponent implements OnChanges {
 

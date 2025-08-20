@@ -6,6 +6,7 @@ import { MatInput } from "@angular/material/input";
 import { MatTooltip } from "@angular/material/tooltip";
 import { IMaskDirective } from "angular-imask";
 import { ControlMaterialComponent } from './../control-material.component';
+import { FontAwesomeSharedModule } from '../font-awesome.module';
 
 
 @Component({
@@ -19,7 +20,19 @@ import { ControlMaterialComponent } from './../control-material.component';
             multi: true
         }
     ],
-    imports: [MatFormField, MatLabel, MatInput, FormsModule, IMaskDirective, ReactiveFormsModule, MatError, MatIcon, MatTooltip, MatSuffix]
+    imports: [
+      MatFormField, 
+      MatLabel, 
+      MatInput, 
+      FormsModule, 
+      IMaskDirective, 
+      ReactiveFormsModule, 
+      MatError, 
+      MatIcon, 
+      MatTooltip, 
+      MatSuffix,
+      FontAwesomeSharedModule
+    ]
 })
 export class ControlMaterialMinuteSecondComponent extends ControlMaterialComponent implements AfterContentInit {
 
