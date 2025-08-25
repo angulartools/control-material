@@ -17,7 +17,9 @@ import {
   faCaretDown,
   faCaretUp,
   faCalendarAlt,
-  faClock as fasClock
+  faClock as fasClock,
+  faIcons,
+  faCircleInfo
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [
@@ -35,7 +37,9 @@ const icons = [
   faCaretDown,
   faCaretUp,
   faCalendarAlt,
-  fasClock
+  fasClock,
+  faIcons,
+  faCircleInfo
 ];
 
 @NgModule({

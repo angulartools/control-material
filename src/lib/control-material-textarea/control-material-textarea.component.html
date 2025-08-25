@@ -1,8 +1,6 @@
 <mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
   @if (label !== undefined && label !== null) {
-    <mat-label>{{label}}@if (tooltip !== null) {
-      <span><i class="fa-regular fa-circle-info"></i></span>
-    }</mat-label>
+    <mat-label>{{label}</mat-label>
   }
   <textarea [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" [rows]="rows" (blur)="blur()"></textarea>
   @if (iconBefore !== null) {
@@ -17,7 +15,7 @@
   }
   @if (tooltip !== null) {
     <span matSuffix>
-      <fa-icon [icon]="['far', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+      <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>
   }
   @if (hasError()) {

@@ -24,6 +24,11 @@
       <fa-icon [icon]="iconAfter" />
     </span>
   }
+  @if (tooltip !== null) {
+    <span matSuffix>
+      <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+    </span>
+  }
   @if (hasError()) {
     <mat-error class="danger">{{errorMessage}}</mat-error>
   }
