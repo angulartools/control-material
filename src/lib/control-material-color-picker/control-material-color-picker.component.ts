@@ -1,5 +1,5 @@
 import { ControlMaterialComponent } from './../control-material.component';
-import { Component, AfterContentInit, Input, forwardRef } from '@angular/core';
+import { Component, AfterContentInit, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIcon } from '@angular/material/icon';
 import { NgxColorsModule } from 'ngx-colors';
@@ -13,6 +13,8 @@ import { MatTooltip } from '@angular/material/tooltip';
     selector: 'lib-control-material-color-picker',
     templateUrl: './control-material-color-picker.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-color-picker.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -26,6 +28,8 @@ import { MatTooltip } from '@angular/material/tooltip';
     ]
 })
 export class ControlMaterialColorPickerComponent extends ControlMaterialComponent implements AfterContentInit {
+
+  override id = `lib-control-material-color-picker-${ControlMaterialColorPickerComponent.nextId++}`;
 
   @Input() format = 'hex';
   @Input() hideTextInput = false;

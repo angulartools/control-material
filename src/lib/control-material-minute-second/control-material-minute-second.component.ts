@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output } from "@angular/core";
+import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MatError, MatFormField, MatLabel, MatSuffix } from "@angular/material/form-field";
 import { MatIcon } from "@angular/material/icon";
@@ -8,11 +8,12 @@ import { IMaskDirective } from "angular-imask";
 import { ControlMaterialComponent } from './../control-material.component';
 import { FontAwesomeSharedModule } from '../font-awesome.module';
 
-
 @Component({
     selector: 'lib-control-material-minute-second',
     templateUrl: './control-material-minute-second.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-minute-second.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -36,6 +37,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
 })
 export class ControlMaterialMinuteSecondComponent extends ControlMaterialComponent implements AfterContentInit {
 
+  override id = `lib-control-material-minute-second-${ControlMaterialMinuteSecondComponent.nextId++}`;
+
   @Input() showTime = true;
   inputHour = '';
   hourMinuteMask = {
@@ -43,11 +46,6 @@ export class ControlMaterialMinuteSecondComponent extends ControlMaterialCompone
     lazy: false,
     placeholderChar: ' '
   };
-
-  constructor() {
-    super();
-    this.id = `lib-control-material-minute-second-${ControlMaterialMinuteSecondComponent.nextId++}`;
-  }
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();
 

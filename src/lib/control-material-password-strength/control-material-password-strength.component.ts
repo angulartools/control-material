@@ -5,7 +5,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { ControlMaterialPasswordComponent } from '../control-material-password/control-material-password.component';
-import { ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatError, MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { TranslationPipe } from '@angulartoolsdr/translation';
@@ -16,6 +16,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     selector: 'lib-control-material-password-strength',
     templateUrl: './control-material-password-strength.component.html',
     styleUrls: ['./control-material-password-strength.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     imports: [
       MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslationPipe,
       FontAwesomeSharedModule
@@ -29,6 +31,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ]
 })
 export class ControlMaterialPasswordStrengthComponent extends ControlMaterialPasswordComponent {
+
+  override id = `lib-control-material-password-strength-${ControlMaterialPasswordStrengthComponent.nextId++}`;
 
   @Input('password')
   set setPassword(value: any) {
@@ -64,10 +68,6 @@ export class ControlMaterialPasswordStrengthComponent extends ControlMaterialPas
 
   constructor(private cdr: ChangeDetectorRef) {
     super();
-
-    this.id = `lib-control-material-password-strength${ControlMaterialPasswordStrengthComponent.nextId++}`;
-
-    //this.control.name = this.id;
 
     this.criterias = [];
 

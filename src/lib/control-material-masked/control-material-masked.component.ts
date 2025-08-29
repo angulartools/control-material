@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -14,6 +14,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     selector: 'lib-control-material-masked',
     templateUrl: './control-material-masked.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-masked.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -28,17 +30,14 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
 })
 export class ControlMaterialMaskedComponent extends ControlMaterialComponent {
 
+  override id = `lib-control-material-masked-${ControlMaterialMaskedComponent.nextId++}`;
+
   @Input() mask = '';
   @Input() labelPrefix: string;
   @Input() showClearMask = false;
   @Input() unmask = true;
 
   @Output() clearItem: EventEmitter<any> = new EventEmitter();
-
-  constructor() {
-    super();
-    this.id = `lib-control-material-masked-${ControlMaterialComponent.nextId++}`;
-  }
 
   limparItem($event: any) {
     if (this.control.value !== undefined && this.control.value !== null && this.control.value !== '') {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -15,6 +15,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     selector: 'lib-control-material-select',
     templateUrl: './control-material-select.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-select.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -28,6 +30,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     ]
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {
+
+  override id = `lib-control-material-select-${ControlMaterialSelectComponent.nextId++}`;
 
   @Input() multiple = false;
   @Input() bindId = 'id';
@@ -67,11 +71,6 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
   _selectList = [];
   translateValue = false;
-
-  constructor() {
-    super();
-    this.id = `lib-control-material-select-${ControlMaterialComponent.nextId++}`;
-  }
 
   compareFn(v1: any, v2: any): boolean {
     if (this.bindId !== undefined) {

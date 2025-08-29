@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -12,6 +12,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     selector: 'lib-control-material-number',
     templateUrl: './control-material-number.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-number.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -36,12 +38,9 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
 })
 export class ControlMaterialNumberComponent extends ControlMaterialComponent {
 
-  @Input() integer: boolean = false;
+  override id = `lib-control-material-number-${ControlMaterialNumberComponent.nextId++}`;
 
-  constructor() {
-    super();
-    this.id = `lib-control-material-number-${ControlMaterialComponent.nextId++}`;
-  }
+  @Input() integer: boolean = false;
 
   changeNumber(event: any){
     if (this.integer) {

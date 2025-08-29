@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -18,6 +18,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     selector: 'lib-control-material-phone',
     templateUrl: './control-material-phone.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -46,6 +48,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
 })
 export class ControlMaterialPhoneComponent extends ControlMaterialComponent implements AfterContentInit {
 
+  override id = `lib-control-material-phone-${ControlMaterialPhoneComponent.nextId++}`;
+
   @Input() disableClear = false;
   @Input() unmask = true;
   @Input() selectedCountryCode;
@@ -63,11 +67,6 @@ export class ControlMaterialPhoneComponent extends ControlMaterialComponent impl
   countries = getCountries();
 
   @Output() clearItem: EventEmitter<any> = new EventEmitter();
-
-  constructor() {
-    super();
-    this.id = `lib-control-material-phone-${ControlMaterialComponent.nextId++}`;
-  }
 
   override ngAfterContentInit(): void {
     super.ngAfterContentInit();

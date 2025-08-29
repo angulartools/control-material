@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleChanges, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleChanges, inject, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeSharedModule } from '../font-awesome.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix, MatError, MatHint } from '@angular/material/form-field';
 import { ToastrService } from 'ngx-toastr';
 import { FileInputComponent } from './material-file-input/file-input/file-input.component';
@@ -14,12 +14,22 @@ import { ControlMaterialComponent } from '../control-material.component';
     selector: 'lib-control-material-file',
     templateUrl: './control-material-file.component.html',
     styleUrls: ['./control-material-file.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
+    providers: [
+      {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => ControlMaterialFileComponent),
+          multi: true
+      },
+    ],
     imports: [
-      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput,
-      FontAwesomeSharedModule
+      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput, FontAwesomeSharedModule
     ]
 })
 export class ControlMaterialFileComponent extends ControlMaterialComponent implements OnChanges {
+
+  override id = `lib-control-material-file-${ControlMaterialFileComponent.nextId++}`;
 
   selectedFiles: any;
   image: any;

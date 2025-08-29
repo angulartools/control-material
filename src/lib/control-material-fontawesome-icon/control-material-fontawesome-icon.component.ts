@@ -2,7 +2,7 @@ import { startWith } from 'rxjs/operators';
 import { Observable, map } from 'rxjs';
 import { ControlMaterialComponent } from './../control-material.component';
 import { NG_VALUE_ACCESSOR, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Component, forwardRef, AfterContentInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, forwardRef, AfterContentInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -23,6 +23,8 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
     selector: 'lib-control-material-fontawesome-icon',
     templateUrl: './control-material-fontawesome-icon.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-fontawesome-icon.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -36,6 +38,8 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
     ]
 })
 export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {
+
+  override id = `lib-control-material-fontawesome-icon-${ControlMaterialFontawesomeIconComponent.nextId++}`;
 
   filteredOptions: Observable<any[]>;
   loading = false;

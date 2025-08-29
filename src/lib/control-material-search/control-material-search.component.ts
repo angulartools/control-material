@@ -1,5 +1,5 @@
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AfterContentInit, Component, forwardRef, Input } from '@angular/core';
+import { AfterContentInit, Component, forwardRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
@@ -18,6 +18,8 @@ import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of,
     selector: 'lib-control-material-search',
     templateUrl: './control-material-search.component.html',
     styleUrls: ['../control-material.component.scss', '../control-material-autocomplete/control-material-autocomplete.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -49,6 +51,8 @@ import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of,
     ]
 })
 export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteComponent implements AfterContentInit {
+
+  override id = `lib-control-material-search-${ControlMaterialSearchComponent.nextId++}`;
 
   @Input() service: any;
   @Input() metodo = 'pesquisar';

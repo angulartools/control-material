@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -14,6 +14,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     selector: 'lib-control-material-radio',
     templateUrl: './control-material-radio.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-radio.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -27,6 +29,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     ]
 })
 export class ControlMaterialRadioComponent extends ControlMaterialComponent {
+
+  override id = `lib-control-material-radio-${ControlMaterialRadioComponent.nextId++}`;
 
   @Input() inlineRadioLabel = false;
   @Input() bindId = 'id';
@@ -59,11 +63,6 @@ export class ControlMaterialRadioComponent extends ControlMaterialComponent {
 
   _selectList = [];
   translateValue = false;
-
-  constructor() {
-    super();
-    this.id = `lib-control-material-radio-${ControlMaterialComponent.nextId++}`;
-  }
 
   radioSelectChange($event) {
     this.selectItem.emit($event);

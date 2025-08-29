@@ -4,8 +4,8 @@
   }
   <input matInput type="text" [formControl]="control" [placeholder]="placeholder" [imask]="mask" [unmask]="unmask" (blur)="blur()" [readonly]="readonly"/>
   @if (showClearMask) {
-    <button type="button" class="fa-clear-icon" mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
-      <fa-icon [icon]="['fal', 'xmark']" />
+    <button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
+      <i style="font-size: 0.7em" class="far fa-xmark"></i>
     </button>
   }
   @if (labelPrefix != null) {

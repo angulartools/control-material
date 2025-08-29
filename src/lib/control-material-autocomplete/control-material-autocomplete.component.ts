@@ -1,7 +1,7 @@
 import { NG_VALUE_ACCESSOR, Validators, FormsModule, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { ControlMaterialComponent } from './../control-material.component';
-import { Component, AfterContentInit, Input, forwardRef, Output, EventEmitter } from '@angular/core';
+import { Component, AfterContentInit, Input, forwardRef, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { startWith, map } from 'rxjs/operators';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
@@ -19,6 +19,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     selector: 'lib-control-material-autocomplete',
     templateUrl: './control-material-autocomplete.component.html',
     styleUrls: ['../control-material.component.scss', './control-material-autocomplete.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -50,6 +52,8 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
     ]
 })
 export class ControlMaterialAutocompleteComponent extends ControlMaterialComponent implements AfterContentInit {
+
+  override id = `lib-control-material-autocomplete-${ControlMaterialAutocompleteComponent.nextId++}`;
 
   filteredOptions: Observable<any[]>;
   _selectList = [];

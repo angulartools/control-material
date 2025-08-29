@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { AfterContentInit, Component, EventEmitter, HostBinding, Input, Output, forwardRef, inject } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, Output, forwardRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatDateAdapter, NgxMatDatepickerActions,
   NgxMatDatepickerApply,
@@ -27,6 +27,8 @@ import { Mask } from '@angulartoolsdr/shared-utils';
     selector: 'lib-control-material-date-time',
     templateUrl: './control-material-date-time.component.html',
     styleUrls: ['./control-material-date-time.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -50,6 +52,8 @@ import { Mask } from '@angulartoolsdr/shared-utils';
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 
+  override id = `lib-control-material-date-time-${ControlMaterialDateTimeComponent.nextId++}`;
+
   @Input() showTime = true;
   @Input() enableMeridian = false;
   @Input() disableMinute = false;
@@ -70,7 +74,6 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
   inputHour = '';
   dateMask = Mask.getMaskDate();
 
-  @HostBinding() override id = `lib-control-material-date-time-${ControlMaterialComponent.nextId++}`;
   private readonly _adapter = inject<NgxMatDateAdapter<unknown>>(NgxMatDateAdapter);
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();

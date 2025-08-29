@@ -7,14 +7,14 @@
     }
     <lib-mat-file-input #inputFile [formControl]="control" (change)="selectFile($event)" [placeholder]="placeholder"></lib-mat-file-input>
     @if (!inputFile.empty) {
-      <button class="fa-clear-icon" mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
-        <fa-icon [icon]="['fal', 'xmark']" />
+      <button mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
+        <i style="font-size: 0.7em" class="far fa-xmark"></i>
       </button>
     }
     @if (inputFile.empty) {
-      <span matSuffix>
+      <button type="button" mat-icon-button matSuffix>
         <fa-icon [icon]="['fas', 'folder-open']" />
-      </span>
+      </button>
     }
     @if (hasError()) {
       <mat-error class="danger">{{errorMessage}}</mat-error>

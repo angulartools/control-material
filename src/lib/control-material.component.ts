@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, HostBinding, inject, Input, Output } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, ChangeDetectionStrategy, inject, Input, Output } from '@angular/core';
 import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormControl, ReactiveFormsModule, Validators, ControlValueAccessor } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
@@ -13,6 +13,8 @@ import { FontAwesomeSharedModule } from './font-awesome.module';
     selector: 'lib-control-material',
     templateUrl: './control-material.component.html',
     styleUrls: ['./control-material.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '[id]': 'id' },
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -38,7 +40,9 @@ import { FontAwesomeSharedModule } from './font-awesome.module';
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 
-  static nextId = 0;
+  protected static nextId = 0;
+  index = ControlMaterialComponent.nextId;
+  id = `lib-control-material-${ControlMaterialComponent.nextId++}`;
 
   @Input() invisible = false;
   @Input() label: string | undefined;
@@ -74,9 +78,6 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
 
   @ContentChild(FormControlName) formControlName: FormControlName | undefined;
   @ContentChild(NgModel) model: NgModel | undefined;
-
-  index = ControlMaterialComponent.nextId;
-  @HostBinding() id = `lib-control-material-${ControlMaterialComponent.nextId++}`;
 
   changeDetectorRef = inject(ChangeDetectorRef);
   translate = inject(TranslationService);
