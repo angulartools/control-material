@@ -3,7 +3,7 @@
     <mat-label>{{label}}</mat-label>
   }
   @if (loadingData) {
-    <mat-spinner matSuffix [diameter]="18" style="float: right; margin-left: 8px"></mat-spinner>
+    <mat-spinner matSuffix [diameter]="18" style="float: right; margin-right: 8px"></mat-spinner>
   }
   <input [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" [matAutocomplete]="auto" />
   <div class="mat-select-arrow-wrapper" style="position: absolute; right: 0; bottom: 50%"><div class="mat-select-arrow"></div></div>

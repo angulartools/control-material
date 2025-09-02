@@ -5,7 +5,8 @@
     }</mat-label>
   }
   <input matInput [formControl]="control" [placeholder]="placeholder" [readonly]="true" />
-  <ngx-colors
+  <div matSuffix class="mr-1">
+    <ngx-colors
     class="color-picker"
     matSuffix
     ngx-colors-trigger
@@ -19,6 +20,8 @@
     attachTo="wrapper"
     (change)="updateControlValue($event)"
   ></ngx-colors>
+  </div>
+  
   @if (iconAfter !== null) {
     <span matSuffix>
       <fa-icon [icon]="iconAfter" />

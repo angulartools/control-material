@@ -5,7 +5,7 @@
         <span>*</span>
       }</mat-label>
     }
-    <lib-mat-file-input #inputFile [formControl]="control" (change)="selectFile($event)" [placeholder]="placeholder"></lib-mat-file-input>
+    <lib-mat-file-input #inputFile [formControl]="control" [ngModel]="control?.value" (change)="selectFile($event)" [placeholder]="placeholder"></lib-mat-file-input>
     @if (!inputFile.empty) {
       <button mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
         <i style="font-size: 0.7em" class="far fa-xmark"></i>
