@@ -8,6 +8,8 @@ import { NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
 import { FontAwesomeService } from './fontawesome.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @Component({
     selector: 'lib-control-material',
@@ -35,6 +37,7 @@ import { FontAwesomeService } from './fontawesome.service';
       MatTooltip, 
       FormsModule, 
       ReactiveFormsModule,
+      FontAwesomeModule
     ]
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
