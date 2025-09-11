@@ -29,3 +29,4 @@ export * from './lib/control-material-time/control-material-time.component';
 export * from './lib/control-material-file/control-material-file.component';
 export * from './lib/control-material-date-time/control-material-date-time.component';
 export * from './lib/control-material.component';
+export * from './lib/fontawesome.service';

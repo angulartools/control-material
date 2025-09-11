@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { 
+// fontawesome.service.ts
+import { Injectable, inject } from '@angular/core';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+
+import {
   faCircle as farCircle,
   faFolderOpen as farFolderOpen,
   faEye as farEye,
   faEyeSlash as farEyeSlash,
   faCalendar as farCalendar,
-  faClock as farClock
+  faClock as farClock,
 } from '@fortawesome/free-regular-svg-icons';
-import { 
-  faXmark, 
+
+import {
+  faXmark,
   faFolder as fasFolder,
   faCheck,
   faSearch,
@@ -19,7 +22,7 @@ import {
   faCalendarAlt,
   faClock as fasClock,
   faIcons,
-  faCircleInfo
+  faCircleInfo,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons = [
@@ -39,16 +42,14 @@ const icons = [
   faCalendarAlt,
   fasClock,
   faIcons,
-  faCircleInfo
+  faCircleInfo,
 ];
 
-@NgModule({
-  imports: [FontAwesomeModule],
-  exports: [FontAwesomeModule]
-})
-export class FontAwesomeSharedModule {
-  constructor(library: FaIconLibrary) {
-    // Adiciona os ícones à biblioteca no construtor do módulo
-    library.addIcons(...icons);
+@Injectable({ providedIn: 'root' })
+export class FontAwesomeService {
+  private library = inject(FaIconLibrary);
+
+  constructor() {
+    this.library.addIcons(...icons);
   }
 }

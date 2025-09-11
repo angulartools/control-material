@@ -10,7 +10,6 @@ import { TranslationPipe } from '@angulartoolsdr/translation';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
 import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autocomplete';
@@ -32,8 +31,25 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
         }
     ],
     imports: [
-      MatFormField, MatLabel, MatProgressSpinner, MatSuffix, MatInput, FormsModule, MatAutocompleteTrigger, ReactiveFormsModule, MatPrefix, MatIcon, MatTooltip, MatIconButton, MatError, MatAutocomplete, MatOption, NgClass, AsyncPipe, DatePipe, TranslationPipe,
-      FontAwesomeSharedModule
+      MatFormField, 
+      MatLabel, 
+      MatProgressSpinner, 
+      MatSuffix, 
+      MatInput, 
+      FormsModule, 
+      MatAutocompleteTrigger, 
+      ReactiveFormsModule, 
+      MatPrefix, 
+      MatIcon, 
+      MatTooltip, 
+      MatIconButton, 
+      MatError, 
+      MatAutocomplete, 
+      MatOption, 
+      NgClass, 
+      AsyncPipe, 
+      DatePipe, 
+      TranslationPipe
     ]
 })
 export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {

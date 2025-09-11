@@ -1,6 +1,6 @@
 {
   "name": "@angulartoolsdr/control-material",
-  "version": "20.3.0",
+  "version": "20.3.0-custom-font-awesome",
   "peerDependencies": {
     "@angular/common": "20.3.0",
     "@angulartoolsdr/translation": "20.3.0",
