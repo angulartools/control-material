@@ -6,6 +6,7 @@ import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-number',
@@ -31,7 +32,7 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
       MatIcon, 
       MatTooltip, 
       FormsModule, 
-      ReactiveFormsModule
+      ReactiveFormsModule, FontAwesomeModule  
     ]
 })
 export class ControlMaterialNumberComponent extends ControlMaterialComponent {

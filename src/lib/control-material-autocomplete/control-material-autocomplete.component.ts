@@ -13,6 +13,7 @@ import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autoc
 import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-autocomplete',
@@ -47,6 +48,7 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
       AsyncPipe, 
       DatePipe, 
       TranslationPipe,
+      FontAwesomeModule
     ]
 })
 export class ControlMaterialAutocompleteComponent extends ControlMaterialComponent implements AfterContentInit {

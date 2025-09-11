@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FileInputComponent } from './material-file-input/file-input/file-input.component';
 import { FileInput } from './material-file-input/model/file-input.model';
 import { ControlMaterialComponent } from '../control-material.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-file',
@@ -23,7 +24,7 @@ import { ControlMaterialComponent } from '../control-material.component';
       },
     ],
     imports: [
-      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput
+      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput, FontAwesomeModule
     ]
 })
 export class ControlMaterialFileComponent extends ControlMaterialComponent implements OnChanges {

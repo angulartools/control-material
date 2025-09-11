@@ -9,6 +9,7 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { MatOption, MatSelect } from '@angular/material/select';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIconButton } from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-select',
@@ -24,7 +25,7 @@ import { MatIconButton } from '@angular/material/button';
         },
     ],
     imports: [
-      MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe
+      MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
     ]
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {

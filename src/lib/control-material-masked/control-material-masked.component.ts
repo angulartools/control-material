@@ -8,6 +8,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { IMaskDirective } from 'angular-imask';
 import { MatIconButton } from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-masked',
@@ -23,7 +24,7 @@ import { MatIconButton } from '@angular/material/button';
         }
     ],
     imports: [
-      MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective
+      MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective, FontAwesomeModule
     ]
 })
 export class ControlMaterialMaskedComponent extends ControlMaterialComponent {

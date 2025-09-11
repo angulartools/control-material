@@ -6,6 +6,7 @@ import { MatInput } from "@angular/material/input";
 import { MatTooltip } from "@angular/material/tooltip";
 import { IMaskDirective } from "angular-imask";
 import { ControlMaterialComponent } from './../control-material.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-minute-second',
@@ -30,7 +31,7 @@ import { ControlMaterialComponent } from './../control-material.component';
       MatError, 
       MatIcon, 
       MatTooltip, 
-      MatSuffix
+      MatSuffix, FontAwesomeModule
     ]
 })
 export class ControlMaterialMinuteSecondComponent extends ControlMaterialComponent implements AfterContentInit {

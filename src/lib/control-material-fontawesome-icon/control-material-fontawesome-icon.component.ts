@@ -16,6 +16,7 @@ import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autoc
 import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-fontawesome-icon',
@@ -49,7 +50,7 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
       NgClass, 
       AsyncPipe, 
       DatePipe, 
-      TranslationPipe
+      TranslationPipe, FontAwesomeModule
     ]
 })
 export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {

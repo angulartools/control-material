@@ -12,6 +12,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
 import { ControlMaterialAutocompleteComponent, searchControlValidator } from '../control-material-autocomplete/control-material-autocomplete.component';
 import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of, switchMap, tap } from 'rxjs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-search',
@@ -45,7 +46,7 @@ import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of,
       NgClass, 
       AsyncPipe, 
       DatePipe, 
-      TranslationPipe
+      TranslationPipe, FontAwesomeModule
     ]
 })
 export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteComponent implements AfterContentInit {

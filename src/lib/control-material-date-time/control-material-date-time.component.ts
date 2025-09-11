@@ -21,6 +21,7 @@ import 'moment/locale/pt';
 import 'moment/locale/es';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-date-time',
@@ -45,7 +46,7 @@ import { Mask } from '@angulartoolsdr/shared-utils';
       NgxMatDatepickerCancel,
       NgxMatDatepickerClear,
       NgxMatDatepickerInput,
-      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe
+      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe, FontAwesomeModule
     ]
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {

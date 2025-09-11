@@ -10,6 +10,7 @@ import { MatError, MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix } from 
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatCard } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'lib-control-material-password-strength',
@@ -18,7 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'id' },
     imports: [
-      MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslationPipe
+      MatListModule, MatCard, MatProgressBarModule, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, MatPrefix, MatIconModule, MatSuffix, MatTooltip, MatError, MatIconButton, MatHint, TranslationPipe, FontAwesomeModule
     ],
     providers: [
         {
