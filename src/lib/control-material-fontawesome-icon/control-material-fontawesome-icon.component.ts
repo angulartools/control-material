@@ -67,17 +67,19 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
     this.registrarIconesFontAwesome();
   }
 
-  private registrarIconesFontAwesome(): void {
+  async registrarIconesFontAwesome(): Promise<void> {
     let fas: any;
 
     try {
       // tenta carregar os ícones Pro
-      fas = require('@fortawesome/pro-solid-svg-icons').fas;
+      const pro = await import('@fortawesome/pro-solid-svg-icons');
+      fas = pro.fas;
       console.info('[MyLib] Registrando ícones Pro...');
     } catch {
       // fallback para versão gratuita
       try {
-        fas = require('@fortawesome/free-solid-svg-icons').fas;
+        const free = await import('@fortawesome/free-solid-svg-icons');
+        fas = free.fas;
         console.info('[MyLib] Registrando ícones Free (fallback).');
       } catch {
         console.warn('[MyLib] Nenhum pacote de ícones "fas" encontrado.');
