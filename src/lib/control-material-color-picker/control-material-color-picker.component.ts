@@ -6,7 +6,6 @@ import { NgxColorsModule } from 'ngx-colors';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
@@ -23,8 +22,7 @@ import { MatTooltip } from '@angular/material/tooltip';
         },
     ],
     imports: [
-      MatFormField, MatLabel, MatTooltip, MatInput, FormsModule, ReactiveFormsModule, NgxColorsModule, MatSuffix, MatIcon, MatError, TranslationPipe,
-      FontAwesomeSharedModule
+      MatFormField, MatLabel, MatTooltip, MatInput, FormsModule, ReactiveFormsModule, NgxColorsModule, MatSuffix, MatIcon, MatError, TranslationPipe
     ]
 })
 export class ControlMaterialColorPickerComponent extends ControlMaterialComponent implements AfterContentInit {

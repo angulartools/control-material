@@ -11,7 +11,6 @@ import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
 import { ControlMaterialAutocompleteComponent, searchControlValidator } from '../control-material-autocomplete/control-material-autocomplete.component';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -46,8 +45,7 @@ import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of,
       NgClass, 
       AsyncPipe, 
       DatePipe, 
-      TranslationPipe,
-      FontAwesomeSharedModule
+      TranslationPipe
     ]
 })
 export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteComponent implements AfterContentInit {
@@ -95,7 +93,7 @@ export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteC
             this.loading = true;
             this.loadingData =  true;
           }),
-          switchMap((value) =>
+          switchMap((value: any) =>
             this.service[this.metodo](value === '' || value === null || value[this.bindLabel] === undefined ? value : value[this.bindLabel], this.parametroPesquisa, this.bindId).pipe(
               tap(() => {
                 this.searchFailed = false;
@@ -121,7 +119,7 @@ export class ControlMaterialSearchComponent extends ControlMaterialAutocompleteC
             this.loading = true;
             this.loadingData =  true;
           }),
-          switchMap(value =>
+          switchMap((value: any) =>
             this.service[this.metodo](value[this.bindLabel] === undefined ? value : value[this.bindLabel], this.bindId).pipe(
               tap(() => {
                 this.searchFailed = false;

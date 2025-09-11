@@ -9,7 +9,6 @@ import { MatButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatButtonToggleGroup, MatButtonToggle } from '@angular/material/button-toggle';
 import { ControlMaterialComponent } from '../../control-material.component';
-import { FontAwesomeSharedModule } from '../../font-awesome.module';
 
 @Component({
     selector: 'lib-font-awesome-search',
@@ -28,19 +27,18 @@ import { FontAwesomeSharedModule } from '../../font-awesome.module';
       MatButton, 
       MatTooltip, 
       MatDialogActions, 
-      TranslationPipe,
-      FontAwesomeSharedModule
+      TranslationPipe
     ]
 })
 
 export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {
 
-  selectedIcon = null;
+  selectedIcon: any = null;
   filteredOptions: Observable<any[]>;
 
   nomesIcones;
   itensPorPagina = 18;
-  listaIcones = [];
+  listaIcones: any[] = [];
   loading = true;
 
   viewTypes = [
@@ -78,7 +76,7 @@ export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
 
-    this.searchForm.get('search').valueChanges
+    this.searchForm.get('search')?.valueChanges
       .pipe(
         startWith(''),
         debounceTime(1000),
@@ -137,7 +135,7 @@ export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {
 
   showMore() {
     this.itensPorPagina += 6;
-    this.buscarIconesApi(this.searchForm.get('search').value, true);
+    this.buscarIconesApi(this.searchForm.get('search')?.value, true);
   }
 
 

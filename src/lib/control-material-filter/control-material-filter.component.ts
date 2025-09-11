@@ -6,7 +6,6 @@ import { MatIconButton } from '@angular/material/button';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 
 @Component({
     selector: 'lib-control-material-filter',
@@ -35,15 +34,14 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
         }
     ],
     imports: [
-      MatFormField, 
+      MatFormField,   
       MatLabel, 
       MatInput, 
       FormsModule, 
       ReactiveFormsModule, 
       MatSuffix, 
       MatIcon, 
-      MatIconButton,
-      FontAwesomeSharedModule
+      MatIconButton
     ]
 })
 export class ControlMaterialFilterComponent extends ControlMaterialComponent {

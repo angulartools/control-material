@@ -12,7 +12,6 @@ import phoneExample from 'libphonenumber-js/mobile/examples'
 import { debounceTime } from 'rxjs/operators';
 import { getExampleNumber, getCountryCallingCode, getCountries } from 'libphonenumber-js'
 import { NgxFlagPickerComponent } from '../ngx-flag-picker/ngx-flag-picker.component';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 
 @Component({
     selector: 'lib-control-material-phone',
@@ -42,8 +41,7 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
       MatIcon, 
       MatTooltip, 
       FormsModule, 
-      ReactiveFormsModule,
-      FontAwesomeSharedModule
+      ReactiveFormsModule
     ]
 })
 export class ControlMaterialPhoneComponent extends ControlMaterialComponent implements AfterContentInit {

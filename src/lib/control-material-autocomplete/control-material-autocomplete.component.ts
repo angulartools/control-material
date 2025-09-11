@@ -13,7 +13,6 @@ import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autoc
 import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 
 @Component({
     selector: 'lib-control-material-autocomplete',
@@ -48,7 +47,6 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
       AsyncPipe, 
       DatePipe, 
       TranslationPipe,
-      FontAwesomeSharedModule
     ]
 })
 export class ControlMaterialAutocompleteComponent extends ControlMaterialComponent implements AfterContentInit {
@@ -176,7 +174,7 @@ export class ControlMaterialAutocompleteComponent extends ControlMaterialCompone
   getLabel(value) {
     if (value instanceof Object) {
       const objects = this.bindLabel.split('.');
-      let retorno = null;
+      let retorno: string | null = null;
       objects.forEach(element => {
         retorno = retorno === null ? value[element] : retorno[element];
       });

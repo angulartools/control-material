@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 
 @Component({
     selector: 'lib-control-material-textarea',
@@ -22,8 +21,7 @@ import { FontAwesomeSharedModule } from '../font-awesome.module';
         },
     ],
     imports: [
-      MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule,
-      FontAwesomeSharedModule
+      MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule
     ]
 })
 export class ControlMaterialTextareaComponent extends ControlMaterialComponent {

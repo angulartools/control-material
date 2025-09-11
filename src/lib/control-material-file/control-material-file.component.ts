@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleCha
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
-import { FontAwesomeSharedModule } from '../font-awesome.module';
 import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix, MatError, MatHint } from '@angular/material/form-field';
 import { ToastrService } from 'ngx-toastr';
@@ -24,7 +23,7 @@ import { ControlMaterialComponent } from '../control-material.component';
       },
     ],
     imports: [
-      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput, FontAwesomeSharedModule
+      MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput
     ]
 })
 export class ControlMaterialFileComponent extends ControlMaterialComponent implements OnChanges {
@@ -225,7 +224,9 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
 
             let context = canvas.getContext('2d');
 
-            context.drawImage(image, 0, 0, newWidth, newHeight);
+            if (context !== null) {
+              context.drawImage(image, 0, 0, newWidth, newHeight);
+            }
 
             canvas.toBlob(resolve, file.type);
         };

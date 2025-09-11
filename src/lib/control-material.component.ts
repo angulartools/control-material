@@ -7,7 +7,7 @@ import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldApp
 import { NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
-import { FontAwesomeSharedModule } from './font-awesome.module';
+import { FontAwesomeService } from './fontawesome.service';
 
 @Component({
     selector: 'lib-control-material',
@@ -35,10 +35,11 @@ import { FontAwesomeSharedModule } from './font-awesome.module';
       MatTooltip, 
       FormsModule, 
       ReactiveFormsModule,
-      FontAwesomeSharedModule
     ]
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
+
+  private _ = inject(FontAwesomeService);
 
   protected static nextId = 0;
   index = ControlMaterialComponent.nextId;
