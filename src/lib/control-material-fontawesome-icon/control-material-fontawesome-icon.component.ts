@@ -4,7 +4,6 @@ import { ControlMaterialComponent } from './../control-material.component';
 import { NG_VALUE_ACCESSOR, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, forwardRef, AfterContentInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/pro-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FontAwesomeSearchComponent } from './font-awesome-search/font-awesome-search.component';
 import { TranslationPipe } from '@angulartoolsdr/translation';
@@ -64,9 +63,32 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
 
   constructor(private dialog: MatDialog) {
     super();
-    this.library = library;
-    this.library.add(fas);
-    this.icones = Object.keys(library['definitions'].fas);
+    this.library = library;    
+    this.registrarIconesFontAwesome();
+  }
+
+  private registrarIconesFontAwesome(): void {
+    let fas: any;
+
+    try {
+      // tenta carregar os ícones Pro
+      fas = require('@fortawesome/pro-solid-svg-icons').fas;
+      console.info('[MyLib] Registrando ícones Pro...');
+    } catch {
+      // fallback para versão gratuita
+      try {
+        fas = require('@fortawesome/free-solid-svg-icons').fas;
+        console.info('[MyLib] Registrando ícones Free (fallback).');
+      } catch {
+        console.warn('[MyLib] Nenhum pacote de ícones "fas" encontrado.');
+        return;
+      }
+    }
+
+    if (fas) {
+      this.library.add(fas);
+      this.icones = Object.keys(library['definitions'].fas);
+    }
   }
 
   override ngAfterContentInit() {
@@ -85,7 +107,7 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
 
   buscarIcones(nome) {
     //console.log('nome', nome)
-    let listaIcones = [];
+    let listaIcones: any[] = [];
 
     if (nome !== null) {
       this.nomesIcones = this.icones.map(x => {return {name: 'fa-'+x}});
@@ -149,7 +171,7 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
   getLabel(value) {
     if (value instanceof Object) {
       const objects = this.bindLabel.split('.');
-      let retorno = null;
+      let retorno: string | null = null;
       objects.forEach(element => {
         retorno = retorno === null ? value[element] : retorno[element];
       });

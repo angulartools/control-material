@@ -1,5 +1,5 @@
 @if (!readonly) {
-  <mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+  <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
     @if (label !== undefined && label !== null) {
       <mat-label>{{label}}@if (required) {
         <span>*</span>
@@ -26,7 +26,7 @@
 }
 
 @if (readonly) {
-  <mat-form-field appearance="outline" class="d-block" [class.smaller]="smaller">
+  <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
     @if (label !== undefined && label !== null) {
       <mat-label>{{label}}@if (required) {
         <span>*</span>

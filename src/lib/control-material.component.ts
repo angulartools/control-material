@@ -54,6 +54,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   @Input() readonly = false;
   @Input() tooltip = null;
   @Input() inicialFocus = false;
+  @Input() appearance: 'outline' | 'standard' | 'legacy' = 'outline';
 
   @Input() obrigatorio = false;
 
@@ -116,7 +117,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
 
     this.label = this.label !== undefined && this.label !== null ? (this.label + ' ') : undefined;
 
-    let validadores = [];
+    let validadores: any[] = [];
     let updateValidator = false;
 
     if (this.obrigatorio) {
