@@ -3,7 +3,7 @@ import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormCo
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError } from '@angular/material/form-field';
+import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldAppearance } from '@angular/material/form-field';
 import { NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
@@ -54,7 +54,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   @Input() readonly = false;
   @Input() tooltip = null;
   @Input() inicialFocus = false;
-  @Input() appearance = 'outline';
+  @Input() appearance: MatFormFieldAppearance = 'outline';
 
   @Input() obrigatorio = false;
 
