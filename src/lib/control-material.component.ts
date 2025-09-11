@@ -54,7 +54,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   @Input() readonly = false;
   @Input() tooltip = null;
   @Input() inicialFocus = false;
-  @Input() appearance: 'outline' | 'standard' | 'legacy' = 'outline';
+  @Input() appearance = 'outline';
 
   @Input() obrigatorio = false;
 
