@@ -1,42 +1,36 @@
-.select-flags {
-  display: inline-block;
-  position: relative;
-  color: #50575e;
-  text-align: left;
+.flag-list-panel .mat-mdc-option.custom-search-container .mdc-list-item {
+  padding: 0 !important; /* remove padding do item para o input encostar no topo */
+  min-height: unset; /* evita altura exagerada do primeiro item */
+  background: transparent;
 }
 
-.flag-icon-margin-right {
-  margin-right: 6px;
-}
-
-.country-flag {
-  cursor: pointer;
-  outline: none;
-  white-space: nowrap;
-}
-
-.list-country-flags {
-  width: -moz-available;
-  position: absolute;
-  max-height: 200px;
-  margin-top: 10px;
-  padding: 5px;
-  background: #ffffff;
-  border: 1px solid #c7c7c7;
-  overflow: auto;
-  z-index: 99999;
-}
-
-.flag-list-panel.mat-mdc-select-panel {
-  overflow-y: scroll;
-  overflow-x: hidden;
+/* Escopo explícito no overlay do MatSelect para MDC (Angular 20+) */
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel {
   background: #fff;
+  position: relative; /* contexto para header absoluto */
+  border-radius: 8px;
+  max-height: 320px;
+  overflow-y: auto; /* painel é o container de scroll */
+  overflow-x: hidden;
+  padding-top: 0; /* header ficará sticky; reserva será na lista */
 }
 
-.flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar {
+/* Lista interna sem restrições de altura/overflow */
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .mdc-list {
+  position: relative;
+  padding-top: 56px; /* espaço para o header sticky */
+  padding-bottom: 0;
+}
+
+/* garante que não exista margem no primeiro item (o de busca) */
+:host ::ng-deep .flag-list-panel .mat-mdc-option:first-child {
+  margin-top: 0 !important;
+}
+
+:host ::ng-deep .flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar {
   width: 7px;
 }
-.flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar-thumb {
+:host ::ng-deep .flag-list-panel.mat-mdc-select-panel::-webkit-scrollbar-thumb {
   background-color: rgba(0,0,0,0.4);
   border-radius: 10rem;
   border: 1px solid #fff;
@@ -53,4 +47,69 @@
 
 :host ::ng-deep div.mat-mdc-select-panel {
   max-width: fit-content !important;
+}
+
+/* Header de busca injetado dinamicamente (Renderer2) */
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .search-header {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background: #fff;
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .search-header .search-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  outline: none;
+}
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .search-header .search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,.2);
+}
+
+/* Destaque do item atualmente selecionado na lista */
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .mat-mdc-option.mdc-list-item--selected {
+  background-color: rgba(59, 130, 246, 0.10) !important; /* leve azul */
+  font-weight: 600;
+  border-left: 3px solid #3b82f6;
+}
+
+/* Mantém o destaque mesmo com foco/hover do teclado/mouse */
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .mat-mdc-option.mdc-list-item--selected.mat-mdc-option-active,
+.cdk-overlay-pane .mat-mdc-select-panel.flag-list-panel .mat-mdc-option.mdc-list-item--selected:hover {
+  background-color: rgba(59, 130, 246, 0.16) !important;
+}
+
+/* Remove padding interno do wrapper do option */
+:host ::ng-deep .flag-list-panel .mat-mdc-option.custom-search-container .mdc-list-item {
+  /* aplica sticky no wrapper interno para maior compatibilidade */
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* acima dos options */
+  padding: 0 !important;
+  min-height: unset;
+  background: #fff; /* sólida para cobrir itens abaixo */
+}
+
+/* garante que o input ocupe a largura total sem depender de utilitários externos */
+:host ::ng-deep .flag-list-panel .mat-mdc-option.custom-search-container input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db; /* cinza claro */
+  border-radius: 4px;
+  outline: none;
+  background: #fff;
+}
+:host ::ng-deep .flag-list-panel .mat-mdc-option.custom-search-container input[type="text"]:focus {
+  border-color: #3b82f6; /* azul */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* ajusta os mat-option para não colarem no input */
+:host ::ng-deep .flag-list-panel .mat-mdc-option {
+  padding: 4px 12px;
 }

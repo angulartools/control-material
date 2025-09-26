@@ -1,10 +1,7 @@
 import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
-import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { DatePipe, NgClass } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { IMaskDirective } from 'angular-imask';
@@ -17,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'lib-control-material-phone',
     templateUrl: './control-material-phone.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
+    styleUrls: ['./control-material-phone.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'id' },
     providers: [
@@ -27,23 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
             multi: true
         }
     ],
-    imports: [
-      NgxFlagPickerComponent, 
-      IMaskDirective, 
-      MatIconButton, 
-      DatePipe, 
-      MatFormField, 
-      MatLabel, 
-      MatPrefix, 
-      MatSuffix, 
-      MatError, 
-      MatInput, 
-      NgClass, 
-      MatIcon, 
-      MatTooltip, 
-      FormsModule, 
-      ReactiveFormsModule, FontAwesomeModule
-    ]
+    imports: [NgxFlagPickerComponent, IMaskDirective, MatIconButton, MatFormField, MatLabel, MatSuffix, MatError, MatInput, FormsModule, ReactiveFormsModule, FontAwesomeModule]
 })
 export class ControlMaterialPhoneComponent extends ControlMaterialComponent implements AfterContentInit {
 

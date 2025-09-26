@@ -1,14 +1,17 @@
-import { Component, Input, Output, EventEmitter, Renderer2, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, ElementRef, ViewEncapsulation, Renderer2, inject } from '@angular/core';
 import { MatSelect, MatSelectTrigger } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
+import { TranslationService } from '@angulartoolsdr/translation';
 
 @Component({
     selector: 'ngx-flag-picker',
     templateUrl: './ngx-flag-picker.component.html',
     styleUrls: ['./ngx-flag-picker.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     imports: [MatSelect, MatSelectTrigger, MatOption]
 })
-export class NgxFlagPickerComponent {
+export class NgxFlagPickerComponent implements OnChanges {
+  
   @Input() selectedCountryCode: string;
   @Input() countryCodes: string[];
 
@@ -16,22 +19,73 @@ export class NgxFlagPickerComponent {
 
   @Input() showFlags = true;
   @Input() showLabels = true;
-  @Input() showArrow = true;
 
   @Output() changedCountryCode = new EventEmitter<string>();
+  @ViewChild('filterInput') filterInputRef: ElementRef<HTMLInputElement>;
 
-  private _isShowListCountryFlags = false;
-  set isShowListCountryFlags(value: boolean) {
-    this._isShowListCountryFlags = value;
-    this.changeDetectorRef.markForCheck();
+  searchQuery = '';
+  listaCompleta: string[];
+  filteredCountryCodes: string[];
+
+  translateService = inject(TranslationService);
+  private renderer: Renderer2 = inject(Renderer2);
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['countryCodes']) {
+      this.listaCompleta = this.countryCodes.sort();
+      this.filteredCountryCodes = [...this.listaCompleta];
+      this.filterCountries();
+    }
   }
-  get isShowListCountryFlags(): boolean {
-    return this._isShowListCountryFlags;
+
+  onOpenChange(opened: boolean) {
+    if (opened) {
+      // injeta o header de busca no painel do MatSelect (overlay)
+      setTimeout(() => {
+        this.injectSearchHeaderIntoPanel();
+      });
+    }
   }
 
-  outsideClickSelectFlags = () => {};
+  // Cria Input de busca injetado dinamicamente
+  private injectSearchHeaderIntoPanel() {
+    const panel = document.querySelector('.flag-list-panel') as HTMLElement;
+    if (!panel) { return; }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+    // evita duplicar o header
+    let header = panel.querySelector('.search-header') as HTMLElement;
+    if (!header) {
+      header = this.renderer.createElement('div');
+      this.renderer.addClass(header, 'search-header');
+
+      // cria o input
+      const input = this.renderer.createElement('input') as HTMLInputElement;
+      this.renderer.addClass(input, 'search-input');
+      input.type = 'text';
+      input.placeholder = this.translateService.instant('PESQUISAR_LISTA');
+      input.value = this.searchQuery || '';
+
+      // listeners
+      this.renderer.listen(input, 'click', (e: Event) => e.stopPropagation());
+      this.renderer.listen(input, 'input', () => {
+        this.searchQuery = input.value || '';
+        this.filterCountries();
+      });
+
+      // monta DOM
+      this.renderer.appendChild(header, input);
+      this.renderer.insertBefore(panel, header, panel.firstChild);
+
+      // foca
+      setTimeout(() => input.focus());
+    }
+  }
+
+  filterCountries() {
+    this.filteredCountryCodes = this.listaCompleta.filter(x => {
+      return x.toLowerCase().indexOf(this.searchQuery?.toLowerCase()) > -1 || x.indexOf(this.selectedCountryCode) > -1;
+    });
+  }
 
   getCountryLabel(countryCode: string): string {
     return (this.customLabels && this.customLabels[countryCode]) ?
@@ -41,32 +95,7 @@ export class NgxFlagPickerComponent {
 
   public changeSelectedCountryCode(value): void {
     this.selectedCountryCode = value.value;
-    this.closeListCountryFlags();
     this.changedCountryCode.emit(this.selectedCountryCode);
-  }
-
-  public toggleListCountryFlags(): void {
-    if (this.isShowListCountryFlags) {
-      this.closeListCountryFlags();
-    } else {
-      this.openListCountryFlags();
-    }
-  }
-
-  private openListCountryFlags(): void {
-    this.isShowListCountryFlags = true;
-  }
-
-  private closeListCountryFlags(): void {
-    this.isShowListCountryFlags = false;
-    this.unsubscribeOutsideClickSelectFlags();
-  }
-
-  private unsubscribeOutsideClickSelectFlags(): void {
-    if (this.outsideClickSelectFlags) {
-      this.outsideClickSelectFlags();
-      this.outsideClickSelectFlags = undefined;
-    }
   }
 
   static getAllCountries() {

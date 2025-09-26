@@ -1,4 +1,4 @@
-<mat-select [hideSingleSelectionIndicator]="true" [(value)]="selectedCountryCode" disableOptionCentering (selectionChange)="changeSelectedCountryCode($event)" panelClass="flag-list-panel">
+<mat-select [hideSingleSelectionIndicator]="true" [(value)]="selectedCountryCode" disableOptionCentering (selectionChange)="changeSelectedCountryCode($event)" (openedChange)="onOpenChange($event)" panelClass="flag-list-panel">
   <mat-select-trigger>
     @if (showFlags) {
       <span class="flag-icon flag-icon-{{ selectedCountryCode }}"> </span>
@@ -7,7 +7,10 @@
       <span class="country-code ml-1">{{ getCountryLabel(selectedCountryCode) }}</span>
     }
   </mat-select-trigger>
-  @for (code of countryCodes; track code) {
+  
+  <!-- Input de busca injetado dinamicamente -->
+  
+  @for (code of filteredCountryCodes; track code) {
     <mat-option [value]="code" style="width: 100px;">
       @if (showFlags) {
         <span class="flag-icon flag-icon-{{ code }}"></span>

@@ -68,6 +68,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
   hourMinuteMask: Mask = Mask.getMaskHourMinute();
 
   LANG_EN = 'en-US';
+  LANG_SE = 'se-SW';
 
   inputDate = '';
   inputHour = '';
@@ -157,16 +158,27 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
    onFocusOutDate(event) {
     const novaData = new Date();
 
-    const aData = event.target?.value?.split('/');
+    let aData;
+    if (this.translate.currentLang === this.LANG_SE) {
+      aData = event.target?.value?.split('-');
+    } else {
+      aData = event.target?.value?.split('/');
+    }
 
     if (aData[0].trim() !== '') {
-      const ano = aData[2].trim() === '' ? novaData.getFullYear() : Number(aData[2].trim());
       if (this.translate.currentLang === this.LANG_EN) {
         const mes = aData[0].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[0].trim());
         const dia = Number(aData[1].trim());
+        const ano = aData[2].trim() === '' ? novaData.getFullYear() : Number(aData[2].trim());
+        this.montarData(dia === 0 ? novaData.getDate() : dia, mes, ano);
+      } else if (this.translate.currentLang === this.LANG_SE) {
+        const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[1].trim());
+        const dia = Number(aData[2].trim());
+        const ano = aData[0].trim() === '' ? novaData.getFullYear() : Number(aData[0].trim());
         this.montarData(dia === 0 ? novaData.getDate() : dia, mes, ano);
       } else {
         const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[1].trim());
+        const ano = aData[2].trim() === '' ? novaData.getFullYear() : Number(aData[2].trim());
         this.montarData(Number(aData[0].trim()), mes, ano);
       }
     } else {

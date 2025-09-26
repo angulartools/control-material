@@ -71,6 +71,20 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
   _selectList = [];
   translateValue = false;
 
+  // Resolve nested properties using dot notation (e.g., "data.nome")
+  // Falls back gracefully if any segment is missing.
+  resolvePath(source: any, path: string | null | undefined): any {
+    if (!source || !path) return undefined;
+    if (path.indexOf('.') === -1) {
+      return source[path];
+    }
+    try {
+      return path.split('.').reduce((acc: any, key: string) => (acc == null ? undefined : acc[key]), source);
+    } catch {
+      return undefined;
+    }
+  }
+
   compareFn(v1: any, v2: any): boolean {
     if (this.bindId !== undefined) {
       return v1 && v2 ? v1[this.bindId] === v2[this.bindId] : v1 === v2;

@@ -11,10 +11,10 @@
           </span>
         }
         @if (item !== undefined && bindLabel !== null && bindArray.length === 0 && translateValue === true) {
-          <span>{{item[bindLabel] | translate}}</span>
+          <span>{{resolvePath(item, bindLabel) | translate}}</span>
         }
         @if (item !== undefined && bindLabel !== null && bindArray.length === 0 && translateValue === false) {
-          <span>{{item[bindLabel]}}</span>
+          <span>{{resolvePath(item, bindLabel)}}</span>
         }
         @if (item !== undefined && bindLabel === null  && bindArray.length === 0 && translateValue === true) {
           <span>{{item | translate}}</span>
@@ -30,7 +30,7 @@
                   <span>{{value['value']}}</span>
                 }
                 @if (value['type'] === 'data') {
-                  <span>{{item[value['value']]}}</span>
+                  <span>{{resolvePath(item, value['value'])}}</span>
                 }
               </span>
             }
