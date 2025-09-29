@@ -10,6 +10,7 @@ import { MatOption, MatSelect } from '@angular/material/select';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
     selector: 'lib-control-material-select',
@@ -71,6 +72,10 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
   _selectList = [];
   translateValue = false;
 
+  // Expor helpers para o template
+  getInfoIcon = getInfoIcon;
+  getXmarkIcon = getXmarkIcon;
+
   // Resolve nested properties using dot notation (e.g., "data.nome")
   // Falls back gracefully if any segment is missing.
   resolvePath(source: any, path: string | null | undefined): any {
@@ -112,4 +117,23 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
     }
   }
 
+}
+
+// FontAwesome helpers (fallback Pro → Free)
+export function hasFaIcon(prefix: IconPrefix, name: IconName): boolean {
+  try {
+    // @ts-ignore accessing runtime registry is intentional
+    return !!(library as any)?.definitions?.[prefix]?.[name];
+  } catch {
+    return false;
+  }
+}
+
+export function getInfoIcon(): [IconPrefix, IconName] {
+  return hasFaIcon('fal', 'circle-info') ? ['fal', 'circle-info'] : ['fas', 'circle-info'];
+}
+
+export function getXmarkIcon(): [IconPrefix, IconName] {
+  // Prefer Regular (Pro) if available, otherwise Solid (Free)
+  return hasFaIcon('far', 'xmark') ? ['far', 'xmark'] : ['fas', 'xmark'];
 }
