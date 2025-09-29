@@ -10,7 +10,8 @@ import { MatOption, MatSelect } from '@angular/material/select';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
+import { library, IconName, IconPrefix, IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faXmark as fasXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'lib-control-material-select',
@@ -75,6 +76,8 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
   // Expor helpers para o template
   getInfoIcon = getInfoIcon;
   getXmarkIcon = getXmarkIcon;
+  // Usa IconDefinition direto para garantir renderização do X (sem depender do registry)
+  xmarkIconDef: IconDefinition = fasXmark;
 
   // Resolve nested properties using dot notation (e.g., "data.nome")
   // Falls back gracefully if any segment is missing.
