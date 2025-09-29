@@ -55,7 +55,8 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
       if (this.control !== undefined) {
         if (this.control.value !== null) {
           if (this.control.value instanceof Object ) {
-            const index = value.findIndex(x => x[this.bindId] === this.control.value[this.bindId]);
+            const controlBindValue = this.resolvePath(this.control.value, this.bindId);
+            const index = value.findIndex(x => this.resolvePath(x, this.bindId) === controlBindValue);
             if (index > -1) {
               this.control.setValue(value[index]);
             }
@@ -94,8 +95,8 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
   }
 
   compareFn(v1: any, v2: any): boolean {
-    if (this.bindId !== undefined) {
-      return v1 && v2 ? v1[this.bindId] === v2[this.bindId] : v1 === v2;
+    if (this.bindId !== undefined && this.bindId !== null) {
+      return v1 && v2 ? this.resolvePath(v1, this.bindId) === this.resolvePath(v2, this.bindId) : v1 === v2;
     } else {
       if (v1['codigo'] !== undefined) {
         // temporario por problema de binding

@@ -1,6 +1,6 @@
 {
   "name": "@angulartoolsdr/control-material",
-  "version": "20.3.2-custom.1",
+  "version": "20.3.2-custom.2",
   "peerDependencies": {
     "@angular/common": "20.3.2",
     "@angulartoolsdr/translation": "20.3.2",
