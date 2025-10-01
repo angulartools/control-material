@@ -11,7 +11,11 @@ import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library, IconName, IconPrefix, IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faXmark as fasXmark } from '@fortawesome/free-solid-svg-icons';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faXmark as faXmarkPro } from '@fortawesome/pro-solid-svg-icons';
+import { faXmark as faXmarkFree } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo as faCircleInfoPro } from '@fortawesome/pro-solid-svg-icons';
+import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'lib-control-material-select',
@@ -77,9 +81,7 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
   // Expor helpers para o template
   getInfoIcon = getInfoIcon;
   getXmarkIcon = getXmarkIcon;
-  // Usa IconDefinition direto para garantir renderização do X (sem depender do registry)
-  xmarkIconDef: IconDefinition = fasXmark;
-
+  
   // Resolve nested properties using dot notation (e.g., "data.nome")
   // Falls back gracefully if any segment is missing.
   resolvePath(source: any, path: string | null | undefined): any {
@@ -138,11 +140,10 @@ export function hasFaIcon(prefix: IconPrefix, name: IconName): boolean {
   }
 }
 
-export function getInfoIcon(): [IconPrefix, IconName] {
-  return hasFaIcon('fal', 'circle-info') ? ['fal', 'circle-info'] : ['fas', 'circle-info'];
+export function getInfoIcon() {
+  return icon(faCircleInfoPro) ? faCircleInfoPro : faCircleInfoFree;
 }
 
-export function getXmarkIcon(): [IconPrefix, IconName] {
-  // Prefer Regular (Pro) if available, otherwise Solid (Free)
-  return hasFaIcon('far', 'xmark') ? ['far', 'xmark'] : ['fas', 'xmark'];
+export function getXmarkIcon() {
+  return icon(faXmarkPro) ? faXmarkPro : faXmarkFree;
 }

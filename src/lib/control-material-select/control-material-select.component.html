@@ -48,7 +48,7 @@
   }
   @if (!disableClear && control.value && !control.disabled && !readonly) {
     <button mat-icon-button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
-      <fa-icon [icon]="xmarkIconDef" style="font-size: 0.7em"></fa-icon>
+      <fa-icon [icon]="getXmarkIcon()" style="font-size: 0.7em"></fa-icon>
     </button>
   }
   @if (tooltip !== null) {
