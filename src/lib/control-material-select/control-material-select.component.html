@@ -48,12 +48,12 @@
   }
   @if (!disableClear && control.value && !control.disabled && !readonly) {
     <button mat-icon-button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
-      <fa-icon [icon]="getXmarkIcon()" style="font-size: 0.7em"></fa-icon>
+      <fa-icon class="fa-xs" [icon]="getXmarkIcon()"></fa-icon>
     </button>
   }
   @if (tooltip !== null) {
     <span matSuffix>
-      <fa-icon [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+      <fa-icon class="fa-xs" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>
   }
   @if (hint !== null) {
