@@ -94,6 +94,11 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
     }
   }
 
+  trackFn(): (item: any) => any {
+    const keys = this.bindId.split('.');
+    return (item: any) => keys.reduce((acc, key) => acc?.[key], item);
+  }
+
   compareFn(v1: any, v2: any): boolean {
     if (this.bindId !== undefined && this.bindId !== null) {
       return v1 && v2 ? this.resolvePath(v1, this.bindId) === this.resolvePath(v2, this.bindId) : v1 === v2;
