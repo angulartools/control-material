@@ -5,7 +5,7 @@
   <input matInput type="text" [formControl]="control" [placeholder]="placeholder" [imask]="mask" [unmask]="unmask" (blur)="blur()" [readonly]="readonly"/>
   @if (showClearMask) {
     <button mat-icon-button matSuffix aria-label="Clear" (click)="limparItem($event)">
-      <i style="font-size: 0.7em" class="far fa-xmark"></i>
+      <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
     </button>
   }
   @if (labelPrefix != null) {
@@ -25,7 +25,7 @@
   }
   @if (tooltip !== null) {
     <span matSuffix>
-      <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-primary)" />
+      <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>
   }
   @if (hasError()) {

@@ -2,7 +2,7 @@
   <label style="align-self: center; font-weight: 100;">{{label}}:
     @if (tooltip !== null) {
       <span>
-        <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+        <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
       </span>
     }
     @if (hasError()) {
@@ -13,7 +13,7 @@
     class="ml-0"
     [formControl]="control"
     (change)="radioSelectChange($event)">
-    @for (item of _selectList; track item) {
+    @for (item of _selectList; track item.id) {
       <mat-radio-button class="radio-button" color="primary" [value]="item">
         @if (translateValue === false) {
           <span class="label-radio">{{item[bindLabel]}}</span>

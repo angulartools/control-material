@@ -20,13 +20,13 @@
 
     @if (tooltip !== null) {
       <span matSuffix>
-        <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+        <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
       </span>
     }
 
     @if (control.value && !control.disabled && !readonly) {
       <button mat-icon-button type="button" matSuffix aria-label="Clear" (click)="limparItem($event);">
-        <i style="font-size: 0.7em" class="far fa-xmark"></i>
+        <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
       </button>
     }
 
@@ -48,7 +48,7 @@
         </mat-option>
       }
       <ng-container>
-        @for (item of filteredOptions | async; track item) {
+        @for (item of filteredOptions | async; track item.id) {
           <mat-option [value]="item"[ngClass]="{'large-data': largeData, 'small-text': smallText }">
             <i class="{{item.classe}} mr-1" style="font-size: 18px;"></i>
             <span>

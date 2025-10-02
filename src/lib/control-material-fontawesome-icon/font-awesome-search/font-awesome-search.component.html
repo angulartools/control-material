@@ -2,7 +2,7 @@
   {{'PESQUISAR_ICONE' | translate}}
   <div style="float: right;">
     <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [value]="viewTypes[0]" #group="matButtonToggleGroup" name="viewType" aria-label="View Type">
-      @for (item of viewTypes; track item) {
+      @for (item of viewTypes; track item.id) {
         <mat-button-toggle [value]="item">
           <i class="{{item.icon}}"></i>
         </mat-button-toggle>
@@ -21,7 +21,7 @@
   }
   @if (loading === false) {
     <div style="overflow: hidden;" class="row mx-0 px-0 text-left">
-      @for (icone of listaIcones; track icone) {
+      @for (icone of listaIcones; track icone.nome) {
         <div class="mt-1 mx-0 px-1 col" style="flex-grow: 0;">
           <button [class.inline-button]="group?.value?.id === 3" matTooltip="{{icone.nome}}" matTooltipPosition="above" [class.selected]="icone.classe === selectedIcon?.classe" mat-stroked-button class="{{group?.value?.classe}}" (click)="selecionarIcone(icone)">
             <div [class.d-inline-flex]="group?.value?.id === 3" style="width: 100%; align-items: center;">

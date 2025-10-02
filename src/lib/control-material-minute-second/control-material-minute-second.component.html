@@ -16,7 +16,7 @@
 
   @if (tooltip !== null) {
     <span matSuffix>
-      <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+      <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>
   }
 

@@ -13,7 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'lib-control-material-file',
     templateUrl: './control-material-file.component.html',
-    styleUrls: ['./control-material-file.component.scss'],
+    styleUrls: ['../control-material.component.scss', './control-material-file.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'id' },
     providers: [

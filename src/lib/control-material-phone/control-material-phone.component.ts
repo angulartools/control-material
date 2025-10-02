@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'lib-control-material-phone',
     templateUrl: './control-material-phone.component.html',
-    styleUrls: ['./control-material-phone.component.scss'],
+    styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'id' },
     providers: [

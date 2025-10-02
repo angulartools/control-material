@@ -1,21 +1,13 @@
 import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
-import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { NgClass } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library, IconName, IconPrefix, IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faXmark as faXmarkPro } from '@fortawesome/pro-solid-svg-icons';
-import { faXmark as faXmarkFree } from '@fortawesome/free-solid-svg-icons';
-import { faCircleInfo as faCircleInfoPro } from '@fortawesome/pro-solid-svg-icons';
-import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-icons';
+import { ControlMaterialComponent } from '../control-material.component';
 
 @Component({
     selector: 'lib-control-material-select',
@@ -31,7 +23,7 @@ import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-ic
         },
     ],
     imports: [
-      MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
+      MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, NgClass, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
     ]
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {
@@ -77,10 +69,6 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
   _selectList = [];
   translateValue = false;
-
-  // Expor helpers para o template
-  getInfoIcon = getInfoIcon;
-  getXmarkIcon = getXmarkIcon;
   
   // Resolve nested properties using dot notation (e.g., "data.nome")
   // Falls back gracefully if any segment is missing.
@@ -130,20 +118,3 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
 }
 
-// FontAwesome helpers (fallback Pro → Free)
-export function hasFaIcon(prefix: IconPrefix, name: IconName): boolean {
-  try {
-    // @ts-ignore accessing runtime registry is intentional
-    return !!(library as any)?.definitions?.[prefix]?.[name];
-  } catch {
-    return false;
-  }
-}
-
-export function getInfoIcon() {
-  return icon(faCircleInfoPro) ? faCircleInfoPro : faCircleInfoFree;
-}
-
-export function getXmarkIcon() {
-  return icon(faXmarkPro) ? faXmarkPro : faXmarkFree;
-}

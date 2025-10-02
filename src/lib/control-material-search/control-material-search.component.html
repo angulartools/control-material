@@ -9,12 +9,12 @@
   <div class="mat-select-arrow-wrapper" style="position: absolute; right: 0; bottom: 50%"><div class="mat-select-arrow"></div></div>
   @if (control.value && !control.disabled && !readonly) {
     <button mat-icon-button matSuffix aria-label="Clear" (click)="value=''; $event.stopPropagation()">
-      <i style="font-size: 0.7em" class="far fa-xmark"></i>
+      <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
     </button>
   }
   @if (tooltip !== null) {
     <span matSuffix>
-      <fa-icon [icon]="['fal', 'circle-info']" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
+      <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>
   }
 
@@ -22,7 +22,7 @@
     <mat-error class="danger">{{errorMessage}}</mat-error>
   }
   <mat-autocomplete #auto [displayWith]="displayBindLabel.bind(this)" (optionSelected)="optionSelected($event)">
-    @for (item of (filteredSearch | async); track item) {
+    @for (item of (filteredSearch | async); track item.id) {
       <mat-option [value]="item" [ngClass]="{'large-data': largeData }">
         <span>
           @if (bindArray === undefined || bindArray === null || bindArray.length === 0 || showLabel === true) {

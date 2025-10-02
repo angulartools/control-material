@@ -15,7 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'lib-control-material-password-strength',
     templateUrl: './control-material-password-strength.component.html',
-    styleUrls: ['./control-material-password-strength.component.scss'],
+    styleUrls: ['../control-material.component.scss', './control-material-password-strength.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'id' },
     imports: [

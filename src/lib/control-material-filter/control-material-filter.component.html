@@ -5,7 +5,7 @@
   <input matInput [formControl]="control" [placeholder]="placeholder"/>
   @if (formControlName.value && !formControlName.disabled) {
     <button mat-icon-button matSuffix aria-label="Clear" (click)="value=''">
-      <fa-icon [icon]="['fas', 'filter-circle-xmark']" />
+      <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
     </button>
   }
 </mat-form-field>

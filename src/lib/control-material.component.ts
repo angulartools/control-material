@@ -9,7 +9,12 @@ import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
 import { FontAwesomeService } from './fontawesome.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { library, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faXmark as faXmarkPro } from '@fortawesome/pro-solid-svg-icons';
+import { faXmark as faXmarkFree } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo as faCircleInfoPro } from '@fortawesome/pro-solid-svg-icons';
+import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'lib-control-material',
@@ -88,6 +93,10 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   translate = inject(TranslationService);
 
   @Output() onBlur: EventEmitter<any> = new EventEmitter();
+
+  // Expor helpers para o template
+  getInfoIcon = getInfoIcon;
+  getXmarkIcon = getXmarkIcon;
 
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
@@ -227,4 +236,22 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     return this._disabled;
   }
 
+}
+
+// FontAwesome helpers (fallback Pro → Free)
+export function hasFaIcon(prefix: IconPrefix, name: IconName): boolean {
+  try {
+    // @ts-ignore accessing runtime registry is intentional
+    return !!(library as any)?.definitions?.[prefix]?.[name];
+  } catch {
+    return false;
+  }
+}
+
+export function getInfoIcon() {
+  return icon(faCircleInfoPro) ? faCircleInfoPro : faCircleInfoFree;
+}
+
+export function getXmarkIcon() {
+  return icon(faXmarkPro) ? faXmarkPro : faXmarkFree;
 }

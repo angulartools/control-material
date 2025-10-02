@@ -19,6 +19,7 @@ import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
 import { MatDatepickerToggleIcon } from '@angular/material/datepicker';
 import 'moment/locale/pt';
 import 'moment/locale/es';
+import 'moment/locale/sv';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,7 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'lib-control-material-date-time',
     templateUrl: './control-material-date-time.component.html',
-    styleUrls: ['./control-material-date-time.component.scss'],
+    styleUrls: ['../control-material.component.scss', './control-material-date-time.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '[id]': 'id' },
     providers: [
@@ -68,7 +69,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
   hourMinuteMask: Mask = Mask.getMaskHourMinute();
 
   LANG_EN = 'en-US';
-  LANG_SE = 'se-SW';
+  LANG_SV = 'sv';
 
   inputDate = '';
   inputHour = '';
@@ -159,7 +160,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
     const novaData = new Date();
 
     let aData;
-    if (this.translate.currentLang === this.LANG_SE) {
+    if (this.translate.currentLang === this.LANG_SV) {
       aData = event.target?.value?.split('-');
     } else {
       aData = event.target?.value?.split('/');
@@ -171,7 +172,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
         const dia = Number(aData[1].trim());
         const ano = aData[2].trim() === '' ? novaData.getFullYear() : Number(aData[2].trim());
         this.montarData(dia === 0 ? novaData.getDate() : dia, mes, ano);
-      } else if (this.translate.currentLang === this.LANG_SE) {
+      } else if (this.translate.currentLang === this.LANG_SV) {
         const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[1].trim());
         const dia = Number(aData[2].trim());
         const ano = aData[0].trim() === '' ? novaData.getFullYear() : Number(aData[0].trim());

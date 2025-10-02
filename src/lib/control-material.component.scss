@@ -34,3 +34,35 @@
 .smaller .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
   --mat-mdc-form-field-label-transform: translateY(calc(calc(6px + var(--mat-form-field-container-height) / 2) * -1)) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75)) !important;
 }
+
+:host ::ng-deep {
+  button[mat-icon-button] {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    line-height: 1;
+    
+    .mat-mdc-button-touch-target {
+      width: 24px !important;
+      height: 24px !important;
+    }
+    
+    .icon-size {
+      font-size: 17px !important;
+      width: 17px !important;
+      height: 17px !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      
+      svg {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+    
+    .mat-mdc-button-persistent-ripple {
+      border-radius: 50%;
+    }
+  }
+}
