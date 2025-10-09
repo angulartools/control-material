@@ -35,6 +35,29 @@
   --mat-mdc-form-field-label-transform: translateY(calc(calc(6px + var(--mat-form-field-container-height) / 2) * -1)) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75)) !important;
 }
 
+/* Ajustes para tentar resolver o smaller e a posição do botão dentro do input */
+.mat-mdc-icon-button.mat-mdc-button-base {
+  margin-right: 0.375rem !important;
+}
+
+.smaller .mat-mdc-form-field {
+  font-size: var(--mat-typography-body1-font-size, 12px) !important;
+}
+
+.smaller .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+  top: 22px;
+}
+
+.smaller .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+    font-size: var(--mat-typography-body1-font-size, 12px) !important;
+}
+
+.smaller .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+  padding-top: var(--mat-form-field-container-vertical-padding, 10px) !important;
+  padding-bottom: var(--mat-form-field-container-vertical-padding, 10px) !important;
+} 
+/* Fim dos Ajustes */
+
 :host ::ng-deep {
   button[mat-icon-button] {
     width: 24px;
