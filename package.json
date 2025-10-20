@@ -1,9 +1,9 @@
 {
   "name": "@angulartoolsdr/control-material",
-  "version": "20.3.5-custom.1",
+  "version": "20.3.6",
   "peerDependencies": {
-    "@angular/common": "20.3.5",
-    "@angulartoolsdr/translation": "20.3.5",
+    "@angular/common": "20.3.6",
+    "@angulartoolsdr/translation": "20.3.6",
     "@fortawesome/angular-fontawesome": "3.0.0",
     "@fortawesome/fontawesome-svg-core": "7.1.0",
     "@fortawesome/free-regular-svg-icons": "7.1.0",
@@ -17,12 +17,12 @@
     "@fortawesome/pro-solid-svg-icons": "^7.1.0"
   },
   "dependencies": {
-    "@angular/animations": "20.3.5",
-    "@angular/core": "20.3.5",
-    "@angular/forms": "20.3.5",
+    "@angular/animations": "20.3.6",
+    "@angular/core": "20.3.6",
+    "@angular/forms": "20.3.6",
     "@angular/material": "20.2.9",
     "@angular/material-moment-adapter": "20.2.9",
-    "@angulartoolsdr/shared-utils": "20.3.5",
+    "@angulartoolsdr/shared-utils": "20.3.6",
     "@katyan/datetime-picker": "^20.0.1",
     "moment": "^2.30.1",
     "ngx-toastr": "^19.1.0",
