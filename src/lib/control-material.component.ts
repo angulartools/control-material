@@ -116,7 +116,9 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     }
 
     if (this.model !== undefined) {
+      const value = this.model.model;
       this.control = this.model.control;
+      this.control.setValue(value);
     }
 
     if (this.formControl !== undefined) {
