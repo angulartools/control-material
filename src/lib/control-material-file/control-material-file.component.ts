@@ -43,7 +43,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
   @Input() imageClass = '';
   @Input() nome = 'logo';
   @Input() hint = null;
-
+  
   @Output() selectedFile: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('inputFile') inputFile: FileInputComponent;
