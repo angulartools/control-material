@@ -41,7 +41,7 @@
     <mat-error class="danger">{{errorMessage}}</mat-error>
   }
 
-  <mat-autocomplete #auto [displayWith]="displayBindLabel.bind(this)" (optionSelected)="optionSelected($event)">
+  <mat-autocomplete [hideSingleSelectionIndicator]="true" #auto [displayWith]="displayBindLabel.bind(this)" (optionSelected)="optionSelected($event)">
 
     @if (loading) {
       <mat-option disabled class="loading">
