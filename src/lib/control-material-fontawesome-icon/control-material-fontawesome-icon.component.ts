@@ -1,5 +1,4 @@
-import { startWith } from 'rxjs/operators';
-import { Observable, map } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
 import { ControlMaterialComponent } from './../control-material.component';
 import { NG_VALUE_ACCESSOR, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, forwardRef, AfterContentInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
@@ -106,7 +105,7 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
 
     if (fas) {
       this.library.add(fas);
-      this.icones = Object.keys(library['definitions'].fas);
+      this.icones = Object.keys(this.library['definitions'].fas);
     }
   }
 
@@ -115,6 +114,8 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
 
     this.filteredOptions = this.control.valueChanges
       .pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
         startWith(''),
         map(value => this.buscarIcones(value)),
       );
@@ -128,36 +129,40 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
     //console.log('nome', nome)
     let listaIcones: any[] = [];
 
-    if (nome !== null) {
-      this.nomesIcones = this.icones.map(x => {return {name: 'fa-'+x}});
-      let incluiu = 0;
-      if (nome instanceof Object) {
-        listaIcones = [nome];
-      } else {
-        if (typeof nome === 'string') {
-          const filterValue = nome.toLowerCase();
-          for (let i=0; i<this.nomesIcones.length; i++) {
-            if (this.nomesIcones[i].name.indexOf(filterValue) > -1) {
-              const item = {
-                id: i,
-                classe: 'fas '+this.nomesIcones[i].name,
-                nome: this.nomesIcones[i].name}
-                //unicode: this.nomesIcones[i].unicode}
-              listaIcones.push(item);
-              incluiu++;
-            }
-            if (incluiu >= 15) {
-              return listaIcones;
-            }
-          }
+    if (this.icones != null) {
+      
+      if (nome !== null) {
+        this.nomesIcones = this.icones.map(x => {return {name: 'fa-'+x}});
+        let incluiu = 0;
+        if (nome instanceof Object) {
+          listaIcones = [nome];
         } else {
-          return this.buscarIcones('');
+          if (typeof nome === 'string') {
+            const filterValue = nome.toLowerCase();
+            for (let i=0; i<this.nomesIcones.length; i++) {
+              if (this.nomesIcones[i].name.indexOf(filterValue) > -1) {
+                const item = {
+                  id: i,
+                  classe: 'fas '+this.nomesIcones[i].name,
+                  nome: this.nomesIcones[i].name}
+                  //unicode: this.nomesIcones[i].unicode}
+                listaIcones.push(item);
+                incluiu++;
+              }
+              if (incluiu >= 15) {
+                return listaIcones;
+              }
+            }
+          } else {
+            return this.buscarIcones('');
+          }
         }
+      } else {
+        return this.buscarIcones('');
       }
-    } else {
-      return this.buscarIcones('');
+      return listaIcones;
     }
-    return listaIcones;
+    return null;
   }
 
   openDialog() {
