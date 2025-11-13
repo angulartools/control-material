@@ -34,7 +34,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
   selectedFiles: any;
   image: any;
 
-  @Input() extensao: [string?] = [];
+  @Input() extensao?: string[] = [];
   @Input() filename = this.translate.instant('SELECIONAR_ARQUIVO');
   @Input() maxSize = 100000000;
   @Input() file: any;

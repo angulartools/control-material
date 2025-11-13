@@ -8,6 +8,9 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faClock as faClockPro } from '@fortawesome/pro-solid-svg-icons';
+import { faClock as faClockFree } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'lib-control-material-time',
@@ -47,6 +50,8 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
   @Input() maxDate = null;
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();
+
+  getClockIcon = getClockIcon;
 
   override ngAfterContentInit(): void {
     super.ngAfterContentInit();
@@ -129,3 +134,7 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
   }
 
 }
+
+export function getClockIcon() {
+    return icon(faClockPro) ? faClockPro : faClockFree;
+  }
