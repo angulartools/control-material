@@ -1,28 +1,28 @@
 {
   "name": "@angulartoolsdr/control-material",
-  "version": "20.3.9-custom.1",
+  "version": "21.0.0",
   "peerDependencies": {
-    "@angular/common": "20.3.9",
-    "@angulartoolsdr/translation": "20.3.9",
+    "@angular/common": "21.0.0",
+    "@angulartoolsdr/translation": "21.0.0",
     "@fortawesome/angular-fontawesome": "3.0.0",
     "@fortawesome/fontawesome-svg-core": "7.1.0",
     "@fortawesome/free-regular-svg-icons": "7.1.0",
     "@fortawesome/free-solid-svg-icons": "7.1.0",
     "@fortawesome/pro-solid-svg-icons": "7.1.0",
     "angular-imask": "^7.6.1",
-    "libphonenumber-js": "^1.12.25",
+    "libphonenumber-js": "^1.12.28",
     "ngx-colors": "^3.6.0"
   },
   "optionalDependencies": {
     "@fortawesome/pro-solid-svg-icons": "^7.1.0"
   },
   "dependencies": {
-    "@angular/animations": "20.3.9",
-    "@angular/core": "20.3.9",
-    "@angular/forms": "20.3.9",
-    "@angular/material": "20.2.11",
-    "@angular/material-moment-adapter": "20.2.11",
-    "@angulartoolsdr/shared-utils": "20.3.9",
+    "@angular/animations": "21.0.0",
+    "@angular/core": "21.0.0",
+    "@angular/forms": "21.0.0",
+    "@angular/material": "21.0.0",
+    "@angular/material-moment-adapter": "21.0.0",
+    "@angulartoolsdr/shared-utils": "21.0.0",
     "@katyan/datetime-picker": "^20.0.1",
     "moment": "^2.30.1",
     "ngx-toastr": "^19.1.0",
