@@ -20,6 +20,7 @@ import { MatDatepickerToggleIcon } from '@angular/material/datepicker';
 import 'moment/locale/pt';
 import 'moment/locale/es';
 import 'moment/locale/sv';
+import 'moment/locale/de';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
