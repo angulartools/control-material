@@ -1,7 +1,6 @@
 import { AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, ChangeDetectionStrategy, inject, Input, Output } from '@angular/core';
 import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormControl, ReactiveFormsModule, Validators, ControlValueAccessor } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldAppearance } from '@angular/material/form-field';
 import { NgClass } from '@angular/common';
@@ -17,33 +16,32 @@ import { faCircleInfo as faCircleInfoPro } from '@fortawesome/pro-solid-svg-icon
 import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-    selector: 'lib-control-material',
-    templateUrl: './control-material.component.html',
-    styleUrls: ['./control-material.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialComponent),
-            multi: true
-        },
-    ],
-    imports: [
-      AutofocusDirective, 
-      MatFormField, 
-      MatLabel, 
-      MatPrefix, 
-      MatSuffix, 
-      MatError, 
-      MatInput, 
-      NgClass, 
-      MatIcon, 
-      MatTooltip, 
-      FormsModule, 
-      ReactiveFormsModule,
-      FontAwesomeModule
-    ]
+  selector: 'lib-control-material',
+  templateUrl: './control-material.component.html',
+  styleUrls: ['./control-material.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialComponent),
+      multi: true
+    },
+  ],
+  imports: [
+    AutofocusDirective,
+    MatFormField,
+    MatLabel,
+    MatPrefix,
+    MatSuffix,
+    MatError,
+    MatInput,
+    NgClass,
+    MatTooltip,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
+  ]
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 
@@ -72,9 +70,9 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     this._disabled = value;
     if (this.control !== undefined) {
       if (this.control.disabled && !value) {
-        this.control.enable({onlySelf: true});
+        this.control.enable({ onlySelf: true });
       } else if (!this.control.disabled && value) {
-        this.control.disable({onlySelf: true});
+        this.control.disable({ onlySelf: true });
       }
     }
   }
@@ -83,8 +81,8 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   required = false;
   input: any;
   control: any;
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
   @ContentChild(FormControlName) formControlName: FormControlName | undefined;
   @ContentChild(NgModel) model: NgModel | undefined;
@@ -147,7 +145,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     }
 
     if (this.control !== undefined && this.disabled) {
-      this.control.disable({onlySelf: true});
+      this.control.disable({ onlySelf: true });
     }
 
   }
@@ -177,13 +175,13 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     if (this.control.errors.required) {
       return this.translate.instant('CONTROL_CAMPO_OBRIGATORIO');
     } else if (this.control.errors.minlength) {
-      return this.translate.instant('CONTROL_MINIMO_CARACTERES', {numero: this.control.errors.minlength.requiredLength});
+      return this.translate.instant('CONTROL_MINIMO_CARACTERES', { numero: this.control.errors.minlength.requiredLength });
     } else if (this.control.errors.maxlength) {
-      return this.translate.instant('CONTROL_MAXIMO_CARACTERES', {numero: this.control.errors.maxlength.requiredLength});
+      return this.translate.instant('CONTROL_MAXIMO_CARACTERES', { numero: this.control.errors.maxlength.requiredLength });
     } else if (this.control.errors.min) {
-      return this.translate.instant('CONTROL_VALOR_MINIMO', {numero: this.control.errors.min.min});
+      return this.translate.instant('CONTROL_VALOR_MINIMO', { numero: this.control.errors.min.min });
     } else if (this.control.errors.max) {
-      return this.translate.instant('CONTROL_VALOR_MAXIMO', {numero: this.control.errors.max.max});
+      return this.translate.instant('CONTROL_VALOR_MAXIMO', { numero: this.control.errors.max.max });
     } else if (this.control.errors.email) {
       return this.translate.instant('CONTROL_EMAIL_INVALIDO');
     } else if (this.control.errors.valueControlInvalid) {
@@ -200,6 +198,8 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
       return this.translate.instant('CONTROL_NOME_JA_EXISTE');
     } else if (this.control.errors.invalidColor) {
       return this.translate.instant('COR_INVALIDA');
+    } else if (this.control.errors.invalidCurrency) {
+      return this.translate.instant('MOEDA_INVALIDA');
     }
     return null;
   }
@@ -220,7 +220,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   writeValue(value) {
     if (value !== undefined && value !== null) {
       if (this.control !== undefined &&
-          this.control.value !== value) {
+        this.control.value !== value) {
         this.control.setValue(value);
       }
     }

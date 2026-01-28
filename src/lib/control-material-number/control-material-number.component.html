@@ -2,7 +2,7 @@
   @if (label !== undefined && label !== null) {
     <mat-label>{{label}}</mat-label>
   }
-  <input [readonly]="readonly" matInput type="number" [formControl]="control" [placeholder]="placeholder" (change)="changeNumber($event)" />
+  <input [readonly]="readonly" matInput type="number" [formControl]="control" [placeholder]="placeholder" (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)" (change)="changeNumber($event)" />
   @if (iconBefore !== null) {
     <span class="mr-1" matPrefix>
       <fa-icon [icon]="iconBefore" />

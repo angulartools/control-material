@@ -1,0 +1,26 @@
+<mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
+  @if (label !== undefined && label !== null) {
+  <mat-label>{{ label }}</mat-label>
+  }
+
+  <!-- valor FORMATADO (exibido ao usuário) -->
+  <input matInput type="text" inputmode="numeric" [readonly]="readonly" [value]="displayValue"
+    [placeholder]="placeholder" (keydown)="onKeyDown($event)" (input)="onInput($event)" (blur)="blur()" />
+
+  @if (iconAfter !== null) {
+  <span class="mr-1" matSuffix>
+    <fa-icon [icon]="iconAfter" />
+  </span>
+  }
+
+  @if (tooltip !== null) {
+  <span matSuffix>
+    <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above"
+      style="color: var(--mat-accent)" />
+  </span>
+  }
+
+  @if (hasError()) {
+  <mat-error class="danger">{{ errorMessage }}</mat-error>
+  }
+</mat-form-field>
