@@ -3,7 +3,7 @@ import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -45,7 +45,7 @@ export class ControlMaterialNumberComponent extends ControlMaterialComponent {
   override ngAfterContentInit(): void {
     super.ngAfterContentInit();
 
-    const { min, max } = getMinMax(this.control);
+    const { min, max } = this.getMinMax(this.control);
     this.minNumber = min;
     this.maxNumber = max;
 
@@ -90,22 +90,3 @@ export class ControlMaterialNumberComponent extends ControlMaterialComponent {
 
 }
 
-export function getMinMax(control: AbstractControl): {
-  min?: number;
-  max?: number;
-} {
-  const validator = control.validator;
-  if (!validator) return {};
-
-  // Força execução do validator
-  let errors = validator({ value: Number.MIN_SAFE_INTEGER } as AbstractControl) as ValidationErrors
-  let min = errors?.['min']?.min;
-
-  errors = validator({ value: Number.MAX_SAFE_INTEGER } as AbstractControl) as ValidationErrors | null
-  let max = errors?.['max']?.max;
-
-  return {
-    min,
-    max,
-  };
-}

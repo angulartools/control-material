@@ -10,21 +10,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ControlMaterialComponent } from '../control-material.component';
 
 @Component({
-    selector: 'lib-control-material-select',
-    templateUrl: './control-material-select.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-select.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialSelectComponent),
-            multi: true
-        },
-    ],
-    imports: [
-      MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, NgClass, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-select',
+  templateUrl: './control-material-select.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialSelectComponent),
+      multi: true
+    },
+  ],
+  imports: [
+    MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, NgClass, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
+  ]
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
@@ -50,7 +50,7 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
     if (value !== undefined && value !== null && value.length > 0) {
       if (this.control !== undefined) {
         if (this.control.value !== null) {
-          if (this.control.value instanceof Object ) {
+          if (this.control.value instanceof Object) {
             const controlBindValue = this.resolvePath(this.control.value, this.bindId);
             const index = value.findIndex(x => this.resolvePath(x, this.bindId) === controlBindValue);
             if (index > -1) {
@@ -69,7 +69,7 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
 
   _selectList = [];
   translateValue = false;
-  
+
   // Resolve nested properties using dot notation (e.g., "data.nome")
   // Falls back gracefully if any segment is missing.
   resolvePath(source: any, path: string | null | undefined): any {
@@ -96,7 +96,7 @@ export class ControlMaterialSelectComponent extends ControlMaterialComponent {
       if (v1['codigo'] !== undefined) {
         // temporario por problema de binding
         return v1 && v2 ? v1['codigo'] === v2['codigo'] : v1 === v2;
-      } else  if (v1['id'] !== undefined) {
+      } else if (v1['id'] !== undefined) {
         return v1 && v2 ? v1['id'] === v2['id'] : v1 === v2;
       } else {
         return v1 && v2 ? v1 === v2 : false;

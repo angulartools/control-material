@@ -4,6 +4,8 @@
 
 export * from './lib/validators/autocomplete.validator';
 export * from './lib/validators/cnpj.validator';
+export * from './lib/validators/cpf.validator';
+export * from './lib/validators/currency.validator';
 export * from './lib/validators/hour-minute.validator';
 export * from './lib/validators/ip-address.validator';
 export * from './lib/validators/limit-fields.validator';

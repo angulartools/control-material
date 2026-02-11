@@ -1,9 +1,9 @@
-import { Component, forwardRef, Input, ChangeDetectionStrategy, AfterContentInit, ChangeDetectorRef, DoCheck } from '@angular/core';
+import { Component, forwardRef, Input, ChangeDetectionStrategy, AfterContentInit, DoCheck } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { formatNumber, formatCurrency, getCurrencySymbol } from '@angular/common';
 
@@ -26,19 +26,31 @@ import { formatNumber, formatCurrency, getCurrencySymbol } from '@angular/common
 })
 export class ControlMaterialDecimal extends ControlMaterialComponent implements AfterContentInit, DoCheck {
 
-  override id = `lib-control-material-decimal-${ControlMaterialComponent.nextId++}`;
+  override id = `lib-control-material-decimal-${ControlMaterialDecimal.nextId++}`;
 
   @Input() decimalPlaces = 2;
   @Input() currencyCode?: string;
   @Input() externalError?: string | null;
+  @Input() enforceMinMax: boolean = false;
+  @Input() negativeValueAllowed: boolean = false;
+  @Input() showDisplayOnInit: boolean = true;
 
   displayValue = '';
   private rawValue = 0;
   private lastControlValue: any;
+  minNumber: number;
+  maxNumber: number;
 
   override ngAfterContentInit(): void {
     super.ngAfterContentInit();
-    this.displayValue = this.format(this.rawValue);
+
+    const { min, max } = this.getMinMax(this.control);
+    this.minNumber = min;
+    this.maxNumber = max;
+
+    if (this.showDisplayOnInit) {
+      this.displayValue = this.format(this.rawValue);
+    }
   }
 
   ngDoCheck(): void {
@@ -52,18 +64,39 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
       const factor = Math.pow(10, this.decimalPlaces);
       const incomingRaw = this.control.value ? Math.round(this.control.value * factor) : 0;
 
-      if (incomingRaw !== this.rawValue) {
-        this.writeValue(this.control.value);
-      }
+      // if (incomingRaw !== this.rawValue) {
+      this.writeValue(this.control.value);
+      // }
     }
   }
 
   onInput(event: Event): void {
+
     const input = event.target as HTMLInputElement;
 
     // Extract only digits
     const digits = input.value.replace(/\D/g, '');
-    this.rawValue = digits ? Number(digits) : 0;
+
+    if (this.negativeValueAllowed && input.value.indexOf('-') > -1) {
+      this.rawValue = digits ? Number('-' + digits) : 0;
+    } else {
+      this.rawValue = digits ? Number(digits) : 0;
+    }
+
+    // Calculate numeric value to send to backend
+    const factor = Math.pow(10, this.decimalPlaces);
+    let numericValue = this.rawValue / factor;
+
+    if (this.enforceMinMax) {
+      if (numericValue < this.minNumber) {
+        numericValue = Math.trunc(this.minNumber - 1);
+        this.rawValue = numericValue * factor;
+      }
+      if (numericValue > this.maxNumber) {
+        numericValue = Math.trunc(this.maxNumber + 1);
+        this.rawValue = numericValue * factor;
+      }
+    }
 
     // Format for display
     const formatted = this.format(this.rawValue);
@@ -76,10 +109,6 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
       // Cursor adjustment could be needed here but for right-to-left fill usually end is fine
     }
 
-    // Calculate numeric value to send to backend
-    const factor = Math.pow(10, this.decimalPlaces);
-    const numericValue = this.rawValue / factor;
-
     // Update control with numeric value
     this.control.setValue(numericValue, { emitEvent: true });
     this.lastControlValue = numericValue; // Sync lastControlValue purely to avoid loop in ngDoCheck
@@ -91,14 +120,29 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
 
   onKeyDown(event: KeyboardEvent): void {
     // Prevent backspace/delete when value is already zero
-    if ((event.key === 'Backspace' || event.key === 'Delete') && this.rawValue === 0) {
+    if ((event.key === 'Backspace' || event.key === 'Delete') && (this.rawValue === 0 && this.minNumber > 0)) {
       event.preventDefault();
       return;
+    }
+
+    if (event.key === '+') {
+      this.rawValue = Math.abs(this.rawValue);
     }
 
     // Prevent Space key
     if (event.key === ' ') {
       event.preventDefault();
+    }
+  }
+
+  onKeyUp(event: KeyboardEvent): void {
+    if (event.key === '+') {
+      this.rawValue = Math.abs(this.rawValue);
+      const value = event.target['value'];
+      if (value.indexOf('-') > -1) {
+        event.target['value'] = value.replace('-', '');
+        this.onInput(event);
+      }
     }
   }
 
@@ -122,11 +166,13 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
   }
 
   override writeValue(value: number): void {
-    if (value === undefined || value === null || isNaN(value)) {
-      this.rawValue = 0;
-      this.displayValue = this.format(0);
-      if (this.changeDetectorRef) {
-        this.changeDetectorRef.detectChanges();
+    if (value == null || isNaN(value)) {
+      if (this.showDisplayOnInit) {
+        this.rawValue = 0;
+        this.displayValue = this.format(0);
+        if (this.changeDetectorRef) {
+          this.changeDetectorRef.detectChanges();
+        }
       }
       return;
     }
@@ -148,6 +194,17 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
     }
 
     super.blur();
+  }
+
+  override hasError(): boolean {
+
+    return (
+      this.control?.invalid &&
+      (this.control?.dirty ||
+        this.control?.touched ||
+        (this.formControlName !== undefined && this.input.formDirective.submitted)
+      )
+    );
   }
 
 }

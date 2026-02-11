@@ -1,9 +1,9 @@
 import { AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, ChangeDetectionStrategy, inject, Input, Output } from '@angular/core';
-import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormControl, ReactiveFormsModule, Validators, ControlValueAccessor } from '@angular/forms';
+import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormControl, ReactiveFormsModule, Validators, ControlValueAccessor, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldAppearance } from '@angular/material/form-field';
-import { NgClass } from '@angular/common';
+import { formatNumber, NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from './auto-focus.directive';
 import { FontAwesomeService } from './fontawesome.service';
@@ -179,9 +179,9 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
     } else if (this.control.errors.maxlength) {
       return this.translate.instant('CONTROL_MAXIMO_CARACTERES', { numero: this.control.errors.maxlength.requiredLength });
     } else if (this.control.errors.min) {
-      return this.translate.instant('CONTROL_VALOR_MINIMO', { numero: this.control.errors.min.min });
+      return this.translate.instant('CONTROL_VALOR_MINIMO', { numero: formatNumber(this.control.errors.min.min, this.translate.currentLang) });
     } else if (this.control.errors.max) {
-      return this.translate.instant('CONTROL_VALOR_MAXIMO', { numero: this.control.errors.max.max });
+      return this.translate.instant('CONTROL_VALOR_MAXIMO', { numero: formatNumber(this.control.errors.max.max, this.translate.currentLang) });
     } else if (this.control.errors.email) {
       return this.translate.instant('CONTROL_EMAIL_INVALIDO');
     } else if (this.control.errors.valueControlInvalid) {
@@ -236,6 +236,26 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
 
   get disabled() {
     return this._disabled;
+  }
+
+  getMinMax(control: AbstractControl): {
+    min?: number;
+    max?: number;
+  } {
+    const validator = control.validator;
+    if (!validator) return {};
+
+    // Força execução do validator
+    let errors = validator({ value: Number.MIN_SAFE_INTEGER } as AbstractControl) as ValidationErrors
+    let min = errors?.['min']?.min;
+
+    errors = validator({ value: Number.MAX_SAFE_INTEGER } as AbstractControl) as ValidationErrors | null
+    let max = errors?.['max']?.max;
+
+    return {
+      min,
+      max,
+    };
   }
 
 }
