@@ -3,7 +3,7 @@ import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { formatNumber, formatCurrency, getCurrencySymbol } from '@angular/common';
 
@@ -89,11 +89,11 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
 
     if (this.enforceMinMax) {
       if (numericValue < this.minNumber) {
-        numericValue = Math.trunc(this.minNumber - 1);
+        numericValue = Math.trunc(this.minNumber);
         this.rawValue = numericValue * factor;
       }
       if (numericValue > this.maxNumber) {
-        numericValue = Math.trunc(this.maxNumber + 1);
+        numericValue = Math.trunc(this.maxNumber);
         this.rawValue = numericValue * factor;
       }
     }

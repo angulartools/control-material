@@ -11,21 +11,21 @@ import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-masked',
-    templateUrl: './control-material-masked.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-masked.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialMaskedComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-masked',
+  templateUrl: './control-material-masked.component.html',
+  styleUrls: ['../control-material.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialMaskedComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective, FontAwesomeModule
+  ]
 })
 export class ControlMaterialMaskedComponent extends ControlMaterialComponent {
 

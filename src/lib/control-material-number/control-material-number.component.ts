@@ -9,7 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'lib-control-material-number',
   templateUrl: './control-material-number.component.html',
-  styleUrls: ['../control-material.component.scss', './control-material-number.component.scss'],
+  styleUrls: ['../control-material.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[id]': 'id' },
   providers: [

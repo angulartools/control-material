@@ -10,32 +10,32 @@ import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-password',
-    templateUrl: './control-material-password.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-password.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialPasswordComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      MatIconButton, 
-      MatFormField, 
-      MatLabel, 
-      MatPrefix, 
-      MatSuffix, 
-      MatError, 
-      MatInput, 
-      NgClass, 
-      MatIcon, 
-      MatTooltip, 
-      FormsModule, 
-      ReactiveFormsModule, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-password',
+  templateUrl: './control-material-password.component.html',
+  styleUrls: ['../control-material.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialPasswordComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    MatIconButton,
+    MatFormField,
+    MatLabel,
+    MatPrefix,
+    MatSuffix,
+    MatError,
+    MatInput,
+    NgClass,
+    MatIcon,
+    MatTooltip,
+    FormsModule,
+    ReactiveFormsModule, FontAwesomeModule
+  ]
 })
 export class ControlMaterialPasswordComponent extends ControlMaterialComponent {
 

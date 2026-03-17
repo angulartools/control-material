@@ -22,6 +22,7 @@ export * from './lib/control-material-fontawesome-icon/control-material-fontawes
 export * from './lib/control-material-masked/control-material-masked.component';
 export * from './lib/control-material-minute-second/control-material-minute-second.component';
 export * from './lib/control-material-number/control-material-number.component';
+export * from './lib/control-material-otp/control-material-otp.component';
 export * from './lib/control-material-password/control-material-password.component';
 export * from './lib/control-material-password-strength/control-material-password-strength.component';
 export * from './lib/control-material-phone/control-material-phone.component';

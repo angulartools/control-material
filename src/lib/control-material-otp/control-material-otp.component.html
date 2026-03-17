@@ -1,0 +1,20 @@
+<div class="otp-container" [class.disabled]="disabled" [class.smaller]="smaller">
+  @for (digit of digits; track trackByIndex($index)) {
+    <input
+      #digitInput
+      class="otp-input"
+      [type]="secret ? 'password' : 'text'"
+      inputmode="numeric"
+      maxlength="1"
+      autocomplete="one-time-code"
+      [value]="digit"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [class.filled]="digit !== ''"
+      (input)="onInput($event, $index)"
+      (keydown)="onKeydown($event, $index)"
+      (paste)="onPaste($event, $index)"
+      (focus)="onFocus($index)"
+    />
+  }
+</div>

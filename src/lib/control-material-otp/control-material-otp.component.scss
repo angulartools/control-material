@@ -1,0 +1,59 @@
+.otp-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.otp-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: 1.5px solid rgba(0, 0, 0, 0.23);
+  border-radius: 8px;
+  background-color: transparent;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  caret-color: transparent;
+
+  /* remove setas de número */
+  appearance: textfield;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    border-color: var(--theme-primary-300);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-primary-300) 15%, transparent);
+  }
+
+  &.filled {
+    border-color: var(--theme-primary-300);
+    background-color: color-mix(in srgb, var(--theme-primary-300) 6%, transparent);
+  }
+
+  &:disabled {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.12);
+    cursor: not-allowed;
+  }
+}
+
+.smaller .otp-input {
+  width: 24px;
+  height: 28px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+}
