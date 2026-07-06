@@ -5,10 +5,10 @@
   <div class="d-flex">
     @if (!readonly) {
       <span style="width: fit-content" class="ml-0">
-        <ngx-flag-picker [selectedCountryCode]="selectedCountryCode"
+        <lib-flag-picker [selectedCountryCode]="selectedCountryCode"
           [countryCodes]="countryCodes"
           (changedCountryCode)="changeSelectedCountryCode($event)">
-        </ngx-flag-picker>
+        </lib-flag-picker>
       </span>
     }
     <span class="ml-1">

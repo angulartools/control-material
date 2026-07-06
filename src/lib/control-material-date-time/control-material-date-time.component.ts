@@ -1,13 +1,15 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { AfterContentInit, Component, EventEmitter, Input, Output, forwardRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMatDateAdapter, NgxMatDatepickerActions,
+import {
+  NgxMatDatepickerActions,
   NgxMatDatepickerApply,
   NgxMatDatepickerCancel,
   NgxMatDatepickerClear,
   NgxMatDatepickerInput,
   NgxMatDatepickerToggle,
-  NgxMatDatetimepicker } from '@katyan/datetime-picker';
+  NgxMatDatetimepicker
+} from '@ngx-mce/datetime-picker';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -15,41 +17,37 @@ import { IMaskDirective } from 'angular-imask';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatDatepickerToggleIcon } from '@angular/material/datepicker';
-import 'moment/locale/pt';
-import 'moment/locale/es';
-import 'moment/locale/sv';
-import 'moment/locale/de';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-date-time',
-    templateUrl: './control-material-date-time.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-date-time.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialDateTimeComponent), // replace name as appropriate
-            multi: true
-        },
-        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-        // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
-        // to your app config. We provide it at the component level here, due to limitations
-        // of our example generation script.
-        provideMomentDateAdapter(),
-    ],
-    imports: [
-      NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle, MatDatepickerToggleIcon,
-      NgxMatDatepickerCancel,
-      NgxMatDatepickerClear,
-      NgxMatDatepickerInput,
-      NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-date-time',
+  templateUrl: './control-material-date-time.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-date-time.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialDateTimeComponent), // replace name as appropriate
+      multi: true
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
+    // to your app config. We provide it at the component level here, due to limitations
+    // of our example generation script.
+    provideMomentDateAdapter(),
+  ],
+  imports: [
+    NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle, MatDatepickerToggleIcon,
+    NgxMatDatepickerCancel,
+    NgxMatDatepickerClear,
+    NgxMatDatepickerInput,
+    NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe, FontAwesomeModule
+  ]
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 
@@ -76,13 +74,13 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
   inputHour = '';
   dateMask = Mask.getMaskDate();
 
-  private readonly _adapter = inject<NgxMatDateAdapter<unknown>>(NgxMatDateAdapter);
+  // private readonly _adapter = inject<NgxMatDateAdapter<unknown>>(NgxMatDateAdapter);
 
   @Output() selectDate: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     super();
-    this._adapter.setLocale(this.translate.currentLang);
+    // this._adapter.setLocale(this.translate.currentLang);
   }
 
   override ngAfterContentInit() {
@@ -116,7 +114,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
 
   override writeValue(value) {
     if (value !== undefined && value !== null) {
-      if (this.showTime){
+      if (this.showTime) {
         this.control.setValue((new Date(value)).toISOString());
       }
     }
@@ -129,7 +127,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
     if ($event !== undefined) {
       if ($event instanceof Date) {
         value = $event;
-      }else if (typeof $event === 'string' && $event !== '' ) {
+      } else if (typeof $event === 'string' && $event !== '') {
         const date = new Date($event);
         value = date; // GlobalUtil.convertUTCDateToLocalDate(date);
       } else if ($event.value !== undefined && typeof $event.value === 'string' && $event.value !== '') {
@@ -141,7 +139,7 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
         } else {
           value = $event.target.valueAsDate;
         }
-      } else if ($event.target.value !== undefined && $event.target.value !== null && $event.target.value !== '' ) {
+      } else if ($event.target.value !== undefined && $event.target.value !== null && $event.target.value !== '') {
         const date = new Date($event.target.value);
         value = date; // GlobalUtil.convertUTCDateToLocalDate(date);
       }
@@ -151,13 +149,13 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
     return value;
   }
 
-   onFocus(event) {
+  onFocus(event) {
     setTimeout(() => {
       event.target.setSelectionRange(0, event.target.value?.length);
     });
-   }
+  }
 
-   onFocusOutDate(event) {
+  onFocusOutDate(event) {
     const novaData = new Date();
 
     let aData;
@@ -169,32 +167,32 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
 
     if (aData[0].trim() !== '') {
       if (this.translate.currentLang === this.LANG_EN) {
-        const mes = aData[0].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[0].trim());
+        const mes = aData[0].trim() === '' ? (novaData.getMonth() + 1) : Number(aData[0].trim());
         const dia = Number(aData[1].trim());
         const ano = aData[2].trim() === '' ? novaData.getFullYear() : Number(aData[2].trim());
         this.montarData(dia === 0 ? novaData.getDate() : dia, mes, ano);
       } else if (this.translate.currentLang === this.LANG_SV) {
-        const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[1].trim());
+        const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1) : Number(aData[1].trim());
         const dia = Number(aData[2].trim());
         const ano = aData[0].trim() === '' ? novaData.getFullYear() : Number(aData[0].trim());
         this.montarData(dia === 0 ? novaData.getDate() : dia, mes, ano);
       } else {
-        const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1 ) : Number(aData[1].trim());
+        const mes = aData[1].trim() === '' ? (novaData.getMonth() + 1) : Number(aData[1].trim());
         const ano = aData[2].trim() === '' ? novaData.getFullYear() : Number(aData[2].trim());
         this.montarData(Number(aData[0].trim()), mes, ano);
       }
     } else {
-      this.control.setValue(null, {emitEvent: false});
+      this.control.setValue(null, { emitEvent: false });
       this.selectDate.emit(null);
     }
 
-   }
+  }
 
-   montarData(dia, mes, ano){
+  montarData(dia, mes, ano) {
 
     if (dia === 0) {
       this.inputDate = this.inputHour = Object.assign('', '');
-      this.control.setValue(null, {emitEvent: false});
+      this.control.setValue(null, { emitEvent: false });
       this.selectDate.emit(null);
       return;
     }
@@ -213,9 +211,9 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
 
     this.validarDataHora(date);
 
-   }
+  }
 
-   onFocusOutHour(event) {
+  onFocusOutHour(event) {
     const aHora = event.target?.value?.split(':');
     let hora = Number(aHora[0].trim());
     let min = Number(aHora[1].trim());
@@ -234,9 +232,9 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
       this.inputHour = Object.assign('', '');
     }
 
-   }
+  }
 
-   preencherData(date) {
+  preencherData(date) {
     const sDia = date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate().toString();
     const sMes = date.getMonth() < 9 ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1);
 
@@ -248,9 +246,9 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
         this.inputDate = sDia + '/' + sMes + '/' + date.getFullYear();
       }
     });
-   }
+  }
 
-   preencherHora(date) {
+  preencherHora(date) {
     const sHora = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours().toString();
     const sMin = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes().toString();
 
@@ -258,33 +256,33 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
     setTimeout(() => {
       this.inputHour = sHora + ':' + sMin;
     });
-   }
+  }
 
-   changeDate(event) {
+  changeDate(event) {
     if (this.control.value === null || this.control.value === undefined) {
       this.control.value = new Date();
     }
     this.preencherData(new Date(this.control.value));
     this.preencherHora(new Date(this.control.value));
-    this.control.setValue(new Date(this.control.value), {emitEvent: false});
+    this.control.setValue(new Date(this.control.value), { emitEvent: false });
     this.selectDate.emit(this.control.value);
-   }
+  }
 
-   validarDataHora(data) {
+  validarDataHora(data) {
     if ((this.minDate !== null && data < this.minDate) || (this.maxDate !== null && data > this.maxDate)) {
       this.inputDate = this.inputHour = Object.assign('', '');
-      this.control.setValue(null, {emitEvent: false});
+      this.control.setValue(null, { emitEvent: false });
       this.selectDate.emit(null);
       return false;
     }
 
     this.preencherData(data);
     this.preencherHora(data);
-    this.control.setValue(null, {emitEvent: false});
-    this.control.setValue(data, {emitEvent: false});
+    this.control.setValue(null, { emitEvent: false });
+    this.control.setValue(data, { emitEvent: false });
     this.selectDate.emit(data);
     return true;
 
-   }
+  }
 
 }

@@ -5,13 +5,14 @@
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": [
-    "@angular/animations",
-    "angular/core",
-    "angular/forms",
-    "angular/material",
-    "currency-codes",
+    "@angular/core",
+    "@angular/forms",
+    "@angular/material",
+    "@angular/material-moment-adapter",
     "@angulartoolsdr/shared-utils",
-    "@katyan/datetime-picker",
-    "moment"
+    "@angulartoolsdr/translation",
+    "@ngx-mce/datetime-picker",
+    "moment-timezone",
+    "@iplab/ngx-color-picker"
   ]
 }

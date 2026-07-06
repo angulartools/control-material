@@ -8,20 +8,7 @@
   }
   <input matInput [formControl]="control" [placeholder]="placeholder" [readonly]="true" />
   <div matSuffix class="mr-1">
-    <ngx-colors
-    class="color-picker"
-    matSuffix
-    ngx-colors-trigger
-    [colorsAnimation]="colorsAnimation"
-    [format]="format"
-    [hideTextInput]="hideTextInput"
-    [colorPickerControls]="colorPickerControls"
-    acceptLabel="{{ 'SALVAR' | translate }}"
-    cancelLabel="{{ 'CANCELAR' | translate }}"
-    [formControl]="control"
-    attachTo="wrapper"
-    (change)="updateControlValue($event)"
-  ></ngx-colors>
+    <lib-chrome-wrapper [color]="selectedColor()" (colorChange)="changeColor($event)" />
   </div>
   
   @if (iconAfter !== null) {

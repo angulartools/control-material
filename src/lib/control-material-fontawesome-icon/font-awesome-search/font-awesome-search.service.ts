@@ -27,6 +27,6 @@ export class FontAwesomeSearchService {
   }
 
   getQuery(search, qtd) {
-    return { "query": "query { search (version: \"6.0.0\", query: \""+search+"\", first: "+qtd+") {id unicode label familyStylesByLicense { free { family style } pro {family style} } } }" }
+    return { "query": "query { search (version: \"7.3.0\", query: \"" + search + "\", first: " + qtd + ") {id unicode label familyStylesByLicense { free { family style } pro {family style} } } }" }
   }
 }

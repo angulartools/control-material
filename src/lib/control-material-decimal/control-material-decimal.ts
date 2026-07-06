@@ -1,9 +1,9 @@
-import { Component, forwardRef, Input, ChangeDetectionStrategy, AfterContentInit, DoCheck } from '@angular/core';
+import { Component, forwardRef, Input, ChangeDetectionStrategy, AfterContentInit, DoCheck, ViewChild, inject, Optional, Self } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormGroupDirective, NgForm, NgControl, UntypedFormControl } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { formatNumber, formatCurrency, getCurrencySymbol } from '@angular/common';
 
@@ -13,18 +13,28 @@ import { formatNumber, formatCurrency, getCurrencySymbol } from '@angular/common
   styleUrls: ['../control-material.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[id]': 'id' },
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ControlMaterialDecimal),
-      multi: true
-    },
-  ],
   imports: [
     MatFormField, MatLabel, MatSuffix, MatError, MatInput, MatTooltip, FormsModule, ReactiveFormsModule, FontAwesomeModule
   ]
 })
 export class ControlMaterialDecimal extends ControlMaterialComponent implements AfterContentInit, DoCheck {
+  @ViewChild(MatInput, { static: true }) matInputDirective: MatInput;
+  @ViewChild('input', { static: true }) set inputElement(v: any) {
+    this.input = v;
+  }
+
+  private _formGroup = inject(FormGroupDirective, { optional: true });
+  private _ngForm = inject(NgForm, { optional: true });
+  public ngControl: NgControl;
+  override control = new UntypedFormControl();
+
+  constructor(@Optional() @Self() ngControl: NgControl) {
+    super();
+    this.ngControl = ngControl;
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+  }
 
   override id = `lib-control-material-decimal-${ControlMaterialDecimal.nextId++}`;
 
@@ -40,8 +50,13 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
   private lastControlValue: any;
   minNumber: number;
   maxNumber: number;
+  private lastSubmitted = false;
 
   override ngAfterContentInit(): void {
+    if (this.ngControl) {
+      this.formControl = this.ngControl.control as any;
+    }
+
     super.ngAfterContentInit();
 
     const { min, max } = this.getMinMax(this.control);
@@ -54,6 +69,17 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
   }
 
   ngDoCheck(): void {
+    const isSubmitted = this._formGroup?.submitted || this._ngForm?.submitted;
+    if (isSubmitted !== this.lastSubmitted) {
+      this.lastSubmitted = isSubmitted;
+      this.changeDetectorRef.markForCheck();
+    }
+
+    if (this.matInputDirective) {
+      this.matInputDirective.errorState = this.hasError();
+      this.matInputDirective.stateChanges.next();
+    }
+
     // Check if the control value has changed externally (e.g. from database without emitEvent)
     if (this.control && this.control.value !== this.lastControlValue) {
 
@@ -89,11 +115,11 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
 
     if (this.enforceMinMax) {
       if (numericValue < this.minNumber) {
-        numericValue = Math.trunc(this.minNumber);
+        numericValue = this.minNumber;
         this.rawValue = numericValue * factor;
       }
       if (numericValue > this.maxNumber) {
-        numericValue = Math.trunc(this.maxNumber);
+        numericValue = this.maxNumber;
         this.rawValue = numericValue * factor;
       }
     }
@@ -197,13 +223,12 @@ export class ControlMaterialDecimal extends ControlMaterialComponent implements 
   }
 
   override hasError(): boolean {
+    const ctrl = this.control || this.ngControl?.control;
+    const isSubmitted = this._formGroup?.submitted || this._ngForm?.submitted;
 
-    return (
-      this.control?.invalid &&
-      (this.control?.dirty ||
-        this.control?.touched ||
-        (this.formControlName !== undefined && this.input.formDirective.submitted)
-      )
+    return !!(
+      ctrl?.invalid &&
+      (ctrl?.dirty || ctrl?.touched || isSubmitted)
     );
   }
 

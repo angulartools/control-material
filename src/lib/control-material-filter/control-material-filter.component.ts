@@ -1,6 +1,5 @@
 import { ControlMaterialComponent } from './../control-material.component';
 import { Component, forwardRef, ChangeDetectionStrategy } from '@angular/core';
-import { trigger, state, transition, style, animate } from '@angular/animations';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
@@ -9,41 +8,28 @@ import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-filter',
-    templateUrl: './control-material-filter.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-filter.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    animations: [
-        trigger('filterAppeared', [
-            state('false', style({ opacity: 0, width: '0px', transform: 'translateX(100%)' })),
-            /*state('true', style({opacity: 1, width: '100%', transform: 'translateX(0)'})),*/
-            transition('false => true', [
-                style({ opacity: 1, width: '100%' }),
-                animate('300ms 0s ease-in', style({ transform: 'translateX(0)' }))
-            ]),
-            transition('true => false', [
-                animate('300ms 0s ease-out', style({ transform: 'translateX(100%)' }))
-            ])
-        ])
-    ],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialFilterComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      MatFormField,   
-      MatLabel, 
-      MatInput, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      MatSuffix, 
-      MatIcon, 
-      MatIconButton, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-filter',
+  templateUrl: './control-material-filter.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialFilterComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSuffix,
+    MatIcon,
+    MatIconButton, FontAwesomeModule
+  ]
 })
 export class ControlMaterialFilterComponent extends ControlMaterialComponent {
 

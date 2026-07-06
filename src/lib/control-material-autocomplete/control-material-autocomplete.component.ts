@@ -16,40 +16,40 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-autocomplete',
-    templateUrl: './control-material-autocomplete.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-autocomplete.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialAutocompleteComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      MatFormField, 
-      MatLabel, 
-      MatProgressSpinner, 
-      MatSuffix, 
-      MatInput, 
-      FormsModule, 
-      MatAutocompleteTrigger, 
-      ReactiveFormsModule, 
-      MatPrefix, 
-      MatIcon, 
-      MatTooltip, 
-      MatIconButton, 
-      MatError, 
-      MatAutocomplete, 
-      MatOption, 
-      NgClass, 
-      AsyncPipe, 
-      DatePipe, 
-      TranslationPipe,
-      FontAwesomeModule
-    ]
+  selector: 'lib-control-material-autocomplete',
+  templateUrl: './control-material-autocomplete.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-autocomplete.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialAutocompleteComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatProgressSpinner,
+    MatSuffix,
+    MatInput,
+    FormsModule,
+    MatAutocompleteTrigger,
+    ReactiveFormsModule,
+    MatPrefix,
+    MatIcon,
+    MatTooltip,
+    MatIconButton,
+    MatError,
+    MatAutocomplete,
+    MatOption,
+    NgClass,
+    AsyncPipe,
+    DatePipe,
+    TranslationPipe,
+    FontAwesomeModule
+  ]
 })
 export class ControlMaterialAutocompleteComponent extends ControlMaterialComponent implements AfterContentInit {
 
@@ -88,7 +88,7 @@ export class ControlMaterialAutocompleteComponent extends ControlMaterialCompone
     if (value !== undefined && value !== null && value.length > 0) {
       if (this.control !== undefined) {
         if (this._selectList !== undefined && this._selectList !== null && this._selectList.length > 0) {
-          this.loadingData =  true;
+          this.loadingData = true;
           if (this.control.value !== undefined && this.control.value !== null && this.control.value !== '') {
             if (this.control.value instanceof Object) {
               const value = this._selectList.find(x => x[this.bindId] === this.control.value[this.bindId]);
@@ -105,11 +105,11 @@ export class ControlMaterialAutocompleteComponent extends ControlMaterialCompone
           }
 
           this.filteredOptions = this.control.valueChanges
-          .pipe(
-            startWith(''),
-            //map(value => typeof value === 'string' || value === null ? value : this.getLabel(value)),
-            map(value => typeof value === 'string' ? this._filter(value) : this._selectList),
-          );
+            .pipe(
+              startWith(''),
+              //map(value => typeof value === 'string' || value === null ? value : this.getLabel(value)),
+              map(value => typeof value === 'string' ? this._filter(value) : this._selectList),
+            );
         }
         this.loadingData = false;
       }
@@ -131,16 +131,16 @@ export class ControlMaterialAutocompleteComponent extends ControlMaterialCompone
         map(value => typeof value === 'string' ? this._filter(value) : this._selectList),
       );
 
-      if (this.required) {
-        this.control.setValidators([Validators.required, searchControlValidator]);
-      }
+    if (this.required) {
+      this.control.setValidators([Validators.required, searchControlValidator]);
+    }
   }
 
   updateObservableList() {
     if (this.observableList !== undefined) {
       this.loading = true;
-      this.loadingData =  true;
-        this.observableList
+      this.loadingData = true;
+      this.observableList
         .subscribe(response => {
           this._selectList = response;
           if (response !== undefined && response !== null && response.length > 0) {
@@ -206,7 +206,7 @@ export class ControlMaterialAutocompleteComponent extends ControlMaterialCompone
   private _filter(name: string): any[] {
     const filterValue = name.toLowerCase();
     if (this._selectList !== undefined && this._selectList !== null && this._selectList.length > 0) {
-      return this._selectList.filter(option => this.getLabel(option).toLowerCase().indexOf(filterValue) > -1);
+      return this._selectList.filter(option => this.getLabel(option)?.toLowerCase()?.indexOf(filterValue) > -1);
     }
     return [];
   }

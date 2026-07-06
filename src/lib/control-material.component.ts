@@ -5,9 +5,9 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldAppearance } from '@angular/material/form-field';
 import { formatNumber, NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
-import { AutofocusDirective } from './auto-focus.directive';
-import { FontAwesomeService } from './fontawesome.service';
+import { AutofocusDirective } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeService } from './fontawesome.service';
 import { library, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faXmark as faXmarkPro } from '@fortawesome/pro-solid-svg-icons';
@@ -45,7 +45,7 @@ import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-ic
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 
-  private _ = inject(FontAwesomeService);
+  private _fontAwesonService = inject(FontAwesomeService);
 
   protected static nextId = 0;
   index = ControlMaterialComponent.nextId;
@@ -62,6 +62,7 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   @Input() tooltip = null;
   @Input() inicialFocus = false;
   @Input() appearance: MatFormFieldAppearance = 'outline';
+  @Input() textSuffix = null;
 
   @Input() obrigatorio = false;
 

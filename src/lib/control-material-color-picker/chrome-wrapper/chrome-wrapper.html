@@ -1,0 +1,12 @@
+<div class="color-dot" [style.background-color]="colorHex()"></div>
+
+@if (isVisible()) {
+  <div class="picker-inner">
+    <chrome-picker [control]="colorControl">
+      <div class="buttons">
+        <button type="button" mat-raised-button color="primary" class="btn-block" 
+                (click)="applyClick($event)">{{'OK' | translate}}</button>
+      </div>
+    </chrome-picker>
+  </div>
+}

@@ -25,6 +25,7 @@ export * from './lib/control-material-number/control-material-number.component';
 export * from './lib/control-material-otp/control-material-otp.component';
 export * from './lib/control-material-password/control-material-password.component';
 export * from './lib/control-material-password-strength/control-material-password-strength.component';
+export * from './lib/control-material-phone/flag-picker/flag-picker';
 export * from './lib/control-material-phone/control-material-phone.component';
 export * from './lib/control-material-radio/control-material-radio.component';
 export * from './lib/control-material-search/control-material-search.component';

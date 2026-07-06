@@ -1,5 +1,5 @@
 // fontawesome.service.ts
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 import {
@@ -45,7 +45,7 @@ const icons = [
   faCircleInfo,
 ];
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class FontAwesomeService {
   private library = inject(FaIconLibrary);
 

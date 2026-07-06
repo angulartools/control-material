@@ -8,23 +8,23 @@ import { IMaskDirective } from 'angular-imask';
 import phoneExample from 'libphonenumber-js/mobile/examples'
 import { debounceTime } from 'rxjs/operators';
 import { getExampleNumber, getCountryCallingCode, getCountries } from 'libphonenumber-js'
-import { NgxFlagPickerComponent } from '../ngx-flag-picker/ngx-flag-picker.component';
+import { FlagPicker } from './flag-picker/flag-picker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-phone',
-    templateUrl: './control-material-phone.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialPhoneComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [NgxFlagPickerComponent, IMaskDirective, MatIconButton, MatFormField, MatLabel, MatSuffix, MatError, MatInput, FormsModule, ReactiveFormsModule, FontAwesomeModule]
+  selector: 'lib-control-material-phone',
+  templateUrl: './control-material-phone.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-phone.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialPhoneComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [FlagPicker, IMaskDirective, MatIconButton, MatFormField, MatLabel, MatSuffix, MatError, MatInput, FormsModule, ReactiveFormsModule, FontAwesomeModule]
 })
 export class ControlMaterialPhoneComponent extends ControlMaterialComponent implements AfterContentInit {
 
@@ -33,7 +33,7 @@ export class ControlMaterialPhoneComponent extends ControlMaterialComponent impl
   @Input() disableClear = false;
   @Input() unmask = true;
   @Input() selectedCountryCode;
-  @Input() countryCodes = NgxFlagPickerComponent.getAllCountries();
+  @Input() countryCodes = FlagPicker.getAllCountries();
 
   countryCallingCode;
 
@@ -58,17 +58,17 @@ export class ControlMaterialPhoneComponent extends ControlMaterialComponent impl
           this.selectedCountryCode = aQuery[0];
           this.changeSelectedCountryCode(this.selectedCountryCode);
           setTimeout(() => {
-            this.control.setValue(aQuery[1], {emitEvent: false});
+            this.control.setValue(aQuery[1], { emitEvent: false });
           })
         } else {
-          for (let i = 0; i<this.countries.length; i++){
+          for (let i = 0; i < this.countries.length; i++) {
             const country = getCountryCallingCode(this.countries[i]);
             if (query === country) {
               this.selectedCountryCode = this.countries[i].toLowerCase();
               this.changeSelectedCountryCode(this.selectedCountryCode);
               setTimeout(() => {
                 if (aQuery?.length > 0) {
-                  this.control.setValue(aQuery[1], {emitEvent: false});
+                  this.control.setValue(aQuery[1], { emitEvent: false });
                 }
               })
               break;
@@ -107,7 +107,7 @@ export class ControlMaterialPhoneComponent extends ControlMaterialComponent impl
 
     let novoFormato = '';
     for (let char in splitNumber) {
-      if (splitNumber[char] === ' ' || isNaN(Number(splitNumber[char]))){
+      if (splitNumber[char] === ' ' || isNaN(Number(splitNumber[char]))) {
         novoFormato = novoFormato + splitNumber[char]
       } else {
         novoFormato = novoFormato + '0';
@@ -134,7 +134,7 @@ export class ControlMaterialPhoneComponent extends ControlMaterialComponent impl
 
   clearPhone($event) {
     $event.stopPropagation();
-    this.control.setValue(' ', {emitEvent: false});
+    this.control.setValue(' ', { emitEvent: false });
     this.selectedCountryCode = null;
     this.configPhoneMask('+000');
     const input = document.getElementById('masktextfield' + this.index) as HTMLInputElement;

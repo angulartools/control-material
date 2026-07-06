@@ -1,50 +1,52 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, ElementRef, ViewEncapsulation, Renderer2, inject } from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, inject, ChangeDetectionStrategy, input, output, signal, computed } from '@angular/core';
 import { MatSelect, MatSelectTrigger } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { TranslationService } from '@angulartoolsdr/translation';
 
 @Component({
-    selector: 'ngx-flag-picker',
-    templateUrl: './ngx-flag-picker.component.html',
-    styleUrls: ['./ngx-flag-picker.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [MatSelect, MatSelectTrigger, MatOption]
+  selector: 'lib-flag-picker',
+  templateUrl: './flag-picker.html',
+  styleUrls: ['./flag-picker.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatSelect, MatSelectTrigger, MatOption]
 })
-export class NgxFlagPickerComponent implements OnChanges {
-  
-  @Input() selectedCountryCode: string;
-  @Input() countryCodes: string[];
+export class FlagPicker {
 
-  @Input() customLabels: Record<string, string>;
+  selectedCountryCode = input<string>();
+  countryCodes = input<string[]>();
 
-  @Input() showFlags = true;
-  @Input() showLabels = true;
+  customLabels = input<Record<string, string>>();
 
-  @Output() changedCountryCode = new EventEmitter<string>();
-  @ViewChild('filterInput') filterInputRef: ElementRef<HTMLInputElement>;
+  showFlags = input<boolean>(true);
+  showLabels = input<boolean>(true);
 
-  searchQuery = '';
-  listaCompleta: string[];
-  filteredCountryCodes: string[];
+  changedCountryCode = output<string>();
 
-  translateService = inject(TranslationService);
+  searchQuery = signal<string>('');
+
+  sortedCountryCodes = computed(() => {
+    const codes = this.countryCodes() || [];
+    return [...codes].sort();
+  });
+
+  filteredCountryCodes = computed(() => {
+    const query = this.searchQuery().toLowerCase();
+    const list = this.sortedCountryCodes();
+    const selected = this.selectedCountryCode();
+    return list.filter(x => {
+      return x.toLowerCase().indexOf(query) > -1 || (selected && x.indexOf(selected) > -1);
+    });
+  });
+
+  private translateService = inject(TranslationService);
   private renderer: Renderer2 = inject(Renderer2);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['countryCodes']) {
-      this.listaCompleta = this.countryCodes.sort();
-      this.filteredCountryCodes = [...this.listaCompleta];
-      this.filterCountries();
+  onOpenChange(opened: boolean): void {
+    if (!opened) {
+      return;
     }
-  }
-
-  onOpenChange(opened: boolean) {
-    if (opened) {
-      // injeta o header de busca no painel do MatSelect (overlay)
-      setTimeout(() => {
-        this.injectSearchHeaderIntoPanel();
-      });
-    }
+    queueMicrotask(() => this.injectSearchHeaderIntoPanel());
   }
 
   // Cria Input de busca injetado dinamicamente
@@ -63,13 +65,12 @@ export class NgxFlagPickerComponent implements OnChanges {
       this.renderer.addClass(input, 'search-input');
       input.type = 'text';
       input.placeholder = this.translateService.instant('PESQUISAR_LISTA');
-      input.value = this.searchQuery || '';
+      input.value = this.searchQuery() || '';
 
       // listeners
       this.renderer.listen(input, 'click', (e: Event) => e.stopPropagation());
       this.renderer.listen(input, 'input', () => {
-        this.searchQuery = input.value || '';
-        this.filterCountries();
+        this.searchQuery.set(input.value || '');
       });
 
       // monta DOM
@@ -81,21 +82,15 @@ export class NgxFlagPickerComponent implements OnChanges {
     }
   }
 
-  filterCountries() {
-    this.filteredCountryCodes = this.listaCompleta.filter(x => {
-      return x.toLowerCase().indexOf(this.searchQuery?.toLowerCase()) > -1 || x.indexOf(this.selectedCountryCode) > -1;
-    });
-  }
-
   getCountryLabel(countryCode: string): string {
-    return (this.customLabels && this.customLabels[countryCode]) ?
-      this.customLabels[countryCode] :
+    const labels = this.customLabels();
+    return (labels && labels[countryCode]) ?
+      labels[countryCode] :
       countryCode ? countryCode.toUpperCase() : '';
   }
 
-  public changeSelectedCountryCode(value): void {
-    this.selectedCountryCode = value.value;
-    this.changedCountryCode.emit(this.selectedCountryCode);
+  public changeSelectedCountryCode(value: any): void {
+    this.changedCountryCode.emit(value.value);
   }
 
   static getAllCountries() {
@@ -1407,7 +1402,7 @@ export class NgxFlagPickerComponent implements OnChanges {
       ]
     ];
 
-    let litaCountry:any = [];
+    let litaCountry: any = [];
     for (let i = 0; i < allCountries.length; i++) {
       litaCountry.push(allCountries[i][1]);
     }

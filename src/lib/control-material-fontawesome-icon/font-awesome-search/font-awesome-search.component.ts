@@ -1,6 +1,6 @@
 import { FontAwesomeSearchService } from './font-awesome-search.service';
 import { MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslationPipe } from '@angulartoolsdr/translation';
@@ -15,6 +15,7 @@ import { ControlMaterialComponent } from '../../control-material.component';
     templateUrl: './font-awesome-search.component.html',
     styleUrls: ['./font-awesome-search.component.scss'],
     providers: [FontAwesomeSearchService],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
       MatDialogTitle, 
       MatButtonToggleGroup, 
