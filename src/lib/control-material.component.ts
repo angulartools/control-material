@@ -6,8 +6,8 @@ import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldApp
 import { formatNumber, NgClass } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from '@angulartoolsdr/shared-utils';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FontAwesomeService } from './fontawesome.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faXmark as faXmarkPro } from '@fortawesome/pro-solid-svg-icons';
@@ -45,7 +45,7 @@ import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-ic
 })
 export class ControlMaterialComponent implements AfterViewChecked, AfterContentInit, ControlValueAccessor {
 
-  private _fontAwesonService = inject(FontAwesomeService);
+  private _ = inject(FontAwesomeService);
 
   protected static nextId = 0;
   index = ControlMaterialComponent.nextId;
@@ -55,7 +55,11 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   @Input() label: string | undefined;
   @Input() placeholder: string = '';
   @Input() formControl: UntypedFormControl | undefined;
-  @Input() smaller = false;
+  @Input('smaller')
+  set setSmaller(value: boolean) {
+    //this.smaller = value;
+    //apenas para não perder o legado, mas agora todos serão padrão smaller
+  }
   @Input() iconBefore = null;
   @Input() iconAfter = null;
   @Input() readonly = false;
@@ -96,6 +100,8 @@ export class ControlMaterialComponent implements AfterViewChecked, AfterContentI
   // Expor helpers para o template
   getInfoIcon = getInfoIcon;
   getXmarkIcon = getXmarkIcon;
+
+  smaller = true;
 
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();

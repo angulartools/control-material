@@ -59,6 +59,56 @@
 /* Fim dos Ajustes */
 
 :host ::ng-deep {
+
+  // 1. Soft background and highly rounded borders for the input field wrapper
+  .mat-mdc-text-field-wrapper {
+    background-color: #f7f7f7 !important; // Soft gray background
+    border-radius: 8px !important;
+
+    &.mdc-text-field--disabled {
+      background-color: rgba(255, 255, 255, 0.7) !important; // Transparent / white blend when disabled
+      opacity: 0.8 !important;
+    }
+  }
+  
+  // 2. Highly rounded outline border elements
+  .mdc-notched-outline__leading {
+    border-radius: 8px 0 0 8px !important;
+    border-color: #e2e8f0 !important; // Softer border color
+  }
+  .mdc-notched-outline__trailing {
+    border-radius: 0 8px 8px 0 !important;
+    border-color: #e2e8f0 !important; // Softer border color
+  }
+  .mdc-notched-outline__notch {
+    border-color: #e2e8f0 !important; // Softer border color
+  }
+
+  // 3. Soft gray text color
+  input.mat-mdc-input-element {
+    color: #64748b !important;
+  }
+  
+  // 4. Soft gray placeholder color
+  input.mat-mdc-input-element::placeholder {
+    color: #94a3b8 !important;
+  }
+  
+  // 5. Soft color for the floating label
+  .mat-mdc-floating-label {
+    color: #94a3b8 !important;
+  }
+  
+  // Ensure that when focused, the border color and text behavior remain premium and soft
+  .mdc-text-field--focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: #cbd5e1 !important; // Slightly darker gray when focused
+      border-width: 1px !important; // Avoid thick border lines
+    }
+  }
+
   button[mat-icon-button] {
     width: 24px;
     height: 24px;

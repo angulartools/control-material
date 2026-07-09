@@ -4,8 +4,16 @@
   <div class="picker-inner">
     <chrome-picker [control]="colorControl">
       <div class="buttons">
-        <button type="button" mat-raised-button color="primary" class="btn-block" 
-                (click)="applyClick($event)">{{'OK' | translate}}</button>
+        <button class="m-1 p-2" type="button" style="width: 100px;" mat-stroked-button color="accent"
+          (click)="discardClick($event)">
+          <i class="fa-regular fa-xmark mr-1"></i>
+          {{'CANCELAR' | translate}}
+        </button>
+        <button class="m-1 p-2" type="button" style="width: 100px;" mat-raised-button color="primary"
+          (click)="applyClick($event)">
+          <i class="fa-regular fa-check mr-1"></i>
+          {{'OK' | translate}}
+        </button>
       </div>
     </chrome-picker>
   </div>

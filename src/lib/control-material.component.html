@@ -3,12 +3,12 @@
     <mat-label>{{label}}</mat-label>
   }
   <input [readonly]="readonly" matInput [formControl]="control" [placeholder]="placeholder" [appAutoFocus]="inicialFocus" (blur)="blur()" />
-  @if (iconBefore != null) {
+  @if (iconBefore !== null) {
     <span class="mr-1" matPrefix>
       <fa-icon [icon]="iconBefore" />
     </span>
   }
-  @if (iconAfter != null) {
+  @if (iconAfter !== null) {
     <span matSuffix>
       <fa-icon [icon]="iconAfter" />
     </span>
@@ -18,7 +18,7 @@
       {{textSuffix}}
     </span>
   }
-  @if (tooltip != null) {
+  @if (tooltip !== null) {
     <span matSuffix>
       <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>
