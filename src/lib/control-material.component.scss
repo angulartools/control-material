@@ -69,6 +69,16 @@
       background-color: rgba(255, 255, 255, 0.7) !important; // Transparent / white blend when disabled
       opacity: 0.8 !important;
     }
+
+    &:not(.mdc-text-field--disabled).mdc-text-field--focused {
+      background-color: #ffffff !important; // White background when active and focused
+    }
+  }
+
+  .mat-mdc-form-field.mat-focused:not(.mat-form-field-disabled) {
+    .mat-mdc-text-field-wrapper {
+      background-color: #ffffff !important; // White background when active and focused
+    }
   }
   
   // 2. Highly rounded outline border elements
