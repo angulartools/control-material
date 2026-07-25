@@ -2,8 +2,6 @@ import { Component, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { NgClass } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
@@ -30,8 +28,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatSuffix,
     MatError,
     MatInput,
-    NgClass,
-    MatIcon,
     MatTooltip,
     FormsModule,
     ReactiveFormsModule, FontAwesomeModule

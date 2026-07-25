@@ -1,7 +1,6 @@
 import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from "@angular/core";
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { MatError, MatFormField, MatLabel, MatSuffix } from "@angular/material/form-field";
-import { MatIcon } from "@angular/material/icon";
 import { MatInput } from "@angular/material/input";
 import { MatTooltip } from "@angular/material/tooltip";
 import { IMaskDirective } from "angular-imask";
@@ -9,30 +8,29 @@ import { ControlMaterialComponent } from './../control-material.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-minute-second',
-    templateUrl: './control-material-minute-second.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-minute-second.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialMinuteSecondComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      MatFormField, 
-      MatLabel, 
-      MatInput, 
-      FormsModule, 
-      IMaskDirective, 
-      ReactiveFormsModule, 
-      MatError, 
-      MatIcon, 
-      MatTooltip, 
-      MatSuffix, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-minute-second',
+  templateUrl: './control-material-minute-second.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-minute-second.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialMinuteSecondComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    IMaskDirective,
+    ReactiveFormsModule,
+    MatError,
+    MatTooltip,
+    MatSuffix, FontAwesomeModule
+  ]
 })
 export class ControlMaterialMinuteSecondComponent extends ControlMaterialComponent implements AfterContentInit {
 
@@ -68,13 +66,13 @@ export class ControlMaterialMinuteSecondComponent extends ControlMaterialCompone
   }
 
 
-   onFocus(event) {
+  onFocus(event) {
     setTimeout(() => {
       event.target.setSelectionRange(0, event.target.value?.length);
     });
-   }
+  }
 
-   onFocusOutMinute(event) {
+  onFocusOutMinute(event) {
     const aMinuto = event.target?.value?.split(':');
     let hora = Number(aMinuto[0].trim());
     let minuto = Number(aMinuto[1].trim());
@@ -82,14 +80,14 @@ export class ControlMaterialMinuteSecondComponent extends ControlMaterialCompone
 
     this.validarDataHora((hora * 3600) + (minuto * 60) + segundo);
 
-   }
+  }
 
-   preencherMinuto(value) {
+  preencherMinuto(value) {
     let hora = 0;
     let minuto = 0;
 
     if (value >= 3600) {
-      hora = Math.floor((value/3600));
+      hora = Math.floor((value / 3600));
     }
 
     if (value >= 60) {
@@ -106,18 +104,18 @@ export class ControlMaterialMinuteSecondComponent extends ControlMaterialCompone
     setTimeout(() => {
       this.inputHour = sHora + ':' + sMinuto + ':' + sSegundo;
     });
-   }
+  }
 
 
-   validarDataHora(data) {
+  validarDataHora(data) {
     if (data > 359999) {
       data = 359999;
     }
     this.preencherMinuto(data);
-    this.control.setValue(null, {emitEvent: false});
-    this.control.setValue(data.toString(), {emitEvent: false});
+    this.control.setValue(null, { emitEvent: false });
+    this.control.setValue(data.toString(), { emitEvent: false });
     this.selectDate.emit(data);
     return true;
-   }
+  }
 
 }

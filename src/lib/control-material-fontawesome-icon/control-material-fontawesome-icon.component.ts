@@ -10,7 +10,6 @@ import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
-import { MatIcon } from '@angular/material/icon';
 import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -18,39 +17,38 @@ import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-fontawesome-icon',
-    templateUrl: './control-material-fontawesome-icon.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-fontawesome-icon.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialFontawesomeIconComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      MatFormField, 
-      MatLabel, 
-      MatProgressSpinner, 
-      MatSuffix, 
-      MatInput, 
-      FormsModule, 
-      MatAutocompleteTrigger, 
-      ReactiveFormsModule, 
-      MatPrefix, 
-      MatIcon, 
-      MatTooltip, 
-      MatIconButton, 
-      MatError, 
-      MatAutocomplete, 
-      MatOption, 
-      NgClass, 
-      AsyncPipe, 
-      DatePipe, 
-      TranslationPipe, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-fontawesome-icon',
+  templateUrl: './control-material-fontawesome-icon.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-fontawesome-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialFontawesomeIconComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatProgressSpinner,
+    MatSuffix,
+    MatInput,
+    FormsModule,
+    MatAutocompleteTrigger,
+    ReactiveFormsModule,
+    MatPrefix,
+    MatTooltip,
+    MatIconButton,
+    MatError,
+    MatAutocomplete,
+    MatOption,
+    NgClass,
+    AsyncPipe,
+    DatePipe,
+    TranslationPipe, FontAwesomeModule
+  ]
 })
 export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {
 
@@ -79,7 +77,7 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
 
   constructor(private dialog: MatDialog) {
     super();
-    this.library = library;    
+    this.library = library;
     this.registrarIconesFontAwesome();
   }
 
@@ -120,9 +118,9 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
         map(value => this.buscarIcones(value)),
       );
 
-      if (this.required) {
-        this.control.setValidators([Validators.required]);
-      }
+    if (this.required) {
+      this.control.setValidators([Validators.required]);
+    }
   }
 
   buscarIcones(nome) {
@@ -130,22 +128,23 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
     let listaIcones: any[] = [];
 
     if (this.icones != null) {
-      
+
       if (nome !== null) {
-        this.nomesIcones = this.icones.map(x => {return {name: 'fa-'+x}});
+        this.nomesIcones = this.icones.map(x => { return { name: 'fa-' + x } });
         let incluiu = 0;
         if (nome instanceof Object) {
           listaIcones = [nome];
         } else {
           if (typeof nome === 'string') {
             const filterValue = nome.toLowerCase();
-            for (let i=0; i<this.nomesIcones.length; i++) {
+            for (let i = 0; i < this.nomesIcones.length; i++) {
               if (this.nomesIcones[i].name.indexOf(filterValue) > -1) {
                 const item = {
                   id: i,
-                  classe: 'fas '+this.nomesIcones[i].name,
-                  nome: this.nomesIcones[i].name}
-                  //unicode: this.nomesIcones[i].unicode}
+                  classe: 'fas ' + this.nomesIcones[i].name,
+                  nome: this.nomesIcones[i].name
+                }
+                //unicode: this.nomesIcones[i].unicode}
                 listaIcones.push(item);
                 incluiu++;
               }

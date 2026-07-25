@@ -2,8 +2,6 @@ import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStra
 import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { NgClass } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { IMaskDirective } from 'angular-imask';
@@ -24,7 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     }
   ],
   imports: [
-    MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective, FontAwesomeModule
+    MatIconButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, MatTooltip, FormsModule, ReactiveFormsModule, IMaskDirective, FontAwesomeModule
   ]
 })
 export class ControlMaterialMaskedComponent extends ControlMaterialComponent {

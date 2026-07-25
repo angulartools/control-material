@@ -3,7 +3,6 @@ import { ControlMaterialComponent } from '../control-material.component';
 import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { NgClass } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
@@ -11,21 +10,21 @@ import { TranslationPipe } from '@angulartoolsdr/translation';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-    selector: 'lib-control-material-radio',
-    templateUrl: './control-material-radio.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-radio.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialRadioComponent), // replace name as appropriate
-            multi: true
-        }
-    ],
-    imports: [
-      TranslationPipe, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatIcon, MatTooltip, FormsModule, ReactiveFormsModule, FontAwesomeModule
-    ]
+  selector: 'lib-control-material-radio',
+  templateUrl: './control-material-radio.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-radio.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialRadioComponent), // replace name as appropriate
+      multi: true
+    }
+  ],
+  imports: [
+    TranslationPipe, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatTooltip, FormsModule, ReactiveFormsModule, FontAwesomeModule
+  ]
 })
 export class ControlMaterialRadioComponent extends ControlMaterialComponent {
 
@@ -46,7 +45,7 @@ export class ControlMaterialRadioComponent extends ControlMaterialComponent {
     if (value !== undefined && value !== null && value.length > 0) {
       if (this.control !== undefined) {
         if (this.control.value !== null) {
-          if (this.control.value instanceof Object ) {
+          if (this.control.value instanceof Object) {
             const index = value.findIndex(x => x[this.bindId] === this.control.value[this.bindId]);
             if (index > -1) {
               this.control.setValue(value[index]);

@@ -1,24 +1,21 @@
 import moment from 'moment-timezone';
-import { AfterContentInit, Component, EventEmitter, Input, Output, forwardRef, inject, ChangeDetectionStrategy } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, Output, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NgxMatDatepickerActions,
   NgxMatDatepickerApply,
   NgxMatDatepickerCancel,
-  NgxMatDatepickerClear,
   NgxMatDatepickerInput,
   NgxMatDatepickerToggle,
   NgxMatDatetimepicker
 } from '@ngx-mce/datetime-picker';
 import { TranslationPipe } from '@angulartoolsdr/translation';
 import { MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { IMaskDirective } from 'angular-imask';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { MatDatepickerToggleIcon } from '@angular/material/datepicker';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -42,11 +39,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     provideMomentDateAdapter(),
   ],
   imports: [
-    NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle, MatDatepickerToggleIcon,
+    NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle,
     NgxMatDatepickerCancel,
-    NgxMatDatepickerClear,
     NgxMatDatepickerInput,
-    NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatIcon, MatButton, MatError, TranslationPipe, FontAwesomeModule
+    NgxMatDatetimepicker, MatFormField, MatLabel, MatInput, FormsModule, ReactiveFormsModule, IMaskDirective, MatSuffix, MatButton, MatError, TranslationPipe, FontAwesomeModule
   ]
 })
 export class ControlMaterialDateTimeComponent extends ControlMaterialComponent implements AfterContentInit {

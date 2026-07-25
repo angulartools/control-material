@@ -3,7 +3,7 @@ import { FormControlName, FormsModule, NG_VALUE_ACCESSOR, NgModel, UntypedFormCo
 import { MatInput } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatFormFieldAppearance } from '@angular/material/form-field';
-import { formatNumber, NgClass } from '@angular/common';
+import { formatNumber } from '@angular/common';
 import { TranslationService } from '@angulartoolsdr/translation';
 import { AutofocusDirective } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeService } from './fontawesome.service';
@@ -36,7 +36,6 @@ import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-ic
     MatSuffix,
     MatError,
     MatInput,
-    NgClass,
     MatTooltip,
     FormsModule,
     ReactiveFormsModule,

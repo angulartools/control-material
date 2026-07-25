@@ -1,6 +1,5 @@
 import { ControlMaterialComponent } from './../control-material.component';
 import { Component, forwardRef, ChangeDetectionStrategy } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
@@ -27,7 +26,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     MatSuffix,
-    MatIcon,
     MatIconButton, FontAwesomeModule
   ]
 })
