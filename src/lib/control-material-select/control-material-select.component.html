@@ -2,9 +2,9 @@
   @if (label !== undefined && label !== null) {
     <mat-label>{{label}}</mat-label>
   }
-  <mat-select [hideSingleSelectionIndicator]="true" [formControl]="control" [compareWith]="compareFn" [multiple]="multiple" (selectionChange)="selectionChange($event)">
+  <mat-select [placeholder]="placeholder" [hideSingleSelectionIndicator]="true" [formControl]="control" [compareWith]="compareFn" [multiple]="multiple" (selectionChange)="selectionChange($event)">
     @for (item of _selectList; track trackFn()) {
-      <mat-option [value]="item" [ngClass]="{'large-data': largeData }" [disabled]="readonly">
+      <mat-option [value]="item" [class.large-data]="largeData" [disabled]="readonly">
         @if (item !== undefined && imageBefore !== undefined && imageBefore !== null) {
           <span class="mr-1">
             <img [src]="item[imageBefore]" />

@@ -1,9 +1,8 @@
 import { AfterContentInit, Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
-import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { DatePipe, NgClass } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
+import { DatePipe } from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
@@ -13,34 +12,30 @@ import { faClock as faClockPro } from '@fortawesome/pro-solid-svg-icons';
 import { faClock as faClockFree } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-    selector: 'lib-control-material-time',
-    templateUrl: './control-material-time.component.html',
-    styleUrls: ['../control-material.component.scss', './control-material-time.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: { '[id]': 'id' },
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ControlMaterialTimeComponent),
-            multi: true
-        },
-    ],
-    imports: [
-      MatIconButton, 
-      DatePipe, 
-      MatFormField, 
-      MatLabel, 
-      MatPrefix, 
-      MatSuffix, 
-      MatError, 
-      MatInput, 
-      NgClass, 
-      MatIcon, 
-      MatTooltip, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      FontAwesomeModule
-    ]
+  selector: 'lib-control-material-time',
+  templateUrl: './control-material-time.component.html',
+  styleUrls: ['../control-material.component.scss', './control-material-time.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[id]': 'id' },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ControlMaterialTimeComponent),
+      multi: true
+    },
+  ],
+  imports: [
+    MatIconButton,
+    DatePipe,
+    MatFormField,
+    MatLabel,
+    MatSuffix,
+    MatInput,
+    MatTooltip,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
+  ]
 })
 export class ControlMaterialTimeComponent extends ControlMaterialComponent implements AfterContentInit {
 
@@ -71,7 +66,7 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
     if ($event !== undefined) {
       if ($event instanceof Date) {
         value = $event;
-      }else if (typeof $event === 'string' && $event !== '' ) {
+      } else if (typeof $event === 'string' && $event !== '') {
         const date = new Date($event);
         value = date;
       } else if ($event.value !== undefined && typeof $event.value === 'string' && $event.value !== '') {
@@ -79,7 +74,7 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
         value = date;
       } else if ($event.target.valueAsDate !== undefined && $event.target.valueAsDate !== null && $event.valueAsDate !== '') {
         value = this.getDateUTC($event.target.valueAsDate);
-      } else if ($event.target.value !== undefined && $event.target.value !== null && $event.target.value !== '' ) {
+      } else if ($event.target.value !== undefined && $event.target.value !== null && $event.target.value !== '') {
         const date = new Date($event.target.value);
         value = date;
       }
@@ -110,7 +105,7 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
       if (this.model !== undefined) {
         this.control.value = value;
       } else {
-        this.control.setValue(value, {emitEvent: false});
+        this.control.setValue(value, { emitEvent: false });
       }
     }
   }
@@ -120,15 +115,15 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
   }
 
   showPicker() {
-    const inputDateElement = document.getElementById(this.id+'time') as any;
+    const inputDateElement = document.getElementById(this.id + 'time') as any;
     inputDateElement.showPicker();
   }
 
   override writeValue(value) {
     if (value !== undefined && value !== null) {
       if (this.control !== undefined &&
-          this.control.value !== value) {
-          this.control.setValue((new Date(value)).toISOString());
+        this.control.value !== value) {
+        this.control.setValue((new Date(value)).toISOString());
       }
     }
   }
@@ -136,5 +131,5 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
 }
 
 export function getClockIcon() {
-    return icon(faClockPro) ? faClockPro : faClockFree;
-  }
+  return icon(faClockPro) ? faClockPro : faClockFree;
+}

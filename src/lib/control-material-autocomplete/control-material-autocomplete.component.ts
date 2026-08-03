@@ -4,7 +4,7 @@ import { ControlMaterialComponent } from './../control-material.component';
 import { Component, AfterContentInit, Input, forwardRef, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { startWith, map } from 'rxjs/operators';
 import { TranslationPipe } from '@angulartoolsdr/translation';
-import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -42,7 +42,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatError,
     MatAutocomplete,
     MatOption,
-    NgClass,
     AsyncPipe,
     DatePipe,
     TranslationPipe,

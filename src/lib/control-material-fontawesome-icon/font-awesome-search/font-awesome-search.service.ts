@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Observable, firstValueFrom, lastValueFrom, map } from 'rxjs';
 
-@Injectable()
+@Service()
 export class FontAwesomeSearchService {
 
   http = inject(HttpClient);

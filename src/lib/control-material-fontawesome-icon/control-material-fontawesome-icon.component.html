@@ -49,7 +49,7 @@
       }
       <ng-container>
         @for (item of filteredOptions | async; track item.id) {
-          <mat-option [value]="item"[ngClass]="{'large-data': largeData, 'small-text': smallText }">
+          <mat-option [value]="item" [class.large-data]="largeData" [class.small-text]="smallText">
             <i class="{{item.classe}} mr-1" style="font-size: 18px;"></i>
             <span>
               @if (bindArray === undefined || bindArray === null || bindArray.length === 0 || showLabel === true) {

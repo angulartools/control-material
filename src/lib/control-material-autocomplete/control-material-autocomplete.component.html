@@ -56,7 +56,7 @@
     }
     <ng-container>
       @for (item of filteredOptions | async; track item.id) {
-        <mat-option [value]="item"[ngClass]="{'large-data': largeData, 'small-text': smallText }">
+        <mat-option [value]="item" [class.large-data]="largeData" [class.small-text]="smallText">
           @if (bindImageField !== null) {
             <img class="mr-1" with="24" height="24" [src]="item[bindImageField]">
           }

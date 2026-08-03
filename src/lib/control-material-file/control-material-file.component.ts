@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleChanges, inject, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { MatInput } from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix, MatError, MatHint } from '@angular/material/form-field';
@@ -24,7 +23,7 @@ import { SnackNotificationService } from '@angulartoolsdr/shared-utils';
     },
   ],
   imports: [
-    MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatIcon, MatError, MatHint, MatInput, FontAwesomeModule
+    MatFormField, MatLabel, FileInputComponent, FormsModule, ReactiveFormsModule, MatIconButton, MatSuffix, MatError, MatHint, MatInput, FontAwesomeModule
   ]
 })
 export class ControlMaterialFileComponent extends ControlMaterialComponent implements OnChanges {
@@ -112,14 +111,16 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
 
         this.toastrService.warning(this.translate.instant('TAMANHO_IMAGEM_EXCEDIDA', { valor: this.maxSize }));
 
-        if (this.formControlName !== undefined) {
+        if (this.formControlName != null) {
           this.formControlName.control.setValue(null);
           this.formControlName.control.updateValueAndValidity();
-        } else if (this.control !== undefined) {
+        }
+        if (this.control != null) {
           this.control.value = null;
           this.control.updateValueAndValidity();
         }
         this.image = undefined;
+        this.inputFile.clear();
         $event.preventDefault();
         return;
       }
@@ -127,14 +128,16 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
         if (this.extensao.indexOf(arquivos[0].type.split('/')[1]) === -1) {
           this.toastrService.warning(this.translate.instant('EXTENSAO_ARQUIVO_NAO_PERMITIDA', { extensao: this.extensao }));
 
-          if (this.formControlName !== undefined) {
+          if (this.formControlName != null) {
             this.formControlName.control.setValue(null);
             this.formControlName.control.updateValueAndValidity();
-          } else if (this.control !== undefined) {
+          }
+          if (this.control != null) {
             this.control.value = null;
             this.control.updateValueAndValidity();
           }
           this.image = undefined;
+          this.inputFile.clear();
           $event.preventDefault();
           return;
         }

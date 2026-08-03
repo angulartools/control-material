@@ -8,7 +8,6 @@
     "@angular/core",
     "@angular/forms",
     "@angular/material",
-    "@angular/material-moment-adapter",
     "@angulartoolsdr/shared-utils",
     "@angulartoolsdr/translation",
     "@ngx-mce/datetime-picker",

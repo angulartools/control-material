@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { AfterContentInit, Component, EventEmitter, Input, Output, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, Output, forwardRef, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NgxMatDatepickerActions,
@@ -9,13 +9,12 @@ import {
   NgxMatDatepickerToggle,
   NgxMatDatetimepicker
 } from '@ngx-mce/datetime-picker';
-import { TranslationPipe } from '@angulartoolsdr/translation';
+import { TranslationPipe, TranslationService } from '@angulartoolsdr/translation';
 import { MatButton } from '@angular/material/button';
 import { IMaskDirective } from 'angular-imask';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { ControlMaterialComponent } from './../control-material.component';
 import { Mask } from '@angulartoolsdr/shared-utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -32,11 +31,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       useExisting: forwardRef(() => ControlMaterialDateTimeComponent), // replace name as appropriate
       multi: true
     },
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    // Moment can be provided globally to your app by adding `provideMomentDateAdapter`
-    // to your app config. We provide it at the component level here, due to limitations
-    // of our example generation script.
-    provideMomentDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useFactory: () => inject(TranslationService).currentLang }
   ],
   imports: [
     NgxMatDatepickerActions, NgxMatDatepickerApply, NgxMatDatepickerToggle,
@@ -70,13 +65,10 @@ export class ControlMaterialDateTimeComponent extends ControlMaterialComponent i
   inputHour = '';
   dateMask = Mask.getMaskDate();
 
-  // private readonly _adapter = inject<NgxMatDateAdapter<unknown>>(NgxMatDateAdapter);
-
   @Output() selectDate: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     super();
-    // this._adapter.setLocale(this.translate.currentLang);
   }
 
   override ngAfterContentInit() {

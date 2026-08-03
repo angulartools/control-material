@@ -1,13 +1,13 @@
 import { NG_VALUE_ACCESSOR, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AfterContentInit, Component, forwardRef, Input, ChangeDetectionStrategy } from '@angular/core';
-import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatOption } from '@angular/material/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
+import { MatFormField, MatLabel, MatSuffix, MatError } from '@angular/material/form-field';
 import { ControlMaterialAutocompleteComponent, searchControlValidator } from '../control-material-autocomplete/control-material-autocomplete.component';
 import { catchError, debounceTime, distinctUntilChanged, filter, Observable, of, switchMap, tap } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -34,13 +34,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     MatAutocompleteTrigger,
     ReactiveFormsModule,
-    MatPrefix,
     MatTooltip,
     MatIconButton,
     MatError,
     MatAutocomplete,
     MatOption,
-    NgClass,
     AsyncPipe,
     DatePipe,
     FontAwesomeModule

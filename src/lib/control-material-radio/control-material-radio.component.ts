@@ -1,8 +1,6 @@
 import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ControlMaterialComponent } from '../control-material.component';
-import { MatError, MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { NgClass } from '@angular/common';
+import { MatError } from '@angular/material/form-field';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
@@ -23,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     }
   ],
   imports: [
-    TranslationPipe, MatRadioGroup, MatRadioButton, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatInput, NgClass, MatTooltip, FormsModule, ReactiveFormsModule, FontAwesomeModule
+    TranslationPipe, MatRadioGroup, MatRadioButton, MatError, MatTooltip, FormsModule, ReactiveFormsModule, FontAwesomeModule
   ]
 })
 export class ControlMaterialRadioComponent extends ControlMaterialComponent {

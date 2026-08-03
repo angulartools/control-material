@@ -1,4 +1,4 @@
-<div [ngClass]="{'d-inline-flex': inlineRadioLabel}" class="frame">
+<div [class.d-inline-flex]="inlineRadioLabel" class="frame">
   <label style="align-self: center; font-weight: 100;">{{label}}:
     @if (tooltip !== null) {
       <span>

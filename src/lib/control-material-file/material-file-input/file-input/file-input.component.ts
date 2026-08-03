@@ -28,7 +28,6 @@ export class FileInputComponent extends FileInputBase implements MatFormFieldCon
   private _required = false;
   private _multiple: boolean;
 
-  @Input() valuePlaceholder: string;
   @Input() accept: string | null = null;
   @Input() errorStateMatcher: ErrorStateMatcher;
 
@@ -77,7 +76,7 @@ export class FileInputComponent extends FileInputBase implements MatFormFieldCon
 
   @HostBinding('class.mat-form-field-should-float')
   get shouldLabelFloat() {
-    return this.focused || !this.empty || this.valuePlaceholder !== undefined;
+    return this.focused || !this.empty;
   }
 
   @Input()
@@ -137,11 +136,11 @@ export class FileInputComponent extends FileInputBase implements MatFormFieldCon
   userAriaDescribedBy?: string;
   disableAutomaticLabeling?: boolean;
 
-  private _onChange = (_: any) => {};
-  private _onTouched = () => {};
+  private _onChange = (_: any) => { };
+  private _onTouched = () => { };
 
   get fileNames() {
-    return this.value ? this.value.fileNames : this.valuePlaceholder;
+    return this.value ? this.value.fileNames : this.placeholder;
   }
 
   writeValue(obj: FileInput | null): void {

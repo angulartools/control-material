@@ -23,7 +23,7 @@
   }
   <mat-autocomplete #auto [displayWith]="displayBindLabel.bind(this)" (optionSelected)="optionSelected($event)">
     @for (item of (filteredSearch | async); track item.id) {
-      <mat-option [value]="item" [ngClass]="{'large-data': largeData }">
+      <mat-option [value]="item" [class.large-data]="largeData">
         <span>
           @if (bindArray === undefined || bindArray === null || bindArray.length === 0 || showLabel === true) {
             <span>{{ getLabel(item) }}</span>

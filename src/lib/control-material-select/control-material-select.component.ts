@@ -1,6 +1,5 @@
 import { Component, EventEmitter, forwardRef, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { MatError, MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
-import { NgClass } from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
@@ -23,7 +22,7 @@ import { ControlMaterialComponent } from '../control-material.component';
     },
   ],
   imports: [
-    MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, NgClass, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
+    MatIconButton, MatHint, MatOption, MatSelect, MatFormField, MatLabel, MatPrefix, MatSuffix, MatError, MatTooltip, FormsModule, ReactiveFormsModule, TranslationPipe, FontAwesomeModule
   ]
 })
 export class ControlMaterialSelectComponent extends ControlMaterialComponent {
