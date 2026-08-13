@@ -10,10 +10,7 @@ import { FontAwesomeService } from './fontawesome.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library, IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faXmark as faXmarkPro } from '@fortawesome/pro-solid-svg-icons';
-import { faXmark as faXmarkFree } from '@fortawesome/free-solid-svg-icons';
-import { faCircleInfo as faCircleInfoPro } from '@fortawesome/pro-solid-svg-icons';
-import { faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-icons';
+import { faXmark as faXmarkFree, faCircleInfo as faCircleInfoFree } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'lib-control-material',
@@ -277,9 +274,9 @@ export function hasFaIcon(prefix: IconPrefix, name: IconName): boolean {
 }
 
 export function getInfoIcon() {
-  return icon(faCircleInfoPro) ? faCircleInfoPro : faCircleInfoFree;
+  return hasFaIcon('fas', 'circle-info') ? ('circle-info' as IconName) : faCircleInfoFree;
 }
 
 export function getXmarkIcon() {
-  return icon(faXmarkPro) ? faXmarkPro : faXmarkFree;
+  return hasFaIcon('fas', 'xmark') ? ('xmark' as IconName) : faXmarkFree;
 }

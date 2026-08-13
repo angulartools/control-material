@@ -5,7 +5,7 @@
         <span>*</span>
       }</mat-label>
     }
-    <lib-mat-file-input #inputFile [formControl]="control" [ngModel]="control?.value" (change)="selectFile($event)" [placeholder]="placeholder"></lib-mat-file-input>
+    <lib-mat-file-input #inputFile [formControl]="control" [ngModel]="control?.value" (change)="selectFile($event)"></lib-mat-file-input>
     @if (!inputFile.empty) {
       <button mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
         <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
@@ -28,11 +28,13 @@
 @if (readonly) {
   <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
     @if (label !== undefined && label !== null) {
-      <mat-label>{{label}}@if (required) {
-        <span>*</span>
-      }</mat-label>
+      <mat-label>{{label}}
+        @if (required) {
+          <span>*</span>
+        }
+      </mat-label>
     }
-    <input [readonly]="readonly" matInput [value]="control?.value?._fileNames" />
+    <input [readonly]="readonly" matInput [placeholder]="placeholder" [value]="control?.value?._fileNames" />
   </mat-form-field>
 }
 

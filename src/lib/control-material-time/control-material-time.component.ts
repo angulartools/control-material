@@ -7,9 +7,9 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faClock as faClockPro } from '@fortawesome/pro-solid-svg-icons';
 import { faClock as faClockFree } from '@fortawesome/free-solid-svg-icons';
+import { hasFaIcon } from '../control-material.component';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'lib-control-material-time',
@@ -131,5 +131,5 @@ export class ControlMaterialTimeComponent extends ControlMaterialComponent imple
 }
 
 export function getClockIcon() {
-  return icon(faClockPro) ? faClockPro : faClockFree;
+  return hasFaIcon('fas', 'clock') ? ('clock' as IconName) : faClockFree;
 }

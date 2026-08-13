@@ -1,32 +1,34 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { Observable, firstValueFrom, lastValueFrom, map } from 'rxjs';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
-@Service()
+@Service({ autoProvided: false })
 export class FontAwesomeSearchService {
 
-  http = inject(HttpClient);
-  FA_API = 'https://api.fontawesome.com';
-  FA_AUTHORIZATION = 'Bearer 3076D3D3-2984-4399-A93E-0869E99F37B1';
+  private library = inject(FaIconLibrary);
 
-  getToken(): Observable<any> {
-    const url = `${this.FA_API}/token`;
-    const headers = new HttpHeaders().set('Authorization', `${this.FA_AUTHORIZATION}`);
-    return this.http.post(url, null, { headers: headers }).pipe(
-      map((response) => {
-        return response;
-      }),
-    );
-  }
+  async getIcons(search: string, qtd: number = 50) {
+    const definitions = (this.library as any)['definitions']?.fas || {};
+    let iconNames = Object.keys(definitions);
 
-  async getIcons(search, qtd) {
-    const token = await firstValueFrom(this.getToken());
+    if (search && search.trim() !== '') {
+      const query = search.toLowerCase().trim();
+      iconNames = iconNames.filter(name => name.toLowerCase().includes(query));
+    }
 
-    const headers = new HttpHeaders().set('Authorization', `${token.token_type} ${token.access_token}`);
-    return await lastValueFrom(this.http.post(this.FA_API, this.getQuery(search, qtd), { headers: headers }));
-  }
+    const limitedNames = iconNames.slice(0, qtd);
 
-  getQuery(search, qtd) {
-    return { "query": "query { search (version: \"7.3.0\", query: \"" + search + "\", first: " + qtd + ") {id unicode label familyStylesByLicense { free { family style } pro {family style} } } }" }
+    return {
+      data: {
+        search: limitedNames.map(name => ({
+          id: name,
+          label: name,
+          unicode: definitions[name]?.icon?.[3] || '',
+          familyStylesByLicense: {
+            pro: [{ family: 'classic', style: 'solid' }],
+            free: [{ family: 'classic', style: 'solid' }]
+          }
+        }))
+      }
+    };
   }
 }

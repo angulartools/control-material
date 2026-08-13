@@ -1,8 +1,7 @@
 import { Observable, debounceTime, distinctUntilChanged, map, startWith } from 'rxjs';
 import { ControlMaterialComponent } from './../control-material.component';
 import { NG_VALUE_ACCESSOR, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Component, forwardRef, AfterContentInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { Component, forwardRef, AfterContentInit, Input, Output, EventEmitter, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FontAwesomeSearchComponent } from './font-awesome-search/font-awesome-search.component';
 import { TranslationPipe } from '@angulartoolsdr/translation';
@@ -15,6 +14,7 @@ import { MatInput } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFormField, MatLabel, MatSuffix, MatPrefix, MatError } from '@angular/material/form-field';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'lib-control-material-fontawesome-icon',
@@ -49,7 +49,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TranslationPipe, FontAwesomeModule
   ]
 })
-export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit {
+export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComponent implements AfterContentInit, OnInit {
 
   override id = `lib-control-material-fontawesome-icon-${ControlMaterialFontawesomeIconComponent.nextId++}`;
 
@@ -60,7 +60,6 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
   bindIconField = 'classe';
   nomesIcones;
 
-  library;
   icones;
 
   @Input() showId = false;
@@ -74,36 +73,16 @@ export class ControlMaterialFontawesomeIconComponent extends ControlMaterialComp
   @Output() selectItem: EventEmitter<any> = new EventEmitter();
   @Output() clearItem: EventEmitter<any> = new EventEmitter();
 
-  constructor(private dialog: MatDialog) {
-    super();
-    this.library = library;
-    this.registrarIconesFontAwesome();
+  library = inject(FaIconLibrary);
+  dialog = inject(MatDialog);
+
+  ngOnInit(): void {
+    this.icones = this.getIcons();
   }
 
-  async registrarIconesFontAwesome(): Promise<void> {
-    let fas: any;
-
-    try {
-      // tenta carregar os ícones Pro
-      const pro = await import('@fortawesome/pro-solid-svg-icons');
-      fas = pro.fas;
-      console.info('[MyLib] Registrando ícones Pro...');
-    } catch {
-      // fallback para versão gratuita
-      try {
-        const free = await import('@fortawesome/free-solid-svg-icons');
-        fas = free.fas;
-        console.info('[MyLib] Registrando ícones Free (fallback).');
-      } catch {
-        console.warn('[MyLib] Nenhum pacote de ícones "fas" encontrado.');
-        return;
-      }
-    }
-
-    if (fas) {
-      this.library.add(fas);
-      this.icones = Object.keys(this.library['definitions'].fas);
-    }
+  getIcons(): string[] {
+    const definitions = (this.library as any)['definitions']?.fas || {};
+    return Object.keys(definitions);
   }
 
   override ngAfterContentInit() {
