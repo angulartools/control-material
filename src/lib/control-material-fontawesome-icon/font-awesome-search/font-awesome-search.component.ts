@@ -11,25 +11,25 @@ import { MatButtonToggleGroup, MatButtonToggle } from '@angular/material/button-
 import { ControlMaterialComponent } from '../../control-material.component';
 
 @Component({
-    selector: 'lib-font-awesome-search',
-    templateUrl: './font-awesome-search.component.html',
-    styleUrls: ['./font-awesome-search.component.scss'],
-    providers: [FontAwesomeSearchService],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [
-      MatDialogTitle, 
-      MatButtonToggleGroup, 
-      MatButtonToggle, 
-      MatDialogContent, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      ControlMaterialComponent, 
-      MatProgressSpinner, 
-      MatButton, 
-      MatTooltip, 
-      MatDialogActions, 
-      TranslationPipe
-    ]
+  selector: 'lib-font-awesome-search',
+  templateUrl: './font-awesome-search.component.html',
+  styleUrls: ['./font-awesome-search.component.scss'],
+  providers: [FontAwesomeSearchService],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    MatDialogTitle,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    MatDialogContent,
+    FormsModule,
+    ReactiveFormsModule,
+    ControlMaterialComponent,
+    MatProgressSpinner,
+    MatButton,
+    MatTooltip,
+    MatDialogActions,
+    TranslationPipe
+  ]
 })
 
 export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {
@@ -43,17 +43,17 @@ export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {
   loading = true;
 
   viewTypes = [
-    {id: 1, name: 'LARGE', icon: 'fa-solid fa-grid-2', qtdItens: 6, columnSize: 2, classe: 'large-icon-button', size: '3', fontSize: '.8em'},
-    {id: 2, name: 'MIDI', icon: 'fa-solid fa-grid', qtdItens: 9, columnSize: 1, classe: 'midi-icon-button', size: '2', fontSize: '.65em'},
-    {id: 3, name: 'SMALL', icon: 'fa-solid fa-list-ul', qtdItens: 6, columnSize: 2, classe: 'small-icon-button', size: '1', fontSize: '.7em'}
+    { id: 1, name: 'LARGE', icon: 'fa-solid fa-grid-2', classe: 'large-icon-button', fontSize: '.8em' },
+    { id: 2, name: 'MIDI', icon: 'fa-solid fa-grid', classe: 'midi-icon-button', fontSize: '.65em' },
+    { id: 3, name: 'SMALL', icon: 'fa-solid fa-list-ul', classe: 'small-icon-button', fontSize: '.7em' }
   ];
   viewTypeSelected = this.viewTypes[0];
 
   searchForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<FontAwesomeSearchComponent>,
-              private formBuilder: FormBuilder,
-              private service: FontAwesomeSearchService) {
+    private formBuilder: FormBuilder,
+    private service: FontAwesomeSearchService) {
     //this.service.getIcons('donut').then(res => console.log(res));
   }
 
@@ -97,24 +97,39 @@ export class FontAwesomeSearchComponent implements OnInit, AfterContentInit {
     //console.log(data['data']['search'])
     if (data !== null && data['data']['search'].length > 0) {
       const icones = data['data']['search'];
-      for(let i=0; i<icones.length; i++) {
+      for (let i = 0; i < icones.length; i++) {
         const family = icones[i].familyStylesByLicense.pro;
         //for (let j=0; j<family.length; j++) {
-          if (family.findIndex(x => x.family === 'classic' && x.style === 'solid') > -1) {
-            const item = {
-              id: i,
-              //classe: 'fa-' + family[j].style + (family[j].family === 'classic' ? '' : ' fa-'+family[j].family) + ' fa-'+icones[i].id,
-              classe: 'fas fa-'+icones[i].id,
-              nome: icones[i].id
-            }
-            if (showMore) {
-              if (this.listaIcones.findIndex(x => x.classe === item.classe) === -1) {
-                this.listaIcones.push(item);
-              }
-            } else {
+        let style = 'light';
+        let prefix = 'fal';
+
+        let styleIndex = family.findIndex(x => x.family === 'classic' && x.style === 'light');
+        if (styleIndex === -1) {
+          styleIndex = family.findIndex(x => x.family === 'classic' && x.style === 'regular');
+          style = 'regular';
+          prefix = 'far';
+        }
+        if (styleIndex === -1) {
+          styleIndex = family.findIndex(x => x.family === 'classic' && x.style === 'solid');
+          style = 'solid';
+          prefix = 'fas';
+        }
+
+        if (styleIndex > -1) {
+          const item = {
+            id: i,
+            //classe: 'fa-' + family[j].style + (family[j].family === 'classic' ? '' : ' fa-'+family[j].family) + ' fa-'+icones[i].id,
+            classe: prefix + ' fa-' + icones[i].id,
+            nome: icones[i].id
+          }
+          if (showMore) {
+            if (this.listaIcones.findIndex(x => x.classe === item.classe) === -1) {
               this.listaIcones.push(item);
             }
+          } else {
+            this.listaIcones.push(item);
           }
+        }
         //}
       }
     }

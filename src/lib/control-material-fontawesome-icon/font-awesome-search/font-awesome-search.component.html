@@ -24,9 +24,9 @@
       @for (icone of listaIcones; track icone.nome) {
         <div class="mt-1 mx-0 px-1 col" style="flex-grow: 0;">
           <button [class.inline-button]="group?.value?.id === 3" matTooltip="{{icone.nome}}" matTooltipPosition="above" [class.selected]="icone.classe === selectedIcon?.classe" mat-stroked-button class="{{group?.value?.classe}}" (click)="selecionarIcone(icone)">
-            <div [class.d-inline-flex]="group?.value?.id === 3" style="width: 100%; align-items: center;">
+            <div [class.d-inline-flex]="group?.value?.id === 3" [style.align-items]="group?.value?.id === 3 ? 'left' : 'center'" style="width: 100%; color: #555555">
               <i class="custom-icon {{icone.classe}} mr-1"></i>
-              <div class="icon-text" style="font-size: {{group?.value?.fontSize}}">{{icone.nome}}</div>
+              <div class="icon-text" [style.font-size]="group?.value?.fontSize">{{icone.nome}}</div>
             </div>
           </button>
         </div>
