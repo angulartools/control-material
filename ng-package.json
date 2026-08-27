@@ -12,6 +12,8 @@
     "@angulartoolsdr/translation",
     "@ngx-mce/datetime-picker",
     "moment-timezone",
-    "@iplab/ngx-color-picker"
+    "@iplab/ngx-color-picker",
+    "@fortawesome/free-regular-svg-icons",
+    "@fortawesome/free-solid-svg-icons"
   ]
 }
