@@ -1,22 +1,22 @@
 {
   "name": "@angulartoolsdr/control-material",
-  "version": "22.1.7",
+  "version": "22.2.1",
   "peerDependencies": {
-    "@angular/common": "22.1.7",
-    "@angular/core": "22.1.7",
-    "@angular/forms": "22.1.7",
-    "@angular/material": "22.1.7",
+    "@angular/common": "22.2.1",
+    "@angular/core": "22.2.1",
+    "@angular/forms": "22.2.1",
+    "@angular/material": "22.2.1",
     "@fortawesome/angular-fontawesome": "5.1.0",
     "@fortawesome/fontawesome-svg-core": "7.3.1",
-    "@iplab/ngx-color-picker": "22.1.0",
-    "@ngx-mce/datetime-picker": "22.2.7",
+    "@iplab/ngx-color-picker": "22.1.1",
+    "@ngx-mce/datetime-picker": "22.2.10",
     "angular-imask": "^7.6.1",
-    "libphonenumber-js": "1.13.13"
+    "libphonenumber-js": "1.13.14"
   },
   "dependencies": {
-    "@angulartoolsdr/shared-utils": "22.1.7",
-    "@angulartoolsdr/translation": "22.1.7",
-    "moment-timezone": "^0.6.4",
+    "@angulartoolsdr/shared-utils": "22.2.1",
+    "@angulartoolsdr/translation": "22.2.1",
+    "moment-timezone": "0.6.5",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
