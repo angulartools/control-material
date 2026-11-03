@@ -42,6 +42,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
   @Input() imageClass = '';
   @Input() nome = 'logo';
   @Input() hint = null;
+  @Input() subscriptSizing: 'fixed' | 'dynamic' = 'dynamic';
 
   @Output() selectedFile: EventEmitter<any> = new EventEmitter();
 
@@ -61,7 +62,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
   }
 
   updateImage() {
-    if (this.file !== undefined && this.file !== null && this.file.toString().length > 0) {
+    if (this.file != null && this.file.toString().length > 0) {
 
       // atualiza imagem renderizada
       fetch(this.file)
@@ -81,13 +82,13 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
 
           const arquivo: FileInput = new FileInput(arquivos);
 
-          if (this.formControlName !== undefined) {
+          if (this.formControlName != null) {
             this.formControlName.control.setValue(arquivo);
-          } else if (this.control !== undefined) {
+          } else if (this.control != null) {
             this.control.value = arquivo;
           }
 
-          if (this.selectedFiles !== undefined && this.selectedFiles !== null && this.selectedFiles.length > 0) {
+          if (this.selectedFiles != null && this.selectedFiles.length > 0) {
             this.selectedFiles[0] = blobFile;
           } else {
             this.selectedFiles = [];
@@ -95,9 +96,9 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
           }
         });
     } else {
-      if (this.formControlName !== undefined) {
+      if (this.formControlName != null) {
         this.formControlName.control.setValue(null);
-      } else if (this.control !== undefined) {
+      } else if (this.control != null) {
         this.control.value = null;
       }
       this.image = null;
@@ -119,7 +120,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
           this.control.value = null;
           this.control.updateValueAndValidity();
         }
-        this.image = undefined;
+        this.image = null;
         this.inputFile.clear();
         $event.preventDefault();
         return;
@@ -136,7 +137,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
             this.control.value = null;
             this.control.updateValueAndValidity();
           }
-          this.image = undefined;
+          this.image = null;
           this.inputFile.clear();
           $event.preventDefault();
           return;
@@ -145,7 +146,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
       if (arquivos[0].type.indexOf('image') > -1) {
         this.resizeImage(arquivos[0], 1040, 1040).then(resI => {
 
-          if (this.selectedFiles !== undefined && this.selectedFiles !== null && this.selectedFiles.length > 0) {
+          if (this.selectedFiles != null && this.selectedFiles.length > 0) {
             this.selectedFiles[0] = <File>resI;
           } else {
             this.selectedFiles = [];
@@ -178,7 +179,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
       // };
       // reader.readAsDataURL(this.selectedFiles[0]);
     } else {
-      this.image = undefined;
+      this.image = null;
     }
 
     this.selectedFile.emit($event);
@@ -188,8 +189,9 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
     if (arquivo.type.split('/')[0] === 'image') {
       this.image = imagem;
     } else {
-      this.image = undefined;
+      this.image = null;
     }
+    this.changeDetectorRef?.markForCheck();
   }
 
   private blobToFile = (theBlob: Blob, fileName: string): File => {

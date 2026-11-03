@@ -1,6 +1,6 @@
 @if (!readonly) {
-  <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
-    @if (label !== undefined && label !== null) {
+  <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller" [subscriptSizing]="subscriptSizing">
+    @if (label != null) {
       <mat-label>{{label}}@if (required) {
         <span>*</span>
       }</mat-label>
@@ -19,15 +19,15 @@
     @if (hasError()) {
       <mat-error class="danger">{{errorMessage}}</mat-error>
     }
-    @if (hint !== null) {
+    @if (hint != null) {
       <mat-hint>{{hint}}</mat-hint>
     }
   </mat-form-field>
 }
 
 @if (readonly) {
-  <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
-    @if (label !== undefined && label !== null) {
+  <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller" [subscriptSizing]="subscriptSizing">
+    @if (label != null) {
       <mat-label>{{label}}
         @if (required) {
           <span>*</span>
@@ -35,11 +35,14 @@
       </mat-label>
     }
     <input [readonly]="readonly" matInput [placeholder]="placeholder" [value]="control?.value?._fileNames" />
+    @if (hint != null) {
+      <mat-hint>{{hint}}</mat-hint>
+    }
   </mat-form-field>
 }
 
-@if (image !== undefined && image !== null) {
-  <span>
+@if (image != null) {
+  <div class="image-preview">
     <img [src]="image" class="{{imageClass}} img-thumbnail" [style.height]="imageHeight" [style.width]="imageWidth" />
-  </span>
+  </div>
 }
