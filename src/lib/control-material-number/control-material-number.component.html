@@ -1,19 +1,19 @@
 <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller">
-  @if (label !== undefined && label !== null) {
+  @if (label != null) {
     <mat-label>{{label}}</mat-label>
   }
   <input [readonly]="readonly" matInput type="number" [formControl]="control" [placeholder]="placeholder" (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)" (change)="changeNumber($event)" />
-  @if (iconBefore !== null) {
+  @if (iconBefore != null) {
     <span class="mr-1" matPrefix>
       <fa-icon [icon]="iconBefore" />
     </span>
   }
-  @if (iconAfter !== null) {
+  @if (iconAfter != null) {
     <span class="mr-1" matSuffix>
       <fa-icon [icon]="iconAfter" />
     </span>
   }
-  @if (tooltip !== null) {
+  @if (tooltip != null) {
     <span matSuffix>
       <fa-icon class="icon-size" [icon]="getInfoIcon()" [matTooltip]="tooltip" matTooltipPosition="above" style="color: var(--mat-accent)" />
     </span>

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, ElementRef, OnDestroy, HostBinding, Renderer2, HostListener, Optional, Self, DoCheck, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NgControl, NgForm, FormGroupDirective } from '@angular/forms';
-
-
 import { FileInput } from '../model/file-input.model';
 import { FileInputBase } from './file-input-mixin';
 import { MatFormFieldControl } from "@angular/material/form-field";
@@ -12,7 +10,7 @@ import { FocusMonitor } from "@angular/cdk/a11y";
 @Component({
   selector: 'lib-mat-file-input',
   templateUrl: './file-input.component.html',
-  styleUrls: ['./file-input.component.css'],
+  styleUrls: ['./file-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
   providers: [{ provide: MatFormFieldControl, useExisting: FileInputComponent }]
 })

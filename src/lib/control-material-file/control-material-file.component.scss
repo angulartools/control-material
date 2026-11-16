@@ -15,9 +15,12 @@
       display: none;
     }
 
-    .filename {
-      display: inline-flex !important;
+    .file-actions {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
     }
+
   }
 }
 

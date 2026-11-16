@@ -1,19 +1,28 @@
 @if (!readonly) {
   <mat-form-field [appearance]="appearance" class="d-block" [class.smaller]="smaller" [subscriptSizing]="subscriptSizing">
     @if (label != null) {
-      <mat-label>{{label}}@if (required) {
+      <mat-label>{{label}}
+      @if (required) {
         <span>*</span>
-      }</mat-label>
+      }
+      </mat-label>
     }
     <lib-mat-file-input #inputFile [formControl]="control" [ngModel]="control?.value" (change)="selectFile($event)"></lib-mat-file-input>
     @if (!inputFile.empty) {
-      <button mat-icon-button matSuffix (click)="inputFile.clear($event); image=null">
-        <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
-      </button>
+      <span matSuffix class="file-actions">
+        @if (showDownload) {
+          <button mat-icon-button type="button" (click)="clickDownlad($event)">
+            <fa-icon class="icon-size" [icon]="['fas', 'file-arrow-down']"></fa-icon>
+          </button>
+        }
+        <button mat-icon-button type="button" (click)="inputFile.clear($event); image=null">
+          <fa-icon class="icon-size" [icon]="getXmarkIcon()"></fa-icon>
+        </button>
+      </span>
     }
     @if (inputFile.empty) {
       <button type="button" mat-icon-button matSuffix>
-        <fa-icon [icon]="['fas', 'folder-open']" />
+        <fa-icon class="icon-size" [icon]="['fas', 'folder-open']" />
       </button>
     }
     @if (hasError()) {

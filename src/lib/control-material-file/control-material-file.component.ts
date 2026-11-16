@@ -34,7 +34,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
   image: any;
 
   @Input() extensao?: string[] = [];
-  @Input() filename = this.translate.instant('SELECIONAR_ARQUIVO');
+  @Input() filename = this.translate.instant('ESCOLHER_ARQUIVO');
   @Input() maxSize = 100000000;
   @Input() file: any;
   @Input() imageHeight = '44px';
@@ -43,6 +43,7 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
   @Input() nome = 'logo';
   @Input() hint = null;
   @Input() subscriptSizing: 'fixed' | 'dynamic' = 'dynamic';
+  @Input() showDownload = false;
 
   @Output() selectedFile: EventEmitter<any> = new EventEmitter();
 
@@ -107,38 +108,20 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
 
   selectFile($event) {
     const arquivos = $event.target.files;
+    const nomeArquivo = arquivos[0].name.toLowerCase();
+    const extensaoArquivo = nomeArquivo.substring(nomeArquivo.lastIndexOf('.') + 1);
+
     if (arquivos && arquivos.length) {
       if (arquivos[0].size > this.maxSize) {
-
         this.toastrService.warning(this.translate.instant('TAMANHO_IMAGEM_EXCEDIDA', { valor: this.maxSize }));
-
-        if (this.formControlName != null) {
-          this.formControlName.control.setValue(null);
-          this.formControlName.control.updateValueAndValidity();
-        }
-        if (this.control != null) {
-          this.control.value = null;
-          this.control.updateValueAndValidity();
-        }
-        this.image = null;
-        this.inputFile.clear();
+        this.limparArquivo();
         $event.preventDefault();
         return;
       }
       if (this.extensao.length > 0) {
-        if (this.extensao.indexOf(arquivos[0].type.split('/')[1]) === -1) {
+        if (!this.extensao.includes(extensaoArquivo)) {
           this.toastrService.warning(this.translate.instant('EXTENSAO_ARQUIVO_NAO_PERMITIDA', { extensao: this.extensao }));
-
-          if (this.formControlName != null) {
-            this.formControlName.control.setValue(null);
-            this.formControlName.control.updateValueAndValidity();
-          }
-          if (this.control != null) {
-            this.control.value = null;
-            this.control.updateValueAndValidity();
-          }
-          this.image = null;
-          this.inputFile.clear();
+          this.limparArquivo();
           $event.preventDefault();
           return;
         }
@@ -165,24 +148,24 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
       } else {
         this.selectedFiles = arquivos;
       }
-
-
-      // this.selectedFiles = arquivos;
-      /* this.placeholder = arquivos[0].name;
-      this.formControlName.control.setValue(arquivos);
-      this.formControlName.control.updateValueAndValidity();
-      this.inputFile['value'] = this.formControlName.value;*/
-
-      // const reader = new FileReader();
-      // reader.onload = () => {
-      //   this.renderImage(this.selectedFiles[0], reader.result);
-      // };
-      // reader.readAsDataURL(this.selectedFiles[0]);
     } else {
       this.image = null;
     }
 
     this.selectedFile.emit($event);
+  }
+
+  limparArquivo() {
+    if (this.formControlName != null) {
+      this.formControlName.control.setValue(null);
+      this.formControlName.control.updateValueAndValidity();
+    }
+    if (this.control != null) {
+      this.control.value = null;
+      this.control.updateValueAndValidity();
+    }
+    this.image = null;
+    this.inputFile.clear();
   }
 
   private renderImage(arquivo: File, imagem: any) {
@@ -239,4 +222,23 @@ export class ControlMaterialFileComponent extends ControlMaterialComponent imple
       image.onerror = reject;
     });
   }
+
+  clickDownlad(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.saveAs(this.selectedFiles[0], this.selectedFiles[0].name);
+  }
+
+  saveAs(res: Blob, nome: string) {
+    const url = window.URL.createObjectURL(res);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = nome;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove(); // remove the element
+  }
+
 }

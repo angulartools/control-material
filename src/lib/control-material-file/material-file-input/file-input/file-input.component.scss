@@ -1,6 +1,8 @@
 :host {
-  display: inline-block;
+  display: block;
   width: 100%;
+  min-width: 0;
+  flex: 1 1 0%;
 }
 :host:not(.file-input-disabled) {
   cursor: pointer;
@@ -20,4 +22,7 @@ input {
   text-overflow: ellipsis;
   overflow: hidden;
   width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  vertical-align: middle;
 }
